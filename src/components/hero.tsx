@@ -11,41 +11,31 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="grain relative overflow-hidden bg-primary px-6 py-28 md:py-36 lg:py-44">
-      {/* Warm radial gradient */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 80% 60% at 70% 40%, oklch(0.35 0.08 55 / 0.6) 0%, transparent 70%), radial-gradient(ellipse 50% 50% at 20% 80%, oklch(0.30 0.06 45 / 0.4) 0%, transparent 60%)",
-        }}
-      />
-
-      {/* Subtle dot grid */}
-      <div className="absolute inset-0 opacity-[0.04]">
+    <section className="relative overflow-hidden bg-primary px-6 py-24 md:py-32 lg:py-40">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 opacity-[0.03]">
         <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern
-              id="dots"
-              width="24"
-              height="24"
+              id="grid"
+              width="40"
+              height="40"
               patternUnits="userSpaceOnUse"
             >
-              <circle cx="2" cy="2" r="1" fill="currentColor" className="text-primary-foreground" />
+              <path
+                d="M 40 0 L 0 0 0 40"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1"
+                className="text-primary-foreground"
+              />
             </pattern>
           </defs>
-          <rect width="100%" height="100%" fill="url(#dots)" />
+          <rect width="100%" height="100%" fill="url(#grid)" />
         </svg>
       </div>
 
       <div className="relative mx-auto max-w-5xl">
-        {/* Decorative accent line */}
-        <div
-          className={`mb-12 h-px bg-warm transition-all duration-1000 ease-out ${
-            isVisible ? "w-16 opacity-100" : "w-0 opacity-0"
-          }`}
-        />
-
         <div
           className={`transition-all duration-1000 ease-out ${
             isVisible
@@ -53,11 +43,13 @@ export function Hero() {
               : "translate-y-8 opacity-0"
           }`}
         >
-          <p className="mb-6 font-sans text-sm font-medium uppercase tracking-[0.2em] text-warm">
+          {/* Eyebrow text */}
+          <p className="mb-6 font-sans text-sm font-medium uppercase tracking-widest text-primary-foreground/60">
             AI Consulting & Automation
           </p>
 
-          <h1 className="font-serif text-4xl font-semibold leading-[1.1] tracking-tight text-primary-foreground md:text-5xl lg:text-7xl">
+          {/* Main headline */}
+          <h1 className="font-serif text-4xl font-semibold leading-tight tracking-tight text-primary-foreground md:text-5xl lg:text-6xl">
             <span className="block">Your competitors are</span>
             <span className="block">already using AI.</span>
             <span className="mt-2 block text-warm">Are you?</span>
@@ -71,10 +63,11 @@ export function Hero() {
               : "translate-y-8 opacity-0"
           }`}
         >
-          <p className="max-w-lg font-sans text-lg leading-relaxed text-primary-foreground/65 md:text-xl">
-            We find the processes draining your team&apos;s time and replace them
-            with AI and automation that just works. Quietly. Reliably.
-            Around the clock.
+          {/* Subtext */}
+          <p className="max-w-xl font-sans text-lg leading-relaxed text-primary-foreground/70 md:text-xl">
+            Most businesses know they should be leveraging AI. Few know where to
+            start. We bridge that gap—turning complexity into clarity, and
+            potential into results.
           </p>
         </div>
 
@@ -87,12 +80,12 @@ export function Hero() {
         >
           <Button
             size="lg"
-            className="bg-warm px-8 py-6 text-base font-medium text-warm-foreground transition-all duration-300 hover:bg-warm/90 hover:shadow-lg hover:shadow-warm/20"
+            className="bg-warm px-8 py-6 text-base font-medium text-warm-foreground hover:bg-warm/90"
           >
             Book a Free Consultation
           </Button>
-          <span className="text-sm text-primary-foreground/40">
-            No commitment. Just a conversation about what&apos;s possible.
+          <span className="text-sm text-primary-foreground/50">
+            No commitment. Just conversation.
           </span>
         </div>
       </div>

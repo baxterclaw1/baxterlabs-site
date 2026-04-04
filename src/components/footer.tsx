@@ -11,6 +11,7 @@ export function Footer() {
     <footer className="border-t border-border bg-background px-6 py-12">
       <div className="mx-auto max-w-5xl">
         <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
+          {/* Logo and tagline */}
           <div>
             <Link
               href="/"
@@ -18,11 +19,12 @@ export function Footer() {
             >
               BaxterLabs
             </Link>
-            <p className="mt-2 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              AI consulting and automation for businesses that want to move faster.
+            <p className="mt-2 text-sm text-muted-foreground">
+              AI consulting for modern businesses.
             </p>
           </div>
 
+          {/* Navigation links */}
           <nav className="flex items-center gap-8">
             {footerLinks.map((link) => (
               <Link
@@ -36,12 +38,10 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 md:flex-row">
+        {/* Copyright */}
+        <div className="mt-12 border-t border-border pt-8 text-center">
           <p className="text-sm text-muted-foreground">
             &copy; 2026 BaxterLabs. All rights reserved.
-          </p>
-          <p className="text-sm text-muted-foreground/60">
-            Built with intention, not templates.
           </p>
         </div>
       </div>
