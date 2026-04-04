@@ -58,9 +58,9 @@ export function Hero() {
           </p>
 
           <h1 className="font-serif text-4xl font-semibold leading-[1.1] tracking-tight text-primary-foreground md:text-5xl lg:text-7xl">
-            <span className="block">The work that slows</span>
-            <span className="block">you down doesn&apos;t</span>
-            <span className="mt-1 block text-warm">have to exist.</span>
+            <span className="block">Your competitors are</span>
+            <span className="block">already using AI.</span>
+            <span className="mt-2 block text-warm">Are you?</span>
           </h1>
         </div>
 
