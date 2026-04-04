@@ -8,13 +8,13 @@ const footerLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-background px-6 py-12">
+    <footer className="border-t border-white/[0.06] px-6 py-12">
       <div className="mx-auto max-w-5xl">
         <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
           <div>
             <Link
               href="/"
-              className="font-serif text-xl font-semibold tracking-tight text-foreground"
+              className="text-lg font-semibold tracking-tight text-foreground"
             >
               BaxterLabs
             </Link>
@@ -36,11 +36,11 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 md:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/[0.06] pt-8 md:flex-row">
           <p className="text-sm text-muted-foreground">
             &copy; 2026 BaxterLabs. All rights reserved.
           </p>
-          <p className="text-sm text-muted-foreground/60">
+          <p className="text-sm text-muted-foreground/50">
             Built with intention, not templates.
           </p>
         </div>

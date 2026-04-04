@@ -45,59 +45,56 @@ const services = [
 
 export function Services() {
   return (
-    <section className="grain relative bg-primary px-6 py-24 md:py-32">
+    <section className="grain relative border-t border-white/[0.06] px-6 py-24 md:py-32">
+      {/* Subtle glow */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 60% 40% at 30% 60%, oklch(0.30 0.06 55 / 0.4) 0%, transparent 70%)",
+            "radial-gradient(ellipse 50% 30% at 50% 0%, rgba(56, 189, 248, 0.04) 0%, transparent 70%)",
         }}
       />
 
       <div className="relative mx-auto max-w-5xl">
         <ScrollReveal>
-          <p className="mb-4 font-sans text-sm font-medium uppercase tracking-[0.2em] text-warm">
+          <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-glow">
             Services
           </p>
-          <h2 className="mb-16 max-w-lg font-serif text-3xl font-semibold leading-snug tracking-tight text-primary-foreground md:text-4xl lg:text-5xl">
+          <h2 className="mb-16 max-w-lg text-3xl font-bold leading-snug tracking-tight text-foreground md:text-4xl lg:text-5xl">
             Four ways we make your business faster.
           </h2>
         </ScrollReveal>
 
-        <div className="grid gap-6 sm:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-2">
           {services.map((service, index) => (
             <ScrollReveal key={service.title} delay={index * 100}>
-              <article className="group relative cursor-pointer overflow-hidden rounded-lg border border-primary-foreground/10 bg-primary-foreground/[0.03] p-8 backdrop-blur-sm transition-all duration-500 hover:border-warm/30 hover:bg-primary-foreground/[0.06]">
-                <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-warm/0 transition-all duration-500 group-hover:bg-warm/5" />
+              <article className="glass group relative cursor-pointer overflow-hidden rounded-xl p-8 transition-all duration-500">
+                {/* Hover glow */}
+                <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-glow/0 transition-all duration-500 group-hover:bg-glow/5" />
 
                 <div className="relative">
-                  <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-lg border border-primary-foreground/10 text-primary-foreground/60 transition-all duration-300 group-hover:border-warm/30 group-hover:text-warm">
+                  <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-lg border border-white/[0.08] text-muted-foreground transition-all duration-300 group-hover:border-glow/30 group-hover:text-glow">
                     {service.icon}
                   </div>
 
-                  <h3 className="mb-3 font-serif text-xl font-semibold text-primary-foreground">
+                  <h3 className="mb-3 text-xl font-semibold text-foreground">
                     {service.title}
                   </h3>
 
-                  <p className="leading-relaxed text-primary-foreground/55">
+                  <p className="leading-relaxed text-muted-foreground">
                     {service.description}
                   </p>
 
-                  <div className="mt-6 flex items-center gap-2 text-sm font-medium text-warm opacity-0 transition-all duration-300 group-hover:opacity-100">
+                  <div className="mt-6 flex items-center gap-2 text-sm font-medium text-glow opacity-0 transition-all duration-300 group-hover:opacity-100">
                     <span>Learn more</span>
-                    <svg
-                      className="h-4 w-4 transition-transform group-hover:translate-x-1"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={2}
-                      stroke="currentColor"
-                    >
+                    <svg className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                     </svg>
                   </div>
                 </div>
 
-                <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-warm to-accent transition-all duration-500 group-hover:w-full" />
+                {/* Bottom accent bar */}
+                <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-glow to-teal-400 transition-all duration-500 group-hover:w-full" />
               </article>
             </ScrollReveal>
           ))}
