@@ -1,0 +1,147 @@
+---
+const bookCallUrl = '#contact';
+---
+
+<section class="site-hero">
+  <div class="site-hero-bg" aria-hidden="true"></div>
+  <div class="site-hero-inner">
+    <p class="site-hero-eyebrow">Custom systems for SMB operations</p>
+
+    <h1 class="site-hero-title">
+      <span class="site-hero-line"><span class="site-hero-line-inner">Custom systems</span></span>
+      <span class="site-hero-line"><span class="site-hero-line-inner">for how you</span></span>
+      <span class="site-hero-line"><span class="site-hero-line-inner">actually work.</span></span>
+    </h1>
+
+    <p class="site-hero-sub">
+      We design, build, and run custom systems for how you operate. Your tools, your data,
+      built for your team not a product you bend to fit.
+    </p>
+
+    <a class="btn site-hero-cta" href={bookCallUrl}>Book a Call</a>
+
+    <div class="site-hero-rule" aria-hidden="true"></div>
+  </div>
+</section>
+
+<style>
+  .site-hero {
+    position: relative;
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 var(--section-pad-x);
+    min-height: min(70vh, 36rem);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .site-hero-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 85% 55% at 20% 0%, rgba(224, 122, 95, 0.1), transparent 58%),
+      radial-gradient(ellipse 45% 35% at 90% 40%, rgba(255, 255, 255, 0.04), transparent 50%);
+  }
+
+  .site-hero-inner {
+    position: relative;
+    width: 100%;
+    max-width: 40rem;
+    padding: clamp(2rem, 6vw, 3.5rem) 0 clamp(1.5rem, 3vw, 2rem);
+  }
+
+  .site-hero-eyebrow {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--site-accent);
+    margin-bottom: clamp(1.5rem, 4vw, 2.25rem);
+  }
+
+  .site-hero-title {
+    font-size: clamp(2.75rem, 7.5vw, 4.5rem);
+    font-weight: 600;
+    letter-spacing: -0.045em;
+    line-height: 1.02;
+    margin-bottom: clamp(1.25rem, 3vw, 1.75rem);
+  }
+
+  .site-hero-line {
+    display: block;
+    overflow: hidden;
+  }
+
+  .site-hero-line-inner {
+    display: block;
+  }
+
+  .site-hero-sub {
+    font-size: clamp(1.0625rem, 2vw, 1.1875rem);
+    line-height: 1.7;
+    color: var(--site-text-dim);
+    max-width: 42ch;
+    margin-bottom: 2rem;
+  }
+
+  .site-hero-cta {
+    font-size: 0.9375rem;
+    padding: 0.75rem 1.55rem;
+    text-decoration: none;
+  }
+
+  .site-hero-rule {
+    width: 3rem;
+    height: 1px;
+    margin-top: 2rem;
+    background: var(--site-border);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .site-hero-line:nth-child(1) .site-hero-line-inner {
+      animation: hero-line-up 0.55s ease-out 0.05s both;
+    }
+
+    .site-hero-line:nth-child(2) .site-hero-line-inner {
+      animation: hero-line-up 0.55s ease-out 0.14s both;
+    }
+
+    .site-hero-line:nth-child(3) .site-hero-line-inner {
+      animation: hero-line-up 0.55s ease-out 0.23s both;
+    }
+
+    .site-hero-eyebrow,
+    .site-hero-sub,
+    .site-hero-cta,
+    .site-hero-rule {
+      animation: hero-fade 0.5s ease-out both;
+    }
+
+    .site-hero-eyebrow { animation-delay: 0s; }
+    .site-hero-sub { animation-delay: 0.32s; }
+    .site-hero-cta { animation-delay: 0.4s; }
+    .site-hero-rule { animation-delay: 0.48s; }
+
+    @keyframes hero-line-up {
+      from {
+        opacity: 0;
+        transform: translateY(100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes hero-fade {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+</style>

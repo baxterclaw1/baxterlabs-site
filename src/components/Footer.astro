@@ -1,0 +1,53 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <p class="site-footer-copy">© {year} BaxterLabs</p>
+  <nav class="site-footer-nav" aria-label="Footer">
+    <a href="https://twitter.com/BaxterClaw" target="_blank" rel="noopener noreferrer">Twitter</a>
+    <a href="https://discord.gg/baxterlabs" target="_blank" rel="noopener noreferrer">Discord</a>
+    <a href="mailto:costa@baxterlabs.io">Contact</a>
+  </nav>
+</footer>
+
+<style>
+  .site-footer {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    border-top: 1px solid var(--site-border);
+  }
+
+  @media (max-width: 480px) {
+    .site-footer {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  .site-footer-copy {
+    font-size: 0.8125rem;
+    color: var(--site-text-dim);
+  }
+
+  .site-footer-nav {
+    display: flex;
+    gap: 1.25rem;
+  }
+
+  .site-footer-nav a {
+    font-size: 0.8125rem;
+    color: var(--site-text-dim);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .site-footer-nav a:hover {
+    color: var(--site-text);
+  }
+</style>

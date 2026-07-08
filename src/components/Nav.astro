@@ -1,0 +1,26 @@
+---
+const bookCallUrl = '#contact';
+---
+
+<header class="nav">
+  <a class="nav-logo" href="/">BaxterLabs</a>
+  <a class="btn" href={bookCallUrl}>Book a Call</a>
+</header>
+
+<style>
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem var(--section-pad-x);
+    max-width: var(--content-width);
+    margin: 0 auto;
+  }
+
+  .nav-logo {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+  }
+</style>

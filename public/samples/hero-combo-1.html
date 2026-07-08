@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Combo 1 — Split + live UI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      :root {
+        --bg: #0a0b0d;
+        --surface: #12141a;
+        --surface-raised: #181b22;
+        --text: #eceae6;
+        --text-dim: #9a9690;
+        --text-muted: #5c5955;
+        --border: #23262e;
+        --accent: #e07a5f;
+        --accent-hover: #e8907a;
+        --badge: #c9a227;
+      }
+      html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+      body {
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        line-height: 1.6;
+      }
+      .sample-bar {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0.6rem 1.25rem; background: #14161c;
+        border-bottom: 1px solid var(--border);
+        font-size: 0.75rem; color: var(--text-muted);
+      }
+      .sample-bar a { color: var(--text-dim); text-decoration: none; }
+      .sample-bar strong { color: var(--accent); font-weight: 500; }
+      .nav {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 1.25rem 1.5rem; max-width: 72rem; margin: 0 auto;
+      }
+      .logo { font-size: 1rem; font-weight: 600; letter-spacing: -0.02em; text-decoration: none; color: var(--text); }
+      .btn {
+        display: inline-flex; align-items: center; padding: 0.6rem 1.25rem;
+        font-family: inherit; font-size: 0.875rem; font-weight: 500;
+        color: var(--bg); background: var(--accent); border-radius: 8px;
+        text-decoration: none; transition: background 0.15s;
+      }
+      .btn:hover { background: var(--accent-hover); }
+      .hero {
+        max-width: 72rem; margin: 0 auto; padding: 2rem 1.5rem 5rem;
+        display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+        min-height: calc(100vh - 8rem);
+      }
+      .badge {
+        display: inline-block; font-size: 0.75rem; font-weight: 500;
+        color: var(--badge); margin-bottom: 1.25rem; padding: 0.35rem 0.75rem;
+        background: rgba(201, 162, 39, 0.1); border: 1px solid rgba(201, 162, 39, 0.25);
+        border-radius: 100px;
+      }
+      h1 {
+        font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 600;
+        letter-spacing: -0.035em; line-height: 1.1; margin-bottom: 1.25rem;
+      }
+      .subhead {
+        font-size: 1.0625rem; color: var(--text-dim); max-width: 38ch;
+        line-height: 1.65; margin-bottom: 0;
+      }
+      .live-ui {
+        background: var(--surface); border: 1px solid var(--border);
+        border-radius: 12px; overflow: hidden;
+        box-shadow: 0 24px 48px rgba(0,0,0,0.35);
+      }
+      .live-bar {
+        display: flex; align-items: center; gap: 0.5rem;
+        padding: 0.75rem 1rem; background: var(--surface-raised);
+        border-bottom: 1px solid var(--border);
+      }
+      .live-dot { width: 8px; height: 8px; border-radius: 50%; background: #3a3d45; }
+      .live-dot:first-child { background: #5c4033; }
+      .live-title { margin-left: 0.5rem; font-size: 0.7rem; color: var(--text-muted); font-weight: 500; }
+      .live-body { padding: 1.25rem; display: flex; flex-direction: column; gap: 1rem; }
+      .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+      .metric {
+        background: var(--surface-raised); border: 1px solid var(--border);
+        border-radius: 8px; padding: 0.875rem;
+      }
+      .metric-label { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.35rem; }
+      .metric-value { font-size: 1.25rem; font-weight: 600; letter-spacing: -0.02em; color: var(--accent); }
+      .metric-sub { font-size: 0.7rem; color: var(--text-dim); margin-top: 0.15rem; }
+      .activity {
+        background: var(--surface-raised); border: 1px solid var(--border);
+        border-radius: 8px; padding: 1rem;
+      }
+      .activity-title { font-size: 0.7rem; color: var(--text-muted); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; }
+      .activity-row {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0.5rem 0; border-bottom: 1px solid var(--border); font-size: 0.8125rem;
+      }
+      .activity-row:last-child { border-bottom: none; }
+      .activity-name { color: var(--text-dim); }
+      .activity-status { color: #6bc97a; font-size: 0.75rem; font-weight: 500; }
+      .activity-status.pending { color: var(--text-muted); }
+      @media (max-width: 768px) {
+        .hero { grid-template-columns: 1fr; min-height: auto; }
+        .live-ui { order: -1; }
+        .metrics { grid-template-columns: 1fr; }
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .hero-text { animation: up 0.5s ease-out both; }
+        .live-ui { animation: up 0.5s ease-out 0.12s both; }
+        @keyframes up {
+          from { opacity: 0; transform: translateY(14px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sample-bar">
+      <span><strong>Combo 1</strong> — Split + live UI · “They build real tools”</span>
+      <a href="/samples/">← All samples</a>
+    </div>
+    <header class="nav">
+      <a class="logo" href="#">BaxterLabs</a>
+      <a class="btn" href="#">Book a Call</a>
+    </header>
+    <main class="hero">
+      <div class="hero-text">
+        <span class="badge">Free consultation — tell us what's slowing you down</span>
+        <h1>Custom AI and automation for growing businesses</h1>
+        <p class="subhead">
+          BaxterLabs helps business owners upgrade how they operate — without added
+          complexity. We look at how you work today, then propose automations you can
+          actually run without micromanaging everything.
+        </p>
+      </div>
+      <div class="live-ui" aria-hidden="true">
+        <div class="live-bar">
+          <span class="live-dot"></span><span class="live-dot"></span><span class="live-dot"></span>
+          <span class="live-title">client dashboard — live</span>
+        </div>
+        <div class="live-body">
+          <div class="metrics">
+            <div class="metric">
+              <div class="metric-label">Automations active</div>
+              <div class="metric-value">12</div>
+              <div class="metric-sub">running 24/7</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Hours saved</div>
+              <div class="metric-value">47</div>
+              <div class="metric-sub">this month</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Workflows</div>
+              <div class="metric-value">8</div>
+              <div class="metric-sub">connected tools</div>
+            </div>
+          </div>
+          <div class="activity">
+            <div class="activity-title">Recent activity</div>
+            <div class="activity-row">
+              <span class="activity-name">Invoice follow-up sequence</span>
+              <span class="activity-status">Running</span>
+            </div>
+            <div class="activity-row">
+              <span class="activity-name">Lead intake → CRM sync</span>
+              <span class="activity-status">Running</span>
+            </div>
+            <div class="activity-row">
+              <span class="activity-name">Weekly report generator</span>
+              <span class="activity-status pending">Scheduled</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

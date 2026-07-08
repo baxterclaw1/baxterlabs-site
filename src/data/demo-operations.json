@@ -1,0 +1,413 @@
+{
+  "id": "operations",
+  "workspaceName": "Your workspace",
+  "views": [
+    { "id": "overview", "label": "Dashboard" },
+    { "id": "intake", "label": "New client" },
+    { "id": "tracking", "label": "Documents" }
+  ],
+  "overview": {
+    "helper": "Everything in one place — click a stage or client to see what's behind the numbers.",
+    "summaryLine": "48 active clients · 6 need your attention today",
+    "searchPlaceholder": "Search clients…",
+    "tableLabel": "Active clients",
+    "filterPlaceholder": "Filter clients…",
+    "tableColumns": ["Client", "Due", "Needs you", "In progress", "Status"],
+    "pipeline": [
+      { "id": "new", "count": 6, "title": "New", "sub": "Just started", "color": "#64748b" },
+      { "id": "waiting", "count": 8, "title": "Waiting on info", "sub": "Missing details", "color": "#eab308" },
+      { "id": "in-progress", "count": 12, "title": "In progress", "sub": "Being worked", "color": "#3b82f6" },
+      { "id": "review", "count": 5, "title": "Ready for review", "sub": "Needs approval", "color": "#8b5cf6" },
+      { "id": "complete", "count": 89, "title": "Complete", "sub": "Closed out", "color": "#059669" }
+    ],
+    "pipelineHint": "Click a stage to see who's in it",
+    "rows": [
+      { "id": "1", "name": "Acme Services", "deadline": "Today", "deadlineClass": "urgent", "col3": 1, "col4": 2, "progress": "In progress", "progressPct": 60, "recordId": "acme", "stageId": "in-progress" },
+      { "id": "2", "name": "Brightside LLC", "deadline": "3 days", "deadlineClass": "warn", "col3": 0, "col4": 1, "progress": "Waiting on info", "progressPct": 30, "recordId": "brightside", "stageId": "waiting" },
+      { "id": "3", "name": "Chen & Co.", "deadline": "1 week", "deadlineClass": "", "col3": 0, "col4": 3, "progress": "In progress", "progressPct": 55, "recordId": "chen", "stageId": "in-progress" },
+      { "id": "4", "name": "Parkview Group", "deadline": "2 weeks", "deadlineClass": "", "col3": 0, "col4": 1, "progress": "New", "progressPct": 15, "recordId": "parkview", "stageId": "new" },
+      { "id": "5", "name": "Rivera Consulting", "deadline": "Complete", "deadlineClass": "muted", "col3": 0, "col4": 0, "progress": "Done", "progressPct": 100, "recordId": "rivera", "stageId": "complete" }
+    ],
+    "rowHint": "Click a client for their full record"
+  },
+  "intake": {
+    "helper": "Add a client once — we pull what we can from your systems and create the record in one step.",
+    "title": "New client intake",
+    "triggerLabel": "Company name",
+    "triggerDemo": "Acme Services",
+    "triggerType": "text",
+    "lookupKey": "acme",
+    "autoFill": {
+      "Industry": "Professional services",
+      "Location": "Chicago, IL",
+      "Last contact": "Mar 2025 — intro call"
+    },
+    "fields": [
+      { "id": "name", "label": "Contact name", "placeholder": "Alex Morgan" },
+      { "id": "email", "label": "Email", "placeholder": "alex@acme.example" }
+    ],
+    "optionGroups": [
+      {
+        "id": "template",
+        "label": "Engagement type",
+        "options": [
+          { "value": "standard", "title": "Standard", "desc": "Typical client workflow — intake through delivery." },
+          { "value": "retainer", "title": "Retainer", "desc": "Ongoing relationship with recurring milestones." }
+        ]
+      },
+      {
+        "id": "processing",
+        "label": "What happens next",
+        "options": [
+          { "value": "auto", "title": "Automate", "desc": "Create the record, send docs, and notify your team." },
+          { "value": "manual", "title": "Review first", "desc": "Create the record — someone on your team picks it up." }
+        ]
+      }
+    ],
+    "submitLabel": "Create client record",
+    "successToast": "Client record created — added to your pipeline"
+  },
+  "tracking": {
+    "helper": "Track sent, opened, and signed documents — click a row for the full trail.",
+    "title": "Document status",
+    "columns": ["Client", "Document", "Sent", "Status"],
+    "rowHint": "Click a document to see delivery details",
+    "rows": [
+      { "client": "Acme Services", "col2": "Service agreement", "col3": "Jun 28", "status": "sent", "recordId": "doc-acme" },
+      { "client": "Brightside LLC", "col2": "Onboarding packet", "col3": "Jun 30", "status": "viewed", "recordId": "doc-brightside" },
+      { "client": "Chen & Co.", "col2": "Statement of work", "col3": "Jul 2", "status": "signed", "recordId": "doc-chen" }
+    ]
+  },
+  "records": {
+    "acme": {
+      "name": "Acme Services",
+      "meta": "Alex Morgan · Client since Jun 15",
+      "sections": [
+        {
+          "title": "Overview",
+          "grid": [
+            ["Stage", "In progress"],
+            ["Due", "Today"],
+            ["Owner", "You"],
+            ["Contact", "Alex Morgan"],
+            ["Email", "alex@acme.example"]
+          ]
+        },
+        {
+          "title": "Open tasks",
+          "items": [
+            "Get service agreement signed",
+            "Confirm kickoff date with Alex"
+          ]
+        },
+        {
+          "title": "Recent activity",
+          "timeline": [
+            { "when": "Today, 9:14 AM", "text": "Agreement sent for e-signature" },
+            { "when": "Jun 28", "text": "Intake completed — record synced to CRM" },
+            { "when": "Jun 15", "text": "Client record created" }
+          ]
+        }
+      ]
+    },
+    "brightside": {
+      "name": "Brightside LLC",
+      "meta": "New client · Started Jun 28",
+      "flags": ["Missing contact email"],
+      "sections": [
+        {
+          "title": "Overview",
+          "grid": [
+            ["Stage", "Waiting on info"],
+            ["Due", "3 days"],
+            ["Owner", "Unassigned"],
+            ["Contact", "—"],
+            ["Email", "—"]
+          ]
+        },
+        {
+          "title": "Open tasks",
+          "items": [
+            "Collect primary contact email",
+            "Send onboarding packet once contact is confirmed"
+          ]
+        },
+        {
+          "title": "Recent activity",
+          "timeline": [
+            { "when": "Jun 30", "text": "Onboarding packet sent — not yet opened" },
+            { "when": "Jun 28", "text": "Record created from referral" }
+          ]
+        }
+      ]
+    },
+    "chen": {
+      "name": "Chen & Co.",
+      "meta": "Pat Chen · Client since May 3",
+      "sections": [
+        {
+          "title": "Overview",
+          "grid": [
+            ["Stage", "In progress"],
+            ["Due", "1 week"],
+            ["Owner", "Jordan"],
+            ["Contact", "Pat Chen"],
+            ["Email", "pat@chenco.example"]
+          ]
+        },
+        {
+          "title": "Open tasks",
+          "items": [
+            "Deliver phase-one summary",
+            "Schedule Q3 check-in"
+          ]
+        },
+        {
+          "title": "Recent activity",
+          "timeline": [
+            { "when": "Jul 2", "text": "Statement of work signed" },
+            { "when": "Jun 20", "text": "Draft SOW sent for review" },
+            { "when": "May 3", "text": "Engagement started" }
+          ]
+        }
+      ]
+    },
+    "parkview": {
+      "name": "Parkview Group",
+      "meta": "New lead · Added Jul 1",
+      "sections": [
+        {
+          "title": "Overview",
+          "grid": [
+            ["Stage", "New"],
+            ["Due", "2 weeks"],
+            ["Owner", "You"],
+            ["Contact", "Sam Ortiz"],
+            ["Email", "sam@parkview.example"]
+          ]
+        },
+        {
+          "title": "Open tasks",
+          "items": [
+            "Run discovery call",
+            "Send proposal after call"
+          ]
+        },
+        {
+          "title": "Recent activity",
+          "timeline": [
+            { "when": "Jul 1", "text": "Lead added from website form" }
+          ]
+        }
+      ]
+    },
+    "rivera": {
+      "name": "Rivera Consulting",
+      "meta": "Lisa Rivera · Completed Jun 10",
+      "sections": [
+        {
+          "title": "Overview",
+          "grid": [
+            ["Stage", "Complete"],
+            ["Closed", "Jun 10"],
+            ["Owner", "You"],
+            ["Contact", "Lisa Rivera"],
+            ["Email", "lisa@rivera.example"]
+          ]
+        },
+        {
+          "title": "Recent activity",
+          "timeline": [
+            { "when": "Jun 10", "text": "Project marked complete — invoice sent" },
+            { "when": "Jun 8", "text": "Final deliverable approved" },
+            { "when": "Apr 2", "text": "Engagement started" }
+          ]
+        }
+      ]
+    },
+    "new": {
+      "name": "New",
+      "meta": "6 clients in this stage",
+      "sections": [
+        {
+          "title": "What this means",
+          "grid": [
+            ["Typical action", "Complete intake"],
+            ["Avg. time here", "2–3 days"],
+            ["Blocked by", "Missing contact info"]
+          ]
+        },
+        {
+          "title": "Clients here",
+          "links": [
+            { "label": "Parkview Group", "recordId": "parkview" },
+            { "label": "Northline Studio", "recordId": null },
+            { "label": "West End Co-op", "recordId": null }
+          ]
+        }
+      ]
+    },
+    "waiting": {
+      "name": "Waiting on info",
+      "meta": "8 clients in this stage",
+      "sections": [
+        {
+          "title": "What this means",
+          "grid": [
+            ["Typical action", "Request missing details"],
+            ["Avg. time here", "4–5 days"],
+            ["Blocked by", "Client response"]
+          ]
+        },
+        {
+          "title": "Clients here",
+          "links": [
+            { "label": "Brightside LLC", "recordId": "brightside" },
+            { "label": "Harbor Point LLC", "recordId": null },
+            { "label": "Summit Retail", "recordId": null }
+          ]
+        }
+      ]
+    },
+    "in-progress": {
+      "name": "In progress",
+      "meta": "12 clients in this stage",
+      "sections": [
+        {
+          "title": "What this means",
+          "grid": [
+            ["Typical action", "Active delivery"],
+            ["Avg. time here", "2–4 weeks"],
+            ["Blocked by", "Internal capacity"]
+          ]
+        },
+        {
+          "title": "Clients here",
+          "links": [
+            { "label": "Acme Services", "recordId": "acme" },
+            { "label": "Chen & Co.", "recordId": "chen" },
+            { "label": "Metro Health Partners", "recordId": null }
+          ]
+        }
+      ]
+    },
+    "review": {
+      "name": "Ready for review",
+      "meta": "5 clients in this stage",
+      "sections": [
+        {
+          "title": "What this means",
+          "grid": [
+            ["Typical action", "Manager sign-off"],
+            ["Avg. time here", "1–2 days"],
+            ["Blocked by", "Approval queue"]
+          ]
+        },
+        {
+          "title": "Clients here",
+          "links": [
+            { "label": "Oak Street Partners", "recordId": null },
+            { "label": "Lakeside Dental", "recordId": null }
+          ]
+        }
+      ]
+    },
+    "complete": {
+      "name": "Complete",
+      "meta": "89 clients closed this period",
+      "sections": [
+        {
+          "title": "What this means",
+          "grid": [
+            ["Typical action", "Archive & invoice"],
+            ["Avg. time to close", "3–6 weeks"],
+            ["Next step", "Optional follow-up"]
+          ]
+        },
+        {
+          "title": "Recently completed",
+          "links": [
+            { "label": "Rivera Consulting", "recordId": "rivera" },
+            { "label": "Greenfield Office", "recordId": null }
+          ]
+        }
+      ]
+    },
+    "doc-acme": {
+      "name": "Service agreement",
+      "meta": "Acme Services · Sent Jun 28",
+      "sections": [
+        {
+          "title": "Document",
+          "grid": [
+            ["Client", "Acme Services"],
+            ["Recipient", "Alex Morgan"],
+            ["Status", "Sent — awaiting signature"],
+            ["Sent", "Jun 28, 9:14 AM"],
+            ["Expires", "Jul 12"]
+          ]
+        },
+        {
+          "title": "Delivery trail",
+          "timeline": [
+            { "when": "Jun 28, 9:14 AM", "text": "Email delivered to alex@acme.example" },
+            { "when": "Jun 28, 9:14 AM", "text": "Document opened in portal" },
+            { "when": "—", "text": "Signature pending" }
+          ]
+        }
+      ],
+      "links": [{ "label": "View client record", "recordId": "acme" }]
+    },
+    "doc-brightside": {
+      "name": "Onboarding packet",
+      "meta": "Brightside LLC · Sent Jun 30",
+      "flags": ["Recipient email missing — delivery may fail"],
+      "sections": [
+        {
+          "title": "Document",
+          "grid": [
+            ["Client", "Brightside LLC"],
+            ["Recipient", "—"],
+            ["Status", "Viewed — not signed"],
+            ["Sent", "Jun 30, 2:40 PM"],
+            ["Last viewed", "Jul 1, 10:22 AM"]
+          ]
+        },
+        {
+          "title": "Delivery trail",
+          "timeline": [
+            { "when": "Jun 30, 2:40 PM", "text": "Sent to placeholder address on file" },
+            { "when": "Jul 1, 10:22 AM", "text": "Opened via shared link" },
+            { "when": "—", "text": "Signature pending" }
+          ]
+        }
+      ],
+      "links": [{ "label": "View client record", "recordId": "brightside" }]
+    },
+    "doc-chen": {
+      "name": "Statement of work",
+      "meta": "Chen & Co. · Signed Jul 2",
+      "sections": [
+        {
+          "title": "Document",
+          "grid": [
+            ["Client", "Chen & Co."],
+            ["Recipient", "Pat Chen"],
+            ["Status", "Signed"],
+            ["Sent", "Jun 20"],
+            ["Signed", "Jul 2, 4:51 PM"]
+          ]
+        },
+        {
+          "title": "Delivery trail",
+          "timeline": [
+            { "when": "Jun 20", "text": "Draft sent for review" },
+            { "when": "Jun 28", "text": "Revised version sent" },
+            { "when": "Jul 2, 4:51 PM", "text": "Signed by Pat Chen" }
+          ]
+        }
+      ],
+      "links": [{ "label": "View client record", "recordId": "chen" }]
+    }
+  }
+}

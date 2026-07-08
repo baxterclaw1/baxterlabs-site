@@ -1,0 +1,52 @@
+{
+  "shapes": [
+    {
+      "id": "intake",
+      "title": "Client intake",
+      "description": "One form creates the record everywhere. No retyping into email, sheets, or your CRM.",
+      "flow": ["Inquiry", "Enrich", "Record created", "Team notified"]
+    },
+    {
+      "id": "dashboard",
+      "title": "Ops dashboard",
+      "description": "What needs you today, what's stuck, and what's due. Pulled from the tools you already use.",
+      "flow": ["Your tools", "One view", "Exceptions surfaced", "Act early"]
+    },
+    {
+      "id": "documents",
+      "title": "Document tracking",
+      "description": "Sent, opened, signed. No digging through inboxes or chasing status by hand.",
+      "flow": ["Send", "Track delivery", "Alert on open", "Flag when done"]
+    },
+    {
+      "id": "email",
+      "title": "Email organization",
+      "description": "Inbox sorted, labeled, and routed. Less noise, faster replies, nothing important buried.",
+      "flow": ["Incoming mail", "Classify", "Route or label", "Draft or alert"]
+    },
+    {
+      "id": "reporting",
+      "title": "Automated reporting",
+      "description": "Daily, Monday morning, or monthly summaries from your tools, delivered on schedule.",
+      "flow": ["Your data", "Aggregate", "Write summary", "Deliver on time"]
+    },
+    {
+      "id": "research",
+      "title": "Lead & prospect research",
+      "description": "A new inquiry arrives with context from the web and your systems. Your team walks in prepared.",
+      "flow": ["New lead", "Research", "Brief drafted", "Team notified"]
+    },
+    {
+      "id": "automation",
+      "title": "Workflow automation",
+      "description": "Repetitive work on autopilot, with human checkpoints where judgment matters.",
+      "flow": ["Trigger", "Process", "Human review", "Done"]
+    },
+    {
+      "id": "followups",
+      "title": "Follow-ups & reminders",
+      "description": "When you're waiting on someone else, timed nudges and drafts so nothing sits forgotten.",
+      "flow": ["Waiting", "Timer", "Draft follow-up", "You send"]
+    }
+  ]
+}

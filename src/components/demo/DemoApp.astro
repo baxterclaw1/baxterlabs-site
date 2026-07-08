@@ -1,0 +1,486 @@
+---
+import regionsData from '../../data/demo-regions.json';
+import clientsData from '../../data/demo-clients.json';
+import esignData from '../../data/demo-esign.json';
+import intakeLookup from '../../data/demo-intake-lookup.json';
+
+const { summary, funnel, regions } = regionsData;
+const clients = clientsData;
+const esignRows = esignData;
+
+function deadlineClass(r: (typeof regions)[0]) {
+  if (r.isLastDay) return 'demo-deadline-last';
+  if (r.bizDaysLeft != null && r.bizDaysLeft <= 3) return 'demo-deadline-red';
+  if (r.bizDaysLeft != null && r.bizDaysLeft <= 7) return 'demo-deadline-amber';
+  return '';
+}
+
+function deadlineText(r: (typeof regions)[0]) {
+  if (r.status === 'Not yet open') return 'Not yet open';
+  if (r.status?.includes('Closed')) return `Closed · ${r.deadline}`;
+  if (r.isLastDay) return `LAST DAY · ${r.deadline}`;
+  if (r.daysLeft != null) return `${r.daysLeft}d · ${r.deadline}`;
+  return '—';
+}
+---
+
+<div class="demo-root" id="demo-app">
+  <div class="demo-layout">
+    <aside class="demo-sidebar">
+      <div class="demo-sidebar-brand">Demo Workspace</div>
+      <button type="button" class="demo-nav-item is-active" data-demo-tab="dashboard">Dashboard</button>
+      <button type="button" class="demo-nav-item" data-demo-tab="intake">Intake</button>
+      <button type="button" class="demo-nav-item" data-demo-tab="signatures">Signatures</button>
+    </aside>
+
+    <div class="demo-main">
+      <!-- Dashboard -->
+      <div class="demo-view is-active" data-demo-view="dashboard">
+        <div class="demo-header">
+          <div>
+            <h2>Dashboard</h2>
+            <span class="demo-header-date">Tuesday, Jul 7, 2026</span>
+          </div>
+          <button type="button" class="demo-btn-refresh" id="demo-refresh">Refresh Data Now</button>
+        </div>
+
+        <p class="demo-section-label">Currently open</p>
+        <div class="demo-summary-card">
+          <p class="demo-summary-line">
+            {summary.openRegions} filing regions open · {summary.inFlightTotal.toLocaleString()} agreements in flight
+          </p>
+          <input
+            type="search"
+            class="demo-search"
+            id="demo-region-filter"
+            placeholder="Find a client or case…"
+            autocomplete="off"
+          />
+
+          <div class="demo-funnel">
+            <div class="demo-funnel-zone">
+              <span class="demo-funnel-zone-label">Pre-processing</span>
+              <div class="demo-stage-card" style={`--stage-color: #ef4444`}>
+                <div class="demo-stage-count">{funnel.NEEDS_INTAKE}</div>
+                <div class="demo-stage-title">Needs Intake</div>
+                <div class="demo-stage-sub">No case file opened yet</div>
+              </div>
+              <div class="demo-stage-card" style={`--stage-color: #eab308`}>
+                <div class="demo-stage-count">{funnel.BLOCKED_MISSING_DATA}</div>
+                <div class="demo-stage-title">Missing Data</div>
+                <div class="demo-stage-sub">Waiting on required fields</div>
+              </div>
+            </div>
+            <div class="demo-stage-card" style={`--stage-color: var(--demo-stage-generate)`}>
+              <div class="demo-stage-count">{funnel.READY_TO_GENERATE}</div>
+              <div class="demo-stage-title">Ready to Generate PDF</div>
+              <div class="demo-stage-sub">PDF not built yet</div>
+            </div>
+            <div class="demo-stage-card" style={`--stage-color: var(--demo-stage-send)`}>
+              <div class="demo-stage-count">{funnel.READY_TO_SEND}</div>
+              <div class="demo-stage-title">Ready to Send</div>
+              <div class="demo-stage-sub">Built, not emailed</div>
+            </div>
+            <div class="demo-stage-card" style={`--stage-color: var(--demo-stage-awaiting)`}>
+              <div class="demo-stage-count">{funnel.AWAITING_SIGNATURE}</div>
+              <div class="demo-stage-title">Awaiting Signatures</div>
+              <div class="demo-stage-sub">Waiting on signature</div>
+            </div>
+            <div class="demo-stage-card" style={`--stage-color: var(--demo-stage-done)`}>
+              <div class="demo-stage-count">{funnel.DONE}</div>
+              <div class="demo-stage-title">Done</div>
+              <div class="demo-stage-sub">Filed in CRM</div>
+            </div>
+          </div>
+
+          <p class="demo-off-pipeline">▼ Off-Pipeline · {summary.offPipelineTotal}</p>
+        </div>
+
+        <div class="demo-header" style="margin-bottom: 12px;">
+          <p class="demo-section-label" style="margin: 0;">Filing windows</p>
+          <input
+            type="search"
+            class="demo-search"
+            id="demo-table-filter"
+            placeholder="Filter regions…"
+            style="margin: 0; max-width: 200px;"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="demo-table-wrap">
+          <table class="demo-table" id="demo-regions-table">
+            <thead>
+              <tr>
+                <th>Region</th>
+                <th>Deadline</th>
+                <th>Manual</th>
+                <th>Flagged</th>
+                <th>Waiting for Signature</th>
+                <th>Done</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                regions.map((r) => (
+                  <tr
+                    data-region-id={r.id}
+                    data-client-key={r.id === 'lakeview-demo' ? 'harbor' : r.id === 'northgate' ? 'morgan' : 'morgan'}
+                  >
+                    <td>{r.name}</td>
+                    <td class={deadlineClass(r)}>{deadlineText(r)}</td>
+                    <td class={r.manual > 0 ? 'demo-flag-red' : ''}>{r.manual}</td>
+                    <td class={r.flagged > 0 ? 'demo-flag-red' : ''}>{r.flagged}</td>
+                    <td>{r.waiting}</td>
+                    <td class="demo-progress-cell">
+                      {r.activeMatters > 0 ? (
+                        <>
+                          <div class="demo-progress-text">
+                            {r.doneMatters}/{r.activeMatters} · {r.progressPct}%
+                          </div>
+                          <div class="demo-progress-bar">
+                            <div class="demo-progress-fill" style={`width: ${r.progressPct}%`} />
+                          </div>
+                        </>
+                      ) : (
+                        '—'
+                      )}
+                    </td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Intake -->
+      <div class="demo-view" data-demo-view="intake">
+        <h2 class="demo-intake-title">Client Intake</h2>
+        <p class="demo-intake-sub">
+          Type a record ID — we'll auto-fill the rest. All fields editable. Submit creates CRM contact + case file.
+        </p>
+
+        <div class="demo-field">
+          <label>Record ID *</label>
+          <div class="demo-segments" id="demo-segments">
+            <input class="demo-seg" type="text" maxlength="2" inputmode="numeric" data-len="2" aria-label="Record ID part 1" />
+            <span class="demo-seg-dash">-</span>
+            <input class="demo-seg" type="text" maxlength="2" inputmode="numeric" data-len="2" aria-label="Record ID part 2" />
+            <span class="demo-seg-dash">-</span>
+            <input class="demo-seg" type="text" maxlength="3" inputmode="numeric" data-len="3" aria-label="Record ID part 3" />
+            <span class="demo-seg-dash">-</span>
+            <input class="demo-seg" type="text" maxlength="3" inputmode="numeric" data-len="3" aria-label="Record ID part 4" />
+            <span class="demo-seg-dash">-</span>
+            <input class="demo-seg" type="text" maxlength="4" inputmode="numeric" data-len="4" aria-label="Record ID part 5" />
+          </div>
+        </div>
+
+        <div class="demo-autofill" id="demo-autofill">
+          <dl class="demo-autofill-grid">
+            <dt>Property address</dt><dd id="af-address">—</dd>
+            <dt>City</dt><dd id="af-city">—</dd>
+            <dt>Filing region</dt><dd id="af-region">—</dd>
+            <dt>ZIP</dt><dd id="af-zip">—</dd>
+            <dt>Property class</dt><dd id="af-class">—</dd>
+            <dt>Last sale</dt><dd id="af-sale">—</dd>
+          </dl>
+        </div>
+
+        <div class="demo-field">
+          <label for="demo-client-name">Client name *</label>
+          <input class="demo-input" id="demo-client-name" type="text" placeholder="Start typing — existing clients suggested below" />
+        </div>
+        <div class="demo-field">
+          <label for="demo-client-email">Email *</label>
+          <input class="demo-input" id="demo-client-email" type="email" placeholder="client@example.com" />
+        </div>
+        <div class="demo-field">
+          <label for="demo-client-fee">Service fee % *</label>
+          <input class="demo-input" id="demo-client-fee" type="text" value="30" style="max-width: 80px;" />
+        </div>
+
+        <p class="demo-section-label">Template</p>
+        <div class="demo-cards-row" data-demo-card-group="template">
+          <button type="button" class="demo-route-card" data-value="residential">
+            <strong>🏠 Residential</strong>
+            <span>Single-family home or single unit. Standard fee — your % in both agreement blanks.</span>
+          </button>
+          <button type="button" class="demo-route-card" data-value="commercial">
+            <strong>🏢 Commercial</strong>
+            <span>Multi-unit or mixed-use. Split fee — your % on top, fixed cap on bottom.</span>
+          </button>
+        </div>
+
+        <p class="demo-section-label">Processing — pick one to enable submit</p>
+        <div class="demo-cards-row" data-demo-card-group="processing">
+          <button type="button" class="demo-route-card" data-value="automate">
+            <strong>⚡ Automate</strong>
+            <span>Auto-generate agreement PDF + send for e-signature when the filing region is open.</span>
+          </button>
+          <button type="button" class="demo-route-card" data-value="manual">
+            <strong>✋ Manual Processing</strong>
+            <span>Record the client but skip automated flow. Handled outside the system.</span>
+          </button>
+        </div>
+
+        <button type="button" class="demo-submit" id="demo-submit" disabled>Submit Intake</button>
+      </div>
+
+      <!-- Signatures -->
+      <div class="demo-view" data-demo-view="signatures">
+        <h2 class="demo-intake-title">E-Signature Status</h2>
+        <p class="demo-intake-sub">Track every signature without checking email.</p>
+        <div class="demo-table-wrap">
+          <table class="demo-table">
+            <thead>
+              <tr>
+                <th>Client</th>
+                <th>Region</th>
+                <th>Document</th>
+                <th>Sent</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                esignRows.map((row) => (
+                  <tr>
+                    <td>{row.client}</td>
+                    <td>{row.region}</td>
+                    <td>{row.title}</td>
+                    <td>{row.sentAt}</td>
+                    <td>
+                      <span class={`demo-badge demo-badge--${row.status === 'viewed' ? 'viewed' : row.status}`}>
+                        {row.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="demo-drawer-backdrop" id="demo-drawer-backdrop" aria-hidden="true"></div>
+  <aside class="demo-drawer" id="demo-drawer" aria-hidden="true">
+    <button type="button" class="demo-drawer-close" id="demo-drawer-close" aria-label="Close">×</button>
+    <h3 id="drawer-name">—</h3>
+    <p class="demo-drawer-meta" id="drawer-meta">—</p>
+    <div class="demo-drawer-section">
+      <h4>Status</h4>
+      <div class="demo-drawer-grid" id="drawer-status"></div>
+    </div>
+    <div class="demo-drawer-section">
+      <h4>Property</h4>
+      <div class="demo-drawer-grid" id="drawer-property"></div>
+    </div>
+    <div class="demo-drawer-section">
+      <h4>Client</h4>
+      <div class="demo-drawer-grid" id="drawer-client"></div>
+    </div>
+    <div class="demo-drawer-section" id="drawer-flags-section" hidden>
+      <h4>Flags</h4>
+      <div id="drawer-flags"></div>
+    </div>
+  </aside>
+
+  <div class="demo-toast" id="demo-toast" role="status">Intake submitted — case file created in CRM</div>
+</div>
+
+<script define:vars={{ clients, intakeLookup }}>
+  function initDemo() {
+    const root = document.getElementById('demo-app');
+    if (!root) return;
+
+    // Tabs
+    root.querySelectorAll('[data-demo-tab]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const tab = btn.getAttribute('data-demo-tab');
+        root.querySelectorAll('[data-demo-tab]').forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        root.querySelectorAll('[data-demo-view]').forEach((v) => {
+          v.classList.toggle('is-active', v.getAttribute('data-demo-view') === tab);
+        });
+      });
+    });
+
+    // Region table filter
+    const tableFilter = document.getElementById('demo-table-filter');
+    tableFilter?.addEventListener('input', () => {
+      const q = tableFilter.value.toLowerCase();
+      root.querySelectorAll('#demo-regions-table tbody tr').forEach((row) => {
+        const name = row.querySelector('td')?.textContent?.toLowerCase() || '';
+        row.classList.toggle('is-hidden', q.length > 0 && !name.includes(q));
+      });
+    });
+
+    // Row click → drawer
+    const backdrop = document.getElementById('demo-drawer-backdrop');
+    const drawer = document.getElementById('demo-drawer');
+    const closeDrawer = () => {
+      backdrop?.classList.remove('is-open');
+      drawer?.classList.remove('is-open');
+    };
+
+    root.querySelectorAll('#demo-regions-table tbody tr').forEach((row) => {
+      row.addEventListener('click', () => {
+        const key = row.getAttribute('data-client-key') || 'morgan';
+        openDrawer(clients[key] || clients.morgan);
+      });
+    });
+
+    document.getElementById('demo-drawer-close')?.addEventListener('click', closeDrawer);
+    backdrop?.addEventListener('click', closeDrawer);
+
+    function openDrawer(c) {
+      document.getElementById('drawer-name').textContent = c.clientName;
+      document.getElementById('drawer-meta').textContent = `${c.matterTitle} · Case ${c.matterNumber}`;
+
+      setGrid('drawer-status', [
+        ['Pipeline', c.pipelineStage.replace(/_/g, ' ')],
+        ['Region', c.region],
+        ['Deadline', c.deadline],
+        ['E-signature', c.esigStatus],
+      ]);
+      setGrid('drawer-property', [
+        ['Address', c.address],
+        ['City', `${c.city}, ${c.state} ${c.zip}`],
+        ['Record ID', c.recordIdFormatted],
+        ['Class', c.propertyClass],
+      ]);
+      setGrid('drawer-client', [
+        ['Email', c.email || '—'],
+        ['Phone', c.phone],
+        ['Fee', c.fee],
+      ]);
+
+      const flagsSection = document.getElementById('drawer-flags-section');
+      const flagsEl = document.getElementById('drawer-flags');
+      if (c.flags?.length) {
+        flagsSection.hidden = false;
+        flagsEl.innerHTML = c.flags.map((f) => `<p style="color: var(--demo-text-error); font-size: 12px;">${f.label}</p>`).join('');
+      } else {
+        flagsSection.hidden = true;
+      }
+
+      backdrop?.classList.add('is-open');
+      drawer?.classList.add('is-open');
+    }
+
+    function setGrid(id, pairs) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.innerHTML = pairs.map(([k, v]) => `<div><span>${k}</span><span>${v}</span></div>`).join('');
+    }
+
+    // Refresh fake load
+    document.getElementById('demo-refresh')?.addEventListener('click', function () {
+      this.textContent = 'Refreshing…';
+      this.disabled = true;
+      setTimeout(() => {
+        this.textContent = 'Refresh Data Now';
+        this.disabled = false;
+      }, 1200);
+    });
+
+    // Intake segments
+    const segs = root.querySelectorAll('.demo-seg');
+    segs.forEach((seg, i) => {
+      seg.addEventListener('input', () => {
+        seg.value = seg.value.replace(/\D/g, '').slice(0, parseInt(seg.getAttribute('data-len'), 10));
+        if (seg.value.length >= parseInt(seg.getAttribute('data-len'), 10) && segs[i + 1]) {
+          segs[i + 1].focus();
+        }
+        checkRecordId();
+      });
+      seg.addEventListener('paste', (e) => {
+        e.preventDefault();
+        const digits = (e.clipboardData?.getData('text') || '').replace(/\D/g, '').slice(0, 14);
+        const lens = [2, 2, 3, 3, 4];
+        let idx = 0;
+        lens.forEach((len, j) => {
+          segs[j].value = digits.slice(idx, idx + len);
+          idx += len;
+        });
+        checkRecordId();
+      });
+    });
+
+    function getRecordIdDigits() {
+      return Array.from(segs)
+        .map((s) => s.value)
+        .join('');
+    }
+
+    function checkRecordId() {
+      const digits = getRecordIdDigits();
+      const block = document.getElementById('demo-autofill');
+      if (digits.length === 14 && intakeLookup[digits]) {
+        const af = intakeLookup[digits].autoFill;
+        block?.classList.add('is-visible');
+        document.getElementById('af-address').textContent = af.address;
+        document.getElementById('af-city').textContent = af.city;
+        document.getElementById('af-region').textContent = af.region;
+        document.getElementById('af-zip').textContent = af.zip;
+        document.getElementById('af-class').textContent = af.propertyClass;
+        document.getElementById('af-sale').textContent = `${af.saleAmount} · ${af.saleDate}`;
+      } else {
+        block?.classList.remove('is-visible');
+      }
+      updateSubmit();
+    }
+
+    // Card selection
+    let template = '';
+    let processing = '';
+    root.querySelectorAll('[data-demo-card-group]').forEach((group) => {
+      const name = group.getAttribute('data-demo-card-group');
+      group.querySelectorAll('.demo-route-card').forEach((card) => {
+        card.addEventListener('click', () => {
+          group.querySelectorAll('.demo-route-card').forEach((c) => c.classList.remove('is-selected'));
+          card.classList.add('is-selected');
+          if (name === 'template') template = card.getAttribute('data-value');
+          if (name === 'processing') processing = card.getAttribute('data-value');
+          updateSubmit();
+        });
+      });
+    });
+
+    function updateSubmit() {
+      const submit = document.getElementById('demo-submit');
+      const digits = getRecordIdDigits();
+      const name = document.getElementById('demo-client-name')?.value.trim();
+      const email = document.getElementById('demo-client-email')?.value.trim();
+      const valid = digits.length === 14 && name && email && template && processing;
+      if (submit) submit.disabled = !valid;
+    }
+
+    ['demo-client-name', 'demo-client-email'].forEach((id) => {
+      document.getElementById(id)?.addEventListener('input', updateSubmit);
+    });
+
+    document.getElementById('demo-submit')?.addEventListener('click', () => {
+      const toast = document.getElementById('demo-toast');
+      toast?.classList.add('is-visible');
+      setTimeout(() => toast?.classList.remove('is-visible'), 3000);
+    });
+
+    // Hint: pre-fill demo ID hint in placeholder via first seg focus
+    root.querySelector('[data-demo-tab="intake"]')?.addEventListener('click', () => {
+      setTimeout(() => segs[0]?.focus(), 100);
+    });
+  }
+
+  initDemo();
+</script>
+
+<style>
+  /* Import handled via link; scoped wrapper only */
+  .demo-frame-wrap :global(.demo-root) {
+    border-radius: 0 0 10px 10px;
+  }
+</style>

@@ -1,0 +1,57 @@
+---
+const bookCallUrl = '#contact';
+const email = 'costa@baxterlabs.io';
+---
+
+<section class="site-cta" id="contact" aria-labelledby="cta-heading">
+  <h2 id="cta-heading">Tell us what's slowing you down</h2>
+  <p class="site-cta-body">
+    We'll tell you what a custom system could do about it.
+  </p>
+  <div class="site-cta-actions">
+    <a class="btn" href={bookCallUrl}>Book a Call</a>
+    <a class="site-cta-email" href={`mailto:${email}`}>{email}</a>
+  </div>
+</section>
+
+<style>
+  .site-cta {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: var(--section-pad-y) var(--section-pad-x);
+    text-align: center;
+  }
+
+  .site-cta h2 {
+    font-size: clamp(1.5rem, 3vw, 1.875rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.75rem;
+  }
+
+  .site-cta-body {
+    font-size: 1rem;
+    color: var(--site-text-dim);
+    line-height: 1.6;
+    max-width: 32rem;
+    margin: 0 auto 1.75rem;
+  }
+
+  .site-cta-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .site-cta-email {
+    font-size: 0.875rem;
+    color: var(--site-text-dim);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .site-cta-email:hover {
+    color: var(--site-text);
+  }
+</style>

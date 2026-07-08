@@ -1,0 +1,101 @@
+---
+---
+
+<section class="site-section site-section--divider" aria-labelledby="before-after-heading">
+  <h2 id="before-after-heading">Before and after</h2>
+  <div class="before-after-grid">
+    <div class="before-after-col before">
+      <p class="before-after-label">Before</p>
+      <ul>
+        <li>Info scattered across email, sheets, and apps</li>
+        <li>Same details retyped in multiple places</li>
+        <li>Reports built by hand when someone has time</li>
+        <li>No clear view of what's stuck or due</li>
+      </ul>
+    </div>
+    <div class="before-after-col after">
+      <p class="before-after-label">After</p>
+      <ul>
+        <li>One place to see what needs attention today</li>
+        <li>Enter it once, it shows up where your team works</li>
+        <li>Summaries and reports arrive on the schedule you set</li>
+        <li>Built around how you operate, not a generic product</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .site-section--divider {
+    border-top: 1px solid var(--site-border);
+  }
+
+  .site-section--divider h2 {
+    font-size: 1.375rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .before-after-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 640px) {
+    .before-after-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .before-after-col {
+    padding: 1.25rem 1.5rem;
+    border-radius: 10px;
+    border: 1px solid var(--site-border);
+    background: var(--site-surface);
+  }
+
+  .before-after-col.before {
+    background: var(--site-surface-muted);
+  }
+
+  .before-after-label {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--site-text-dim);
+    margin-bottom: 0.75rem;
+  }
+
+  .before-after-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .before-after-col li {
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--site-text-dim, #555);
+    padding: 0.35rem 0 0.35rem 1.25rem;
+    position: relative;
+  }
+
+  .before-after-col li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.75rem;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--site-text-dim);
+  }
+
+  .before-after-col.after li::before {
+    background: #4cc38a;
+  }
+</style>

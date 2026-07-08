@@ -1,0 +1,42 @@
+/* Shared marketing section styles */
+
+.site-section {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: var(--section-pad-y) var(--section-pad-x);
+}
+
+.site-section--intro {
+  padding-top: 2rem;
+}
+
+.site-section-head {
+  max-width: 40rem;
+  margin-bottom: 0;
+}
+
+.site-section-eyebrow {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--site-text-dim);
+  margin-bottom: 0.85rem;
+}
+
+.site-section h2 {
+  font-size: clamp(1.5rem, 2.8vw, 1.875rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+  text-wrap: balance;
+}
+
+.site-section-lead {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--site-text-dim);
+  max-width: 38rem;
+}

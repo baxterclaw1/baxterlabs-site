@@ -1,0 +1,69 @@
+---
+interface Row {
+  id: string;
+  name: string;
+  deadline: string;
+  deadlineClass?: string;
+  col3: number;
+  col4: number;
+  progress: string;
+  progressPct: number;
+  recordId: string;
+  stageId?: string;
+}
+
+interface Props {
+  columns: string[];
+  rows: Row[];
+  filterId: string;
+  tableId: string;
+  rowHint?: string;
+  filterPlaceholder?: string;
+}
+
+const { columns, rows, filterId, tableId, rowHint, filterPlaceholder = 'Filter…' } = Astro.props;
+
+function deadlineClass(cls?: string) {
+  if (cls === 'urgent') return 'demo-deadline-red';
+  if (cls === 'warn') return 'demo-deadline-amber';
+  if (cls === 'last') return 'demo-deadline-last';
+  if (cls === 'muted') return 'demo-deadline-muted';
+  return '';
+}
+---
+
+<div class="demo-table-wrap">
+  <input type="search" class="demo-search" id={filterId} placeholder={filterPlaceholder} style="margin-bottom: 10px;" />
+  <table class="demo-table demo-table--drill" id={tableId}>
+    <thead>
+      <tr>
+        {columns.map((col) => <th>{col}</th>)}
+      </tr>
+    </thead>
+    <tbody>
+      {
+        rows.map((row) => (
+          <tr
+            data-record-id={row.recordId}
+            data-stage-id={row.stageId}
+            data-row-name={row.name.toLowerCase()}
+          >
+            <td>{row.name}</td>
+            <td class={deadlineClass(row.deadlineClass)}>{row.deadline}</td>
+            <td>{row.col3 || '—'}</td>
+            <td>{row.col4 || '—'}</td>
+            <td class="demo-progress-cell">
+              <div class="demo-progress-text">{row.progress}</div>
+              {row.progressPct > 0 && row.progressPct < 100 && (
+                <div class="demo-progress-bar">
+                  <div class="demo-progress-fill" style={`width: ${row.progressPct}%`} />
+                </div>
+              )}
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+  {rowHint && <p class="demo-row-hint">{rowHint}</p>}
+</div>

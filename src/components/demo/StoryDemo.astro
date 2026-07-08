@@ -1,0 +1,160 @@
+---
+import story from '../../data/demo-story.json';
+---
+
+<div class="demo-panel" data-demo-panel>
+  <div class="demo-root demo-root--story">
+    <div class="story-progress" id="story-progress" aria-label="Tour progress">
+      {
+        story.steps.map((_, i) => (
+          <span
+            class:list={['story-dot', { 'is-active': i === 0 }]}
+            data-story-dot={i}
+          />
+        ))
+      }
+    </div>
+
+    <div class="story-narrator" id="story-narrator">
+      <p class="story-step-indicator" id="story-indicator">
+        Step 1 of 4 · {story.steps[0].label}
+      </p>
+      <p class="story-body" id="story-body">{story.steps[0].narration}</p>
+    </div>
+
+    <div class="story-stage" id="story-stage">
+      <!-- Slide 1: Priorities -->
+      <div class="story-scene is-active" data-scene="priorities">
+        <div class="story-scene-inner">
+          <div class="demo-summary-card story-focus-summary">
+            <div class="demo-summary-line"><strong>3 need you today</strong> · 12 active</div>
+          </div>
+          <table class="demo-table story-table-curated">
+            <thead>
+              <tr>
+                <th>Client</th>
+                <th>Due</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="story-focus-row">
+                <td>Riverside Dental</td>
+                <td class="demo-deadline-red">2:00 PM</td>
+                <td>Waiting on them</td>
+              </tr>
+              <tr class="story-dim">
+                <td>Parkside Bakery</td>
+                <td>—</td>
+                <td>New</td>
+              </tr>
+              <tr class="story-dim">
+                <td>Chen &amp; Co.</td>
+                <td>Friday</td>
+                <td>In progress</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Slide 2: Intake -->
+      <div class="story-scene" data-scene="intake">
+        <div class="story-scene-inner story-scene-inner--narrow">
+          <div class="demo-field">
+            <label for="story-trigger">Business name</label>
+            <input
+              type="text"
+              class="demo-input"
+              id="story-trigger"
+              placeholder="Parkside Bakery"
+              autocomplete="off"
+            />
+            <p class="demo-field-hint">Try typing <strong>Parkside Bakery</strong></p>
+          </div>
+          <div class="demo-autofill" id="story-autofill">
+            <dl class="demo-autofill-grid">
+              <dt>Industry</dt><dd>Bakery</dd>
+              <dt>Location</dt><dd>Oak Park</dd>
+              <dt>Referred by</dt><dd>Riverside Dental</dd>
+            </dl>
+          </div>
+          <button type="button" class="demo-submit" id="story-submit" disabled>
+            Add to pipeline
+          </button>
+        </div>
+      </div>
+
+      <!-- Slide 3: Status -->
+      <div class="story-scene" data-scene="status">
+        <div class="story-scene-inner">
+          <div class="story-pipeline-strip" aria-hidden="true">
+            <span class="story-pipeline-step">New</span>
+            <span class="story-pipeline-step">Waiting</span>
+            <span class="story-pipeline-step is-active">In progress</span>
+            <span class="story-pipeline-step">Review</span>
+            <span class="story-pipeline-step">Done</span>
+          </div>
+          <table class="demo-table story-table-curated story-table-curated--tight">
+            <thead>
+              <tr>
+                <th>Client</th>
+                <th>Stage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="story-focus-row">
+                <td>Riverside Dental</td>
+                <td>In progress</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Slide 4: Prep -->
+      <div class="story-scene" data-scene="prep">
+        <div class="story-scene-inner story-scene-inner--narrow">
+          <p class="story-prep-header">Riverside Dental · Call at 2:00 PM</p>
+          <dl class="story-prep-facts">
+            <div class="story-prep-fact story-focus-fact">
+              <dt>Agreement</dt>
+              <dd>Opened 9:22 AM</dd>
+            </div>
+            <div class="story-prep-fact story-dim">
+              <dt>Last note</dt>
+              <dd>Docs received overnight</dd>
+            </div>
+            <div class="story-prep-fact story-dim">
+              <dt>Still open</dt>
+              <dd>Signature pending</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <!-- Slide 5: Close -->
+      <div class="story-scene" data-scene="close">
+        <div class="story-scene-inner story-close">
+          <ul class="story-examples">
+            {
+              story.close.examples.map((ex) => (
+                <li>
+                  <strong>{ex.label}</strong>
+                  <span>{ex.swap}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="story-controls">
+      <button type="button" class="story-btn story-btn--ghost" id="story-back" disabled>Back</button>
+      <button type="button" class="story-btn story-btn--primary" id="story-next">Next</button>
+    </div>
+
+    <div class="demo-toast" id="demo-toast" role="status"></div>
+  </div>
+</div>
