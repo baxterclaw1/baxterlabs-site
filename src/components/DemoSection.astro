@@ -1,0 +1,110 @@
+---
+import DemoShell from './demo/DemoShell.astro';
+---
+
+<section class="demo-section" id="demo" aria-label="Interactive demo">
+  <div class="demo-section-panel" id="demo-panel" hidden>
+    <div class="demo-intro" id="demo-intro">
+      <p class="demo-intro-eyebrow">Example only</p>
+      <h2 class="demo-intro-title">One scenario, not your business</h2>
+      <p class="demo-intro-body">
+        This walkthrough follows a fictional firm getting ready for a 2pm client call —
+        pipeline, intake, and documents on one screen. The names and steps are made up.
+      </p>
+      <p class="demo-intro-body">
+        BaxterLabs builds custom systems around how you actually work. Whatever your
+        workflow looks like, we design for that — not a template.
+      </p>
+      <button type="button" class="btn" id="demo-start">Start walkthrough</button>
+    </div>
+
+    <div class="demo-live" id="demo-live" hidden>
+      <DemoShell />
+    </div>
+  </div>
+</section>
+
+<script>
+  function initDemoLauncher() {
+    const hereBtn = document.getElementById('demo-here-btn');
+    const panel = document.getElementById('demo-panel');
+    const intro = document.getElementById('demo-intro');
+    const live = document.getElementById('demo-live');
+    const startBtn = document.getElementById('demo-start');
+    if (!hereBtn || !panel || !intro || !live || !startBtn) return;
+
+    hereBtn.addEventListener('click', () => {
+      panel.hidden = false;
+      intro.hidden = false;
+      live.hidden = true;
+      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      intro.querySelector('button')?.focus();
+    });
+
+    startBtn.addEventListener('click', () => {
+      intro.hidden = true;
+      live.hidden = false;
+      live.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  }
+
+  initDemoLauncher();
+</script>
+
+<style>
+  .demo-section {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 0 1.5rem 1rem;
+  }
+
+  .demo-section-panel {
+    animation: demo-panel-in 0.3s ease;
+  }
+
+  @keyframes demo-panel-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .demo-intro {
+    max-width: 36rem;
+    margin: 0 auto;
+    padding: 2rem 2rem 2.25rem;
+    background: var(--site-surface);
+    border: 1px solid var(--site-border);
+    border-radius: 12px;
+  }
+
+  .demo-intro-eyebrow {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--site-text-dim);
+    margin-bottom: 0.75rem;
+  }
+
+  .demo-intro-title {
+    font-size: 1.375rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    line-height: 1.25;
+  }
+
+  .demo-intro-body {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--site-text-dim);
+    margin-bottom: 0.85rem;
+  }
+
+  .demo-intro-body:last-of-type {
+    margin-bottom: 1.5rem;
+  }
+
+  .demo-live {
+    animation: demo-panel-in 0.3s ease;
+  }
+</style>

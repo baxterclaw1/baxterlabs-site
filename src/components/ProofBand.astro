@@ -1,0 +1,85 @@
+---
+const systems = [
+  {
+    name: 'BaxterTrade',
+    line: 'Autonomous trading agent — production, 24/7',
+  },
+  {
+    name: 'Vultisig',
+    line: 'Vault operations automation we built and run',
+  },
+  {
+    name: 'BaxterEquities',
+    line: 'Equity research pipeline on real schedules',
+  },
+];
+---
+
+<section class="site-section site-section--proof" aria-labelledby="proof-heading">
+  <p class="site-section-eyebrow">Proof we ship</p>
+  <h2 id="proof-heading">We run what we recommend</h2>
+  <p class="site-section-lead">
+    Same stack, same standards — production agents and workflows we operate ourselves, not demos for the website.
+  </p>
+
+  <ul class="proof-list">
+    {
+      systems.map((sys) => (
+        <li class="proof-item">
+          <span class="proof-name">{sys.name}</span>
+          <span class="proof-line">{sys.line}</span>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .site-section--proof {
+    border-top: 1px solid var(--site-border);
+    border-bottom: 1px solid var(--site-border);
+    background: var(--site-surface-muted);
+  }
+
+  .proof-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 40rem;
+  }
+
+  .proof-item {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 1rem;
+    align-items: baseline;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--site-border);
+  }
+
+  .proof-item:last-child {
+    border-bottom: none;
+  }
+
+  @media (max-width: 520px) {
+    .proof-item {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+  }
+
+  .proof-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .proof-line {
+    font-size: 0.875rem;
+    color: var(--site-text-dim);
+    line-height: 1.45;
+  }
+</style>

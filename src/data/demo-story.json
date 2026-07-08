@@ -1,0 +1,46 @@
+{
+  "title": "Before the 2pm call",
+  "steps": [
+    {
+      "id": "priorities",
+      "label": "What needs you today",
+      "stepOf": 1,
+      "narration": "Three clients need attention. Riverside Dental is first — they're on your calendar at 2.",
+      "view": "priorities"
+    },
+    {
+      "id": "intake",
+      "label": "Capture it once",
+      "stepOf": 2,
+      "narration": "A referral for Parkside Bakery. Type the name — we fill what we already know.",
+      "view": "intake",
+      "tryAction": {
+        "trigger": "Parkside Bakery",
+        "submitToast": "Parkside added to your pipeline"
+      }
+    },
+    {
+      "id": "status",
+      "label": "Same status",
+      "stepOf": 3,
+      "narration": "Riverside sent their documents overnight. They're back in progress — no spreadsheet update.",
+      "view": "status"
+    },
+    {
+      "id": "prep",
+      "label": "Ready for the call",
+      "stepOf": 4,
+      "narration": "Before you dial Riverside: agreement opened this morning. You're not digging through email.",
+      "view": "prep"
+    }
+  ],
+  "close": {
+    "label": "Built for how you work",
+    "narration": "Pipeline, intake, documents — same engine whether you run returns, jobs, or client projects.",
+    "examples": [
+      { "label": "Accounting", "swap": "return pipeline" },
+      { "label": "Home services", "swap": "job board" },
+      { "label": "Agencies", "swap": "client projects" }
+    ]
+  }
+}

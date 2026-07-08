@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>C-pure — Typography-first</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      :root { --bg: #0c0c0e; --text: #f0eeeb; --text-dim: #9c9994; --border: #2a2a2e; --btn: #f0eeeb; --btn-text: #0c0c0e; }
+      body {
+        font-family: 'Instrument Sans', system-ui, sans-serif;
+        background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.6; position: relative;
+      }
+      body::before {
+        content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+        background:
+          radial-gradient(ellipse 80% 50% at 50% -10%, rgba(120, 110, 90, 0.12), transparent),
+          radial-gradient(ellipse 60% 40% at 100% 50%, rgba(80, 75, 70, 0.08), transparent),
+          radial-gradient(ellipse 50% 30% at 0% 80%, rgba(90, 85, 80, 0.06), transparent);
+      }
+      .bar { position: relative; z-index: 2; display: flex; justify-content: space-between; padding: 0.6rem 1.25rem;
+        background: rgba(18,18,20,0.9); border-bottom: 1px solid var(--border); font-size: 0.75rem; color: #5a5855; }
+      .bar a { color: #9c9994; text-decoration: none; }
+      .nav { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: center;
+        padding: 1rem 1.5rem; max-width: 64rem; margin: 0 auto; }
+      .logo { font-weight: 600; letter-spacing: -0.02em; text-decoration: none; color: var(--text); }
+      .btn { padding: 0.5rem 1rem; font-size: 0.8125rem; font-weight: 500; background: var(--btn); color: var(--btn-text);
+        border-radius: 8px; text-decoration: none; }
+      .hero { position: relative; z-index: 1; max-width: 64rem; margin: 0 auto; padding: 5rem 1.5rem 6rem;
+        min-height: calc(100vh - 7rem); display: flex; flex-direction: column; justify-content: center; }
+      .badge { font-size: 0.8125rem; color: var(--text-dim); margin-bottom: 2rem; }
+      h1 { font-size: clamp(2.5rem, 6.5vw, 4rem); font-weight: 600; letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 1.75rem; }
+      .sub { font-size: clamp(1.0625rem, 2vw, 1.25rem); color: var(--text-dim); max-width: 44ch; margin-bottom: 2.5rem; line-height: 1.7; }
+      .btn-hero { display: inline-flex; padding: 0.65rem 1.35rem; font-weight: 500; background: var(--btn); color: var(--btn-text); border-radius: 8px; text-decoration: none; }
+      .rule { width: 3rem; height: 1px; background: var(--border); margin-top: 3rem; }
+      @media (prefers-reduced-motion: no-preference) {
+        .inner { animation: up 0.8s ease-out both; }
+        @keyframes up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bar"><span><strong>C-pure</strong> — exact Sample C feel</span><a href="/samples/">← Samples</a></div>
+    <header class="nav"><a class="logo" href="#">BaxterLabs</a><a class="btn" href="#">Book a Call</a></header>
+    <main class="hero">
+      <div class="inner">
+        <p class="badge">Free consultation — tell us what's slowing you down</p>
+        <h1>Custom AI and automation for growing businesses</h1>
+        <p class="sub">BaxterLabs helps business owners upgrade how they operate — without added complexity. We look at how you work today, then propose automations you can actually run without micromanaging everything.</p>
+        <a class="btn-hero" href="#">Book a Call</a>
+        <div class="rule"></div>
+      </div>
+    </main>
+  </body>
+</html>

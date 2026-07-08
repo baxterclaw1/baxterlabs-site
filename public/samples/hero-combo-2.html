@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Combo 2 — Stacked + atmosphere</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      :root {
+        --bg: #0a0b0d;
+        --text: #eceae6;
+        --text-dim: #9a9690;
+        --text-muted: #5c5955;
+        --border: #23262e;
+        --accent: #e07a5f;
+        --accent-glow: rgba(224, 122, 95, 0.15);
+      }
+      html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+      body {
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        line-height: 1.6;
+        position: relative;
+      }
+      body::before {
+        content: '';
+        position: fixed; inset: 0; z-index: 0; pointer-events: none;
+        background:
+          radial-gradient(ellipse 80% 50% at 50% -10%, rgba(224, 122, 95, 0.08), transparent),
+          radial-gradient(ellipse 60% 40% at 100% 60%, rgba(120, 110, 90, 0.06), transparent),
+          radial-gradient(ellipse 50% 30% at 0% 80%, rgba(90, 85, 80, 0.05), transparent);
+      }
+      .sample-bar {
+        position: relative; z-index: 2;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0.6rem 1.25rem; background: rgba(20, 22, 28, 0.95);
+        border-bottom: 1px solid var(--border);
+        font-size: 0.75rem; color: var(--text-muted);
+      }
+      .sample-bar a { color: var(--text-dim); text-decoration: none; }
+      .sample-bar strong { color: var(--accent); font-weight: 500; }
+      .nav {
+        position: relative; z-index: 2;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 1.25rem 1.5rem; max-width: 56rem; margin: 0 auto;
+      }
+      .logo { font-size: 1rem; font-weight: 600; letter-spacing: -0.02em; text-decoration: none; color: var(--text); }
+      .btn {
+        display: inline-flex; padding: 0.6rem 1.25rem;
+        font-family: inherit; font-size: 0.875rem; font-weight: 500;
+        color: var(--bg); background: var(--accent); border-radius: 8px;
+        text-decoration: none; box-shadow: 0 0 24px var(--accent-glow);
+        transition: background 0.15s, box-shadow 0.15s;
+      }
+      .btn:hover { background: #e8907a; box-shadow: 0 0 32px rgba(224, 122, 95, 0.25); }
+      .hero {
+        position: relative; z-index: 1;
+        max-width: 56rem; margin: 0 auto; padding: 2rem 1.5rem 5rem;
+      }
+      .badge { font-size: 0.8125rem; color: var(--text-dim); margin-bottom: 1.5rem; }
+      h1 {
+        font-size: clamp(2.5rem, 5.5vw, 3.5rem); font-weight: 600;
+        letter-spacing: -0.04em; line-height: 1.06; margin-bottom: 1.5rem;
+        max-width: 18ch;
+      }
+      .subhead {
+        font-size: 1.125rem; color: var(--text-dim); max-width: 44ch;
+        margin-bottom: 3rem; line-height: 1.65;
+      }
+      .diagram-wrap {
+        display: flex; justify-content: center; padding: 2rem;
+        background: rgba(18, 20, 26, 0.6); border: 1px solid var(--border);
+        border-radius: 12px; box-shadow: 0 0 40px var(--accent-glow);
+      }
+      .diagram { width: 100%; max-width: 24rem; aspect-ratio: 1; }
+      .diagram svg { width: 100%; height: 100%; }
+      @media (max-width: 600px) {
+        h1 { max-width: none; }
+        .diagram-wrap { padding: 1.25rem; }
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .hero-text { animation: up 0.55s ease-out both; }
+        .diagram-wrap { animation: up 0.55s ease-out 0.15s both; }
+        .pulse { animation: pulse 2.5s ease-in-out infinite; }
+        @keyframes up {
+          from { opacity: 0; transform: translateY(16px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.7; }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sample-bar">
+      <span><strong>Combo 2</strong> — Stacked + atmosphere · “Calm but not boring”</span>
+      <a href="/samples/">← All samples</a>
+    </div>
+    <header class="nav">
+      <a class="logo" href="#">BaxterLabs</a>
+      <a class="btn" href="#">Book a Call</a>
+    </header>
+    <main class="hero">
+      <div class="hero-text">
+        <p class="badge">Free consultation — tell us what's slowing you down</p>
+        <h1>Custom AI and automation for growing businesses</h1>
+        <p class="subhead">
+          BaxterLabs helps business owners upgrade how they operate — without added
+          complexity. We look at how you work today, then propose automations you can
+          actually run without micromanaging everything.
+        </p>
+      </div>
+      <div class="diagram-wrap" aria-hidden="true">
+        <div class="diagram">
+          <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+            <path d="M160 80 L80 160" stroke="#23262e" stroke-width="1" fill="none"/>
+            <path d="M160 80 L240 160" stroke="#23262e" stroke-width="1" fill="none"/>
+            <path class="pulse" d="M80 160 L160 240" stroke="rgba(224,122,95,0.5)" stroke-width="1.5" stroke-dasharray="4 4" fill="none"/>
+            <path class="pulse" d="M240 160 L160 240" stroke="rgba(224,122,95,0.5)" stroke-width="1.5" stroke-dasharray="4 4" fill="none"/>
+            <path d="M80 160 L240 160" stroke="#23262e" stroke-width="1" fill="none"/>
+            <circle cx="160" cy="80" r="28" fill="#12141a" stroke="#23262e"/>
+            <circle cx="80" cy="160" r="24" fill="#12141a" stroke="#23262e"/>
+            <circle cx="240" cy="160" r="24" fill="#12141a" stroke="#23262e"/>
+            <circle cx="160" cy="240" r="32" fill="rgba(224,122,95,0.12)" stroke="rgba(224,122,95,0.4)"/>
+            <text x="160" y="84" text-anchor="middle" fill="#5c5955" font-size="9" font-family="Plus Jakarta Sans,sans-serif">Your tools</text>
+            <text x="80" y="164" text-anchor="middle" fill="#5c5955" font-size="9" font-family="Plus Jakarta Sans,sans-serif">Workflows</text>
+            <text x="240" y="164" text-anchor="middle" fill="#5c5955" font-size="9" font-family="Plus Jakarta Sans,sans-serif">Data</text>
+            <text x="160" y="244" text-anchor="middle" fill="#e07a5f" font-size="9" font-family="Plus Jakarta Sans,sans-serif" font-weight="600">Results</text>
+          </svg>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

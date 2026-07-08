@@ -1,0 +1,15 @@
+{
+  "10221000010000": {
+    "recordId": "10221000010000",
+    "recordIdFormatted": "10-22-100-001-0000",
+    "autoFill": {
+      "address": "1842 Maple Terrace",
+      "city": "Northgate",
+      "region": "Northgate",
+      "zip": "60201",
+      "propertyClass": "2-11",
+      "saleAmount": "$485,000",
+      "saleDate": "2024-08-15"
+    }
+  }
+}

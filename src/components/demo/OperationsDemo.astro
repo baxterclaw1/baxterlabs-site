@@ -1,0 +1,184 @@
+---
+import demo from '../../data/demo-operations.json';
+import HelperBanner from './shared/HelperBanner.astro';
+import StepPipeline from './shared/StepPipeline.astro';
+import SimpleTable from './shared/SimpleTable.astro';
+
+const id = demo.id;
+const views = demo.views;
+const overview = demo.overview;
+const intake = demo.intake;
+const tracking = demo.tracking;
+const autoFill = intake.autoFill;
+const trackingRows = tracking.rows;
+---
+
+<div class="demo-panel" data-demo-panel>
+  <div class="demo-root">
+    <div class="demo-layout">
+      <nav class="demo-sidebar" aria-label="Demo views">
+        <div class="demo-sidebar-brand">{demo.workspaceName}</div>
+        {
+          views.map((view, i) => (
+            <button
+              type="button"
+              class:list={['demo-nav-item', { 'is-active': i === 0 }]}
+              data-demo-tab={view.id}
+            >
+              {view.label}
+            </button>
+          ))
+        }
+      </nav>
+
+      <main class="demo-main">
+        <div class="demo-view is-active" data-demo-view="overview">
+          <HelperBanner text={overview.helper} />
+          <div class="demo-header">
+            <h2>{views[0]?.label}</h2>
+            <button type="button" class="demo-btn-refresh" data-demo-refresh>Refresh</button>
+          </div>
+          <div class="demo-summary-card">
+            <div class="demo-summary-line">{overview.summaryLine}</div>
+            <input
+              type="search"
+              class="demo-search"
+              placeholder={overview.searchPlaceholder}
+              aria-label="Search"
+            />
+            <StepPipeline stages={overview.pipeline} hint={overview.pipelineHint} />
+          </div>
+          <p class="demo-section-label">{overview.tableLabel}</p>
+          <SimpleTable
+            columns={overview.tableColumns}
+            rows={overview.rows}
+            filterId="demo-table-filter"
+            tableId="demo-table"
+            rowHint={overview.rowHint}
+            filterPlaceholder={overview.filterPlaceholder}
+          />
+        </div>
+
+        <div class="demo-view" data-demo-view="intake">
+          <HelperBanner text={intake.helper} />
+          <h2 class="demo-intake-title">{intake.title}</h2>
+
+          <div class="demo-field">
+            <label for="demo-trigger">{intake.triggerLabel}</label>
+            <input
+              type="text"
+              class="demo-input"
+              id="demo-trigger"
+              data-demo-trigger
+              placeholder={intake.triggerDemo}
+            />
+            <p class="demo-field-hint">
+              Try: <strong>{intake.triggerDemo}</strong>
+            </p>
+          </div>
+
+          <div class="demo-autofill" data-demo-autofill>
+            <dl class="demo-autofill-grid">
+              {
+                Object.entries(autoFill).map(([key, val]) => (
+                  <>
+                    <dt>{key}</dt>
+                    <dd>{val}</dd>
+                  </>
+                ))
+              }
+            </dl>
+          </div>
+
+          {
+            intake.fields.map((field) => (
+              <div class="demo-field">
+                <label for={`demo-field-${field.id}`}>{field.label}</label>
+                <input
+                  type="text"
+                  class="demo-input"
+                  id={`demo-field-${field.id}`}
+                  data-demo-field={field.id}
+                  placeholder={field.placeholder}
+                />
+              </div>
+            ))
+          }
+
+          {
+            intake.optionGroups.map((group) => (
+              <>
+                <p class="demo-section-label">{group.label}</p>
+                <div class="demo-cards-row" data-demo-card-group={group.id}>
+                  {
+                    group.options.map((card) => (
+                      <button type="button" class="demo-route-card" data-value={card.value}>
+                        <strong>{card.title}</strong>
+                        <span>{card.desc}</span>
+                      </button>
+                    ))
+                  }
+                </div>
+              </>
+            ))
+          }
+
+          <button type="button" class="demo-submit" data-demo-submit disabled>
+            {intake.submitLabel}
+          </button>
+        </div>
+
+        <div class="demo-view" data-demo-view="tracking">
+          <HelperBanner text={tracking.helper} />
+          <div class="demo-header">
+            <h2>{tracking.title}</h2>
+          </div>
+          <div class="demo-table-wrap">
+            <table class="demo-table demo-table--drill" id="demo-docs-table">
+              <thead>
+                <tr>
+                  {tracking.columns.map((col) => <th>{col}</th>)}
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  trackingRows.map((row) => (
+                    <tr data-record-id={row.recordId}>
+                      <td>{row.client}</td>
+                      <td>{row.col2}</td>
+                      <td>{row.col3}</td>
+                      <td>
+                        <span class={`demo-badge demo-badge--${row.status}`}>{row.status}</span>
+                      </td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+            {tracking.rowHint && <p class="demo-row-hint">{tracking.rowHint}</p>}
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div class="demo-overlay" id="demo-overlay">
+      <div class="demo-drawer-backdrop" id="demo-drawer-backdrop"></div>
+      <div class="demo-popout" id="demo-drawer" role="dialog" aria-modal="true" aria-label="Details">
+        <div class="demo-popout-top">
+          <button type="button" class="demo-popout-back" id="demo-popout-back" hidden>← Back</button>
+          <span class="demo-popout-kind" id="drawer-kind"></span>
+          <button type="button" class="demo-popout-close" id="demo-drawer-close" aria-label="Close">×</button>
+        </div>
+        <h3 class="demo-popout-title" id="drawer-name"></h3>
+        <p class="demo-popout-meta" id="drawer-meta"></p>
+        <div class="demo-popout-body" id="drawer-body"></div>
+        <div class="demo-popout-section" id="drawer-flags-section" hidden>
+          <h4>Needs attention</h4>
+          <div id="drawer-flags"></div>
+        </div>
+        <div class="demo-popout-footer" id="drawer-footer" hidden></div>
+      </div>
+      <div class="demo-toast" id="demo-toast" role="status"></div>
+    </div>
+  </div>
+</div>

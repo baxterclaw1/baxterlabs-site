@@ -1,0 +1,35 @@
+---
+interface Stage {
+  id: string;
+  count: number;
+  title: string;
+  sub: string;
+  color: string;
+}
+
+interface Props {
+  stages: Stage[];
+  hint?: string;
+}
+
+const { stages, hint } = Astro.props;
+---
+
+<div class="demo-funnel">
+  {
+    stages.map((stage) => (
+      <button
+        type="button"
+        class="demo-stage-card demo-stage-card--drill"
+        style={`--stage-color: ${stage.color}`}
+        data-record-id={stage.id}
+        aria-label={`${stage.title}: ${stage.count} clients`}
+      >
+        <div class="demo-stage-count">{stage.count}</div>
+        <div class="demo-stage-title">{stage.title}</div>
+        <div class="demo-stage-sub">{stage.sub}</div>
+      </button>
+    ))
+  }
+</div>
+{hint && <p class="demo-row-hint">{hint}</p>}

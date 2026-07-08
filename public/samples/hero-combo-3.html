@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Combo 3 — Bold showcase</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      :root {
+        --bg: #0a0b0d;
+        --surface: #12141a;
+        --surface-raised: #181b22;
+        --text: #eceae6;
+        --text-dim: #9a9690;
+        --text-muted: #5c5955;
+        --border: #23262e;
+        --accent: #e07a5f;
+        --badge: #c9a227;
+      }
+      html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+      body {
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        line-height: 1.6;
+        position: relative;
+      }
+      body::before {
+        content: '';
+        position: fixed; inset: 0; z-index: 0; pointer-events: none;
+        background:
+          radial-gradient(ellipse 70% 45% at 70% 20%, rgba(224, 122, 95, 0.1), transparent),
+          radial-gradient(ellipse 50% 35% at 10% 70%, rgba(80, 75, 70, 0.08), transparent);
+      }
+      body::after {
+        content: '';
+        position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.04;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+      .sample-bar {
+        position: relative; z-index: 2;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0.6rem 1.25rem; background: rgba(20, 22, 28, 0.95);
+        border-bottom: 1px solid var(--border);
+        font-size: 0.75rem; color: var(--text-muted);
+      }
+      .sample-bar a { color: var(--text-dim); text-decoration: none; }
+      .sample-bar strong { color: var(--accent); font-weight: 500; }
+      .nav {
+        position: relative; z-index: 2;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 1.25rem 1.5rem; max-width: 72rem; margin: 0 auto;
+      }
+      .logo { font-size: 1rem; font-weight: 600; letter-spacing: -0.02em; text-decoration: none; color: var(--text); }
+      .btn {
+        display: inline-flex; padding: 0.6rem 1.25rem;
+        font-family: inherit; font-size: 0.875rem; font-weight: 500;
+        color: var(--bg); background: var(--accent); border-radius: 8px;
+        text-decoration: none;
+      }
+      .hero {
+        position: relative; z-index: 1;
+        max-width: 72rem; margin: 0 auto; padding: 2rem 1.5rem 5rem;
+        display: grid; grid-template-columns: 1fr 1.1fr; gap: 2.5rem; align-items: center;
+        min-height: calc(100vh - 8rem);
+      }
+      .badge {
+        display: inline-block; font-size: 0.75rem; font-weight: 500;
+        color: var(--badge); margin-bottom: 1.25rem; padding: 0.35rem 0.75rem;
+        background: rgba(201, 162, 39, 0.1); border: 1px solid rgba(201, 162, 39, 0.25);
+        border-radius: 100px;
+      }
+      h1 {
+        font-size: clamp(2.25rem, 4.5vw, 3.25rem); font-weight: 600;
+        letter-spacing: -0.04em; line-height: 1.08; margin-bottom: 1.25rem;
+      }
+      .subhead {
+        font-size: 1.0625rem; color: var(--text-dim); max-width: 40ch;
+        line-height: 1.65;
+      }
+      .showcase {
+        background: var(--surface); border: 1px solid var(--border);
+        border-radius: 12px; overflow: hidden;
+        box-shadow: 0 32px 64px rgba(0,0,0,0.4);
+      }
+      .showcase-bar {
+        display: flex; align-items: center; gap: 0.5rem;
+        padding: 0.75rem 1rem; background: var(--surface-raised);
+        border-bottom: 1px solid var(--border);
+      }
+      .showcase-dot { width: 8px; height: 8px; border-radius: 50%; background: #3a3d45; }
+      .showcase-dot:first-child { background: #5c4033; }
+      .showcase-title { margin-left: 0.5rem; font-size: 0.7rem; color: var(--text-muted); }
+      .showcase-body { padding: 1.25rem; }
+      .showcase-metrics {
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 1rem;
+      }
+      .sm {
+        background: var(--surface-raised); border: 1px solid var(--border);
+        border-radius: 8px; padding: 0.875rem; text-align: center;
+      }
+      .sm-label { font-size: 0.6rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+      .sm-val {
+        font-size: 1.5rem; font-weight: 600; color: var(--accent);
+        letter-spacing: -0.03em; margin: 0.25rem 0;
+      }
+      .chart {
+        height: 100px; background: var(--surface-raised); border: 1px solid var(--border);
+        border-radius: 8px; display: flex; align-items: flex-end; gap: 8px; padding: 1rem;
+      }
+      .chart-bar {
+        flex: 1; background: #23262e; border-radius: 4px 4px 0 0;
+        transform-origin: bottom;
+      }
+      @media (max-width: 768px) {
+        .hero { grid-template-columns: 1fr; min-height: auto; }
+        .showcase { order: -1; }
+        .showcase-metrics { grid-template-columns: 1fr; }
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .hero-text { animation: up 0.45s ease-out both; }
+        .showcase { animation: up 0.45s ease-out 0.1s both; }
+        .sm-val { animation: countPop 0.6s ease-out 0.4s both; }
+        .chart-bar:nth-child(1) { animation: growBar 0.8s ease-out 0.5s both; height: 35%; }
+        .chart-bar:nth-child(2) { animation: growBar 0.8s ease-out 0.6s both; height: 55%; }
+        .chart-bar:nth-child(3) { animation: growBar 0.8s ease-out 0.7s both; height: 75%; background: rgba(224,122,95,0.5); }
+        .chart-bar:nth-child(4) { animation: growBar 0.8s ease-out 0.8s both; height: 45%; }
+        .chart-bar:nth-child(5) { animation: growBar 0.8s ease-out 0.9s both; height: 60%; }
+        @keyframes up {
+          from { opacity: 0; transform: translateY(18px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes countPop {
+          from { opacity: 0; transform: scale(0.92); }
+          to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes growBar {
+          from { transform: scaleY(0); }
+          to { transform: scaleY(1); }
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .chart-bar:nth-child(1) { height: 35%; }
+        .chart-bar:nth-child(2) { height: 55%; }
+        .chart-bar:nth-child(3) { height: 75%; background: rgba(224,122,95,0.5); }
+        .chart-bar:nth-child(4) { height: 45%; }
+        .chart-bar:nth-child(5) { height: 60%; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sample-bar">
+      <span><strong>Combo 3</strong> — Bold showcase · “They build interactive systems”</span>
+      <a href="/samples/">← All samples</a>
+    </div>
+    <header class="nav">
+      <a class="logo" href="#">BaxterLabs</a>
+      <a class="btn" href="#">Book a Call</a>
+    </header>
+    <main class="hero">
+      <div class="hero-text">
+        <span class="badge">Free consultation — tell us what's slowing you down</span>
+        <h1>Custom AI and automation for growing businesses</h1>
+        <p class="subhead">
+          BaxterLabs helps business owners upgrade how they operate — without added
+          complexity. We look at how you work today, then propose automations you can
+          actually run without micromanaging everything.
+        </p>
+      </div>
+      <div class="showcase" aria-hidden="true">
+        <div class="showcase-bar">
+          <span class="showcase-dot"></span><span class="showcase-dot"></span><span class="showcase-dot"></span>
+          <span class="showcase-title">operations — live metrics</span>
+        </div>
+        <div class="showcase-body">
+          <div class="showcase-metrics">
+            <div class="sm">
+              <div class="sm-label">Active</div>
+              <div class="sm-val">12</div>
+            </div>
+            <div class="sm">
+              <div class="sm-label">Hours saved</div>
+              <div class="sm-val">47</div>
+            </div>
+            <div class="sm">
+              <div class="sm-label">Uptime</div>
+              <div class="sm-val">99%</div>
+            </div>
+          </div>
+          <div class="chart">
+            <div class="chart-bar"></div>
+            <div class="chart-bar"></div>
+            <div class="chart-bar"></div>
+            <div class="chart-bar"></div>
+            <div class="chart-bar"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

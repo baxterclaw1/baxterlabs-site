@@ -1,0 +1,89 @@
+---
+const steps = [
+  {
+    num: '01',
+    title: 'Discover',
+    body: 'One call to map your operations. What can be automated, what needs a human, and what ships first.',
+  },
+  {
+    num: '02',
+    title: 'Build',
+    body: 'Short cycles with working software early. You see real progress in days, not months of silence.',
+  },
+  {
+    num: '03',
+    title: 'Deploy & run',
+    body: 'Live on your infrastructure. We monitor, maintain, and evolve it as your business changes.',
+  },
+];
+---
+
+<section class="site-section" id="how-we-work" aria-labelledby="process-heading">
+  <div class="site-section-head">
+    <p class="site-section-eyebrow">How we work</p>
+    <h2 id="process-heading">Simple process. Serious results.</h2>
+    <p class="site-section-lead">
+      No bloated discovery phases. Fixed scope, clear timeline, you own what we build.
+    </p>
+  </div>
+
+  <ol class="process-list">
+    {
+      steps.map((step) => (
+        <li class="process-step">
+          <span class="process-num">{step.num}</span>
+          <div>
+            <h3>{step.title}</h3>
+            <p>{step.body}</p>
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<style>
+  .process-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 768px) {
+    .process-list {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .process-step {
+    padding: 1.25rem 1.35rem;
+    border: 1px solid var(--site-border);
+    border-radius: 10px;
+    background: var(--site-surface);
+  }
+
+  .process-num {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--site-text-dim);
+    margin-bottom: 0.75rem;
+  }
+
+  .process-step h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.45rem;
+  }
+
+  .process-step p {
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--site-text-dim);
+  }
+</style>

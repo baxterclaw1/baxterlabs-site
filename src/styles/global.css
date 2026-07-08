@@ -1,0 +1,63 @@
+:root {
+  --site-bg: #0a0b0d;
+  --site-text: #eceae6;
+  --site-text-dim: #9a9690;
+  --site-text-muted: #5c5955;
+  --site-border: #23262e;
+  --site-accent: #e07a5f;
+  --site-accent-hover: #e8907a;
+  --site-surface: #12141a;
+  --site-surface-muted: #101116;
+  --site-glow: rgba(224, 122, 95, 0.08);
+  --content-width: 72rem;
+  --section-pad-x: 1.5rem;
+  --section-pad-y: 3rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  background: var(--site-bg);
+  color: var(--site-text);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.35rem;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #0a0b0d;
+  background: var(--site-accent);
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:hover {
+  background: var(--site-accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(224, 122, 95, 0.25);
+}

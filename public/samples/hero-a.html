@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sample A — Calm consultant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #0c0c0e;
+        --surface: #141416;
+        --text: #e8e6e3;
+        --text-dim: #a8a5a0;
+        --text-muted: #6b6966;
+        --border: #252528;
+        --accent: #c9a227;
+        --accent-hover: #dbb42e;
+      }
+
+      html {
+        font-size: 16px;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body {
+        font-family: 'DM Sans', system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        line-height: 1.6;
+      }
+
+      .sample-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.6rem 1.25rem;
+        background: #1a1a1d;
+        border-bottom: 1px solid var(--border);
+        font-size: 0.75rem;
+        color: var(--text-muted);
+      }
+
+      .sample-bar a {
+        color: var(--text-dim);
+        text-decoration: none;
+      }
+
+      .sample-bar a:hover {
+        color: var(--text);
+      }
+
+      .sample-bar strong {
+        color: var(--accent);
+        font-weight: 500;
+      }
+
+      /* Nav */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+        padding: 1rem 1.5rem;
+        background: rgba(12, 12, 14, 0.85);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .logo {
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: var(--text);
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 1.75rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        font-size: 0.875rem;
+        color: var(--text-dim);
+        text-decoration: none;
+        transition: color 0.15s;
+      }
+
+      .nav-links a:hover {
+        color: var(--text);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.6rem 1.25rem;
+        font-family: inherit;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #0c0c0e;
+        background: var(--accent);
+        border: none;
+        border-radius: 8px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background 0.15s;
+      }
+
+      .btn:hover {
+        background: var(--accent-hover);
+      }
+
+      .nav .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.8125rem;
+      }
+
+      .nav-toggle {
+        display: none;
+        background: none;
+        border: none;
+        color: var(--text);
+        font-size: 1.25rem;
+        cursor: pointer;
+      }
+
+      /* Hero */
+      .hero {
+        max-width: 72rem;
+        margin: 0 auto;
+        padding: 4rem 1.5rem 5rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+        min-height: calc(100vh - 7rem);
+      }
+
+      .badge {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        color: var(--accent);
+        margin-bottom: 1.25rem;
+        padding: 0.35rem 0.75rem;
+        background: rgba(201, 162, 39, 0.1);
+        border: 1px solid rgba(201, 162, 39, 0.2);
+        border-radius: 100px;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 4.5vw, 2.75rem);
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        line-height: 1.12;
+        margin-bottom: 1.25rem;
+        max-width: 14ch;
+      }
+
+      .subhead {
+        font-size: 1.0625rem;
+        color: var(--text-dim);
+        max-width: 38ch;
+        margin-bottom: 2rem;
+        line-height: 1.65;
+      }
+
+      /* Diagram visual */
+      .visual {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+      }
+
+      .diagram {
+        width: 100%;
+        max-width: 22rem;
+        aspect-ratio: 1;
+        position: relative;
+      }
+
+      .diagram svg {
+        width: 100%;
+        height: 100%;
+      }
+
+      .node {
+        fill: var(--surface);
+        stroke: var(--border);
+        stroke-width: 1;
+      }
+
+      .node-accent {
+        fill: rgba(201, 162, 39, 0.12);
+        stroke: rgba(201, 162, 39, 0.35);
+      }
+
+      .line {
+        stroke: var(--border);
+        stroke-width: 1;
+        fill: none;
+      }
+
+      .line-accent {
+        stroke: rgba(201, 162, 39, 0.4);
+        stroke-dasharray: 4 4;
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .nav-toggle {
+          display: block;
+        }
+
+        .hero {
+          grid-template-columns: 1fr;
+          padding-top: 2.5rem;
+          min-height: auto;
+        }
+
+        h1 {
+          max-width: none;
+        }
+
+        .visual {
+          order: -1;
+          padding: 0 0 1rem;
+        }
+
+        .diagram {
+          max-width: 16rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        .hero-content {
+          animation: fadeUp 0.7s ease-out both;
+        }
+
+        .visual {
+          animation: fadeUp 0.7s ease-out 0.15s both;
+        }
+
+        @keyframes fadeUp {
+          from {
+            opacity: 0;
+            transform: translateY(12px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sample-bar">
+      <span><strong>Sample A</strong> — Calm consultant</span>
+      <a href="index.html">← All samples</a>
+    </div>
+
+    <header class="nav">
+      <a class="logo" href="#">BaxterLabs</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#">How it works</a></li>
+          <li><a href="#">What we build</a></li>
+          <li><a class="btn" href="#">Book a Call</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" type="button" aria-label="Menu">☰</button>
+    </header>
+
+    <main class="hero">
+      <div class="hero-content">
+        <span class="badge">Free consultation — tell us what's slowing you down</span>
+        <h1>Custom AI and automation for growing businesses</h1>
+        <p class="subhead">
+          BaxterLabs helps business owners upgrade how they operate — without added
+          complexity. We look at how you work today, then propose automations you can
+          actually run without micromanaging everything.
+        </p>
+        <a class="btn" href="#">Book a Call</a>
+      </div>
+
+      <div class="visual" aria-hidden="true">
+        <div class="diagram">
+          <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+            <!-- connections -->
+            <path class="line" d="M160 80 L80 160" />
+            <path class="line" d="M160 80 L240 160" />
+            <path class="line-accent" d="M80 160 L160 240" />
+            <path class="line-accent" d="M240 160 L160 240" />
+            <path class="line" d="M80 160 L240 160" />
+            <!-- nodes -->
+            <circle class="node" cx="160" cy="80" r="28" />
+            <circle class="node" cx="80" cy="160" r="24" />
+            <circle class="node" cx="240" cy="160" r="24" />
+            <circle class="node-accent" cx="160" cy="240" r="32" />
+            <!-- labels -->
+            <text x="160" y="84" text-anchor="middle" fill="#6b6966" font-size="9" font-family="DM Sans, sans-serif">Tools</text>
+            <text x="80" y="164" text-anchor="middle" fill="#6b6966" font-size="9" font-family="DM Sans, sans-serif">Workflow</text>
+            <text x="240" y="164" text-anchor="middle" fill="#6b6966" font-size="9" font-family="DM Sans, sans-serif">Data</text>
+            <text x="160" y="244" text-anchor="middle" fill="#c9a227" font-size="9" font-family="DM Sans, sans-serif" font-weight="500">Outcomes</text>
+          </svg>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
