@@ -28,7 +28,7 @@
 - [x] Positioning: boutique expert shop; father-son not on homepage
 - [x] Voice: direct, no-nonsense, professional, not salesy
 - [x] Audience: SMB owners who can afford custom work; mostly non-technical
-- [x] Hero style: **typography-led** (C-warm) · coral mesh · staggered headline · no side panel
+- [x] Hero style: **typography-led** (C-warm) · coral mesh · staggered headline · no side panel · **centered text column**
 - [x] Proof band: removed from homepage (systems proof not on v1)
 - [x] Meta title: BaxterLabs — Custom AI & Automation
 
