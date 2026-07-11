@@ -9,8 +9,8 @@
   --site-surface: #12141a;
   --site-surface-muted: #101116;
   --site-glow: rgba(224, 122, 95, 0.08);
-  --content-width: 112rem;
-  --section-pad-x: 2.5rem;
+  --content-width: 90rem;
+  --section-pad-x: 2rem;
   --section-pad-y: 3rem;
 }
 

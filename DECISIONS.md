@@ -17,7 +17,7 @@
 - [x] Sections: Hero → What we build (8 cards) → How we work → Before/After → CTA → Footer
 - [x] Nav: logo mark + wordmark + Book a Call
 - [x] Logo: **vertically stacked blocks** — 2 coral rectangles, aligned (near-square); SVG in `LogoMark.astro`
-- [x] Content width: **112rem** · side pad **2.5rem**
+- [x] Content width: **90rem** · side pad **2rem** (between original 72 and stretched 112)
 - [x] Demo walkthrough: **removed from homepage** (legacy demo code retained in repo)
 
 ## Copy
