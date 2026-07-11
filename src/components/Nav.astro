@@ -1,9 +1,14 @@
 ---
+import LogoMark from './LogoMark.astro';
+
 const bookCallUrl = '#contact';
 ---
 
 <header class="nav">
-  <a class="nav-logo" href="/">BaxterLabs</a>
+  <a class="nav-logo" href="/">
+    <LogoMark />
+    <span>BaxterLabs</span>
+  </a>
   <a class="btn" href={bookCallUrl}>Book a Call</a>
 </header>
 
@@ -18,6 +23,9 @@ const bookCallUrl = '#contact';
   }
 
   .nav-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
     font-size: 1rem;
     font-weight: 600;
     letter-spacing: -0.02em;

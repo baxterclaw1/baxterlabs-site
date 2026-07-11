@@ -15,8 +15,9 @@
 - [x] Homepage approach: **Strategy D** — static shapes + proof band, no interactive demo
 - [x] Marketing page: **dark theme** (`#0c0d10` site)
 - [x] Sections: Hero → What we build (8 cards) → How we work → Before/After → CTA → Footer
-- [x] Nav: wordmark + Book a Call only
-- [x] Logo: wordmark until logo exists
+- [x] Nav: logo mark + wordmark + Book a Call
+- [x] Logo: **vertically stacked blocks** — 2 coral rectangles, aligned (near-square); SVG in `LogoMark.astro`
+- [x] Content width: **112rem** · side pad **2.5rem**
 - [x] Demo walkthrough: **removed from homepage** (legacy demo code retained in repo)
 
 ## Copy
