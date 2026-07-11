@@ -1,5 +1,4 @@
 ---
-const bookCallUrl = '#contact';
 ---
 
 <section class="site-hero">
@@ -17,8 +16,6 @@ const bookCallUrl = '#contact';
       We design, build, and run custom systems for how you operate. Your tools, your data,
       built for your team not a product you bend to fit.
     </p>
-
-    <a class="btn site-hero-cta" href={bookCallUrl}>Book a Call</a>
 
     <div class="site-hero-rule" aria-hidden="true"></div>
   </div>
@@ -81,13 +78,7 @@ const bookCallUrl = '#contact';
     line-height: 1.7;
     color: var(--site-text-dim);
     max-width: 42ch;
-    margin-bottom: 2rem;
-  }
-
-  .site-hero-cta {
-    font-size: 0.9375rem;
-    padding: 0.75rem 1.55rem;
-    text-decoration: none;
+    margin-bottom: 0;
   }
 
   .site-hero-rule {
@@ -112,15 +103,13 @@ const bookCallUrl = '#contact';
 
     .site-hero-eyebrow,
     .site-hero-sub,
-    .site-hero-cta,
     .site-hero-rule {
       animation: hero-fade 0.5s ease-out both;
     }
 
     .site-hero-eyebrow { animation-delay: 0s; }
     .site-hero-sub { animation-delay: 0.32s; }
-    .site-hero-cta { animation-delay: 0.4s; }
-    .site-hero-rule { animation-delay: 0.48s; }
+    .site-hero-rule { animation-delay: 0.4s; }
 
     @keyframes hero-line-up {
       from {
