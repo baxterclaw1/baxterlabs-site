@@ -1,25 +1,117 @@
 ---
-const bookCallUrl = '#contact';
-const email = 'costa@baxterlabs.io';
+const contactEmail = 'baxterlabs.io@gmail.com';
 ---
 
 <section class="site-cta" id="contact" aria-labelledby="cta-heading">
-  <h2 id="cta-heading">Tell us what's slowing you down</h2>
-  <p class="site-cta-body">
-    We'll tell you what a custom system could do about it.
-  </p>
-  <div class="site-cta-actions">
-    <a class="btn" href={bookCallUrl}>Book a Call</a>
-    <a class="site-cta-email" href={`mailto:${email}`}>{email}</a>
+  <div class="site-cta-intro">
+    <h2 id="cta-heading">Tell us what's slowing you down</h2>
+    <p class="site-cta-body">
+      A few lines is enough — what you do, what's getting in the way, and what you'd like
+      working better. We'll reply from there and set up a call if it looks like a fit.
+    </p>
   </div>
+
+  <form class="site-contact" id="contact-form" novalidate>
+    <input type="text" name="_gotcha" class="site-contact-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+    <div class="site-contact-row">
+      <label class="site-contact-field">
+        <span>Name</span>
+        <input type="text" name="name" required autocomplete="name" placeholder="Your name" />
+      </label>
+      <label class="site-contact-field">
+        <span>Email</span>
+        <input type="email" name="email" required autocomplete="email" placeholder="you@company.com" />
+      </label>
+    </div>
+
+    <label class="site-contact-field">
+      <span>Business <em>(optional)</em></span>
+      <input type="text" name="business" autocomplete="organization" placeholder="Company or what you do" />
+    </label>
+
+    <label class="site-contact-field">
+      <span>What's going on</span>
+      <textarea
+        name="message"
+        required
+        rows="5"
+        placeholder="Briefly: the bottleneck, the tools you use, or what you want built."
+      ></textarea>
+    </label>
+
+    <div class="site-contact-footer">
+      <button class="btn" type="submit" id="contact-submit">Send message</button>
+      <p class="site-contact-status" id="contact-status" role="status" aria-live="polite" hidden></p>
+    </div>
+  </form>
 </section>
+
+<script define:vars={{ contactEmail }}>
+  const form = document.getElementById('contact-form');
+  const submitBtn = document.getElementById('contact-submit');
+  const statusEl = document.getElementById('contact-status');
+
+  if (form && submitBtn && statusEl) {
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const honeypot = form.querySelector('[name="_gotcha"]');
+      if (honeypot instanceof HTMLInputElement && honeypot.value) return;
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      const data = new FormData(form);
+      data.append('_subject', 'BaxterLabs site inquiry');
+      data.append('_template', 'table');
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+      statusEl.hidden = true;
+
+      try {
+        const res = await fetch(`https://formsubmit.co/ajax/${contactEmail}`, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: data,
+        });
+
+        if (!res.ok) throw new Error('Request failed');
+
+        form.reset();
+        statusEl.hidden = false;
+        statusEl.dataset.state = 'ok';
+        statusEl.textContent = "Got it — we'll get back to you soon.";
+      } catch {
+        statusEl.hidden = false;
+        statusEl.dataset.state = 'err';
+        statusEl.textContent = `Something went wrong. Email us at ${contactEmail}.`;
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send message';
+      }
+    });
+  }
+</script>
 
 <style>
   .site-cta {
     max-width: var(--content-width);
     margin: 0 auto;
     padding: var(--section-pad-y) var(--section-pad-x);
-    text-align: center;
+    display: grid;
+    gap: 2rem;
+  }
+
+  @media (min-width: 840px) {
+    .site-cta {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 3rem;
+      align-items: start;
+    }
   }
 
   .site-cta h2 {
@@ -32,26 +124,104 @@ const email = 'costa@baxterlabs.io';
   .site-cta-body {
     font-size: 1rem;
     color: var(--site-text-dim);
-    line-height: 1.6;
-    max-width: 32rem;
-    margin: 0 auto 1.75rem;
+    line-height: 1.65;
+    max-width: 34rem;
   }
 
-  .site-cta-actions {
+  .site-contact {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 1rem;
   }
 
-  .site-cta-email {
-    font-size: 0.875rem;
-    color: var(--site-text-dim);
-    text-decoration: none;
-    transition: color 0.15s;
+  .site-contact-honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
   }
 
-  .site-cta-email:hover {
+  .site-contact-row {
+    display: grid;
+    gap: 1rem;
+  }
+
+  @media (min-width: 560px) {
+    .site-contact-row {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .site-contact-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-size: 0.8125rem;
+    color: var(--site-text-dim);
+  }
+
+  .site-contact-field em {
+    font-style: normal;
+    color: var(--site-text-muted);
+  }
+
+  .site-contact-field input,
+  .site-contact-field textarea {
+    width: 100%;
+    padding: 0.75rem 0.9rem;
+    font-family: inherit;
+    font-size: 0.9375rem;
     color: var(--site-text);
+    background: var(--site-surface);
+    border: 1px solid var(--site-border);
+    border-radius: 0;
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .site-contact-field textarea {
+    resize: vertical;
+    min-height: 8rem;
+    line-height: 1.5;
+  }
+
+  .site-contact-field input::placeholder,
+  .site-contact-field textarea::placeholder {
+    color: var(--site-text-muted);
+  }
+
+  .site-contact-field input:focus,
+  .site-contact-field textarea:focus {
+    border-color: var(--site-accent);
+    box-shadow: 0 0 0 3px var(--site-glow);
+  }
+
+  .site-contact-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.25rem;
+  }
+
+  .site-contact-footer .btn:disabled {
+    opacity: 0.7;
+    cursor: wait;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .site-contact-status {
+    font-size: 0.875rem;
+    color: var(--site-text-dim);
+  }
+
+  .site-contact-status[data-state='ok'] {
+    color: #8fbf9f;
+  }
+
+  .site-contact-status[data-state='err'] {
+    color: var(--site-accent);
   }
 </style>

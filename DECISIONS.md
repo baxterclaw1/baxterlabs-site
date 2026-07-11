@@ -15,10 +15,13 @@
 - [x] Homepage approach: **Strategy D** — static shapes + proof band, no interactive demo
 - [x] Marketing page: **dark theme** (`#0c0d10` site)
 - [x] Sections: Hero → What we build (8 cards) → How we work → Before/After → CTA → Footer
-- [x] Nav: logo mark + wordmark + Book a Call
-- [x] Logo: **vertically stacked blocks** — 2 coral rectangles, aligned (near-square); SVG in `LogoMark.astro`
+- [x] Nav: logo mark + wordmark + text **Contact** link (not Book a Call button)
+- [x] Logo: **vertically stacked squares** — 2 coral blocks, aligned, hard corners; SVG in `LogoMark.astro`
+- [x] Corners: hard (no radius) on buttons and form inputs
 - [x] Content width: **90rem** · side pad **2rem** (between original 72 and stretched 112)
 - [x] Demo walkthrough: **removed from homepage** (legacy demo code retained in repo)
+- [x] CTAs: **one Book a Call** (hero only → `#contact`); bottom is a contact form, not a third button
+- [x] Contact form: name, email, optional business, message → `baxterlabs.io@gmail.com` via FormSubmit
 
 ## Copy
 
@@ -33,7 +36,8 @@
 
 - [ ] Staging URL: TBD after Vercel connect
 - [ ] Production DNS: do not touch baxterlabs.io until staging approved
-- [ ] Book a Call URL: TBD (Calendly or booking link)
+- [x] Book a Call URL: hero scrolls to `#contact` form (no Calendly yet)
+- [x] Contact inbox: baxterlabs.io@gmail.com (FormSubmit)
 
 ## Archive
 

@@ -50,7 +50,7 @@ a {
   color: #0a0b0d;
   background: var(--site-accent);
   border: none;
-  border-radius: 8px;
+  border-radius: 0;
   text-decoration: none;
   cursor: pointer;
   transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
