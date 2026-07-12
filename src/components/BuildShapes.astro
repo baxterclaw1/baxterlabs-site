@@ -5,7 +5,7 @@ const { shapes } = capabilities;
 ---
 
 <section class="site-section site-section--intro" id="what-we-build" aria-labelledby="build-heading">
-  <div class="site-section-head">
+  <div class="site-section-head site-section-head--center">
     <p class="site-section-eyebrow">What we build</p>
     <h2 id="build-heading">Concrete systems, not slide decks</h2>
     <p class="site-section-lead">
@@ -13,20 +13,12 @@ const { shapes } = capabilities;
     </p>
   </div>
 
-  <div class="shape-grid">
+  <div class="shape-list">
     {
       shapes.map((shape) => (
-        <article class="shape-card">
+        <article class="shape-item">
           <h3>{shape.title}</h3>
           <p>{shape.description}</p>
-          <div class="shape-flow" aria-label={`${shape.title} flow`}>
-            {shape.flow.map((step, i) => (
-              <span class="shape-flow-part">
-                {i > 0 && <span class="shape-flow-arrow" aria-hidden="true">→</span>}
-                <span class="shape-flow-step">{step}</span>
-              </span>
-            ))}
-          </div>
         </article>
       ))
     }
@@ -34,73 +26,48 @@ const { shapes } = capabilities;
 </section>
 
 <style>
-  .shape-grid {
+  .site-section-head--center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .site-section-head--center .site-section-lead {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .shape-list {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    margin-top: 2rem;
+    grid-template-columns: repeat(2, minmax(0, 22rem));
+    justify-content: center;
+    gap: 1.75rem 3rem;
+    margin-top: 2.25rem;
   }
 
   @media (max-width: 720px) {
-    .shape-grid {
+    .shape-list {
       grid-template-columns: 1fr;
+      max-width: 28rem;
+      margin-left: auto;
+      margin-right: auto;
     }
   }
 
-  .shape-card {
-    padding: 1.4rem 1.5rem 1.35rem;
-    background: linear-gradient(165deg, rgba(255, 255, 255, 0.03) 0%, transparent 48%), var(--site-surface);
-    border: 1px solid var(--site-border);
-    border-radius: 12px;
-    transition: border-color 0.2s ease, transform 0.2s ease;
+  .shape-item {
+    text-align: center;
   }
 
-  .shape-card:hover {
-    border-color: rgba(255, 255, 255, 0.12);
-    transform: translateY(-1px);
-  }
-
-  .shape-card h3 {
+  .shape-item h3 {
     font-size: 1rem;
     font-weight: 600;
     letter-spacing: -0.02em;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
   }
 
-  .shape-card p {
+  .shape-item p {
     font-size: 0.875rem;
     line-height: 1.55;
     color: var(--site-text-dim);
-    margin-bottom: 1.1rem;
-  }
-
-  .shape-flow {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.35rem 0.5rem;
-  }
-
-  .shape-flow-part {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .shape-flow-step {
-    font-size: 0.6875rem;
-    font-weight: 500;
-    padding: 0.3rem 0.55rem;
-    border-radius: 4px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--site-border);
-    color: var(--site-text-dim);
-    white-space: nowrap;
-  }
-
-  .shape-flow-arrow {
-    font-size: 0.625rem;
-    color: var(--site-text-dim);
-    opacity: 0.5;
   }
 </style>

@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BaxterLabs — What we build samples</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0a0b0d;
+        --text: #eceae6;
+        --dim: #9a9690;
+        --muted: #5c5955;
+        --border: #23262e;
+        --accent: #e07a5f;
+        --surface: #12141a;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      a { color: inherit; }
+      .top {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem 1.25rem;
+        padding: 1rem 1.5rem;
+        background: rgba(10, 11, 13, 0.92);
+        border-bottom: 1px solid var(--border);
+        backdrop-filter: blur(8px);
+      }
+      .top a {
+        font-size: 0.8125rem;
+        color: var(--dim);
+        text-decoration: none;
+      }
+      .top a:hover { color: var(--accent); }
+      .wrap {
+        max-width: 56rem;
+        margin: 0 auto;
+        padding: 2.5rem 1.5rem 5rem;
+      }
+      .sample {
+        padding: 3rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .sample:last-child { border-bottom: none; }
+      .tag {
+        display: inline-block;
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 0.75rem;
+      }
+      .note {
+        font-size: 0.875rem;
+        color: var(--dim);
+        margin-bottom: 2rem;
+        max-width: 36rem;
+      }
+      .eyebrow {
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.5rem;
+      }
+      h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        margin-bottom: 0.5rem;
+      }
+      .lead {
+        font-size: 0.95rem;
+        color: var(--dim);
+        max-width: 36rem;
+        margin-bottom: 1.75rem;
+      }
+
+      /* A — Clean list */
+      .list-a {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem 2.5rem;
+      }
+      @media (max-width: 700px) {
+        .list-a { grid-template-columns: 1fr; }
+      }
+      .item-a h3 {
+        font-size: 0.95rem;
+        font-weight: 600;
+        margin-bottom: 0.3rem;
+      }
+      .item-a p {
+        font-size: 0.8125rem;
+        color: var(--dim);
+        margin-bottom: 0.4rem;
+      }
+      .flow-plain {
+        font-size: 0.75rem;
+        color: var(--muted);
+      }
+
+      /* B — Expand */
+      .list-b { display: flex; flex-direction: column; border-top: 1px solid var(--border); }
+      .item-b {
+        border-bottom: 1px solid var(--border);
+      }
+      .item-b summary {
+        list-style: none;
+        cursor: pointer;
+        padding: 1rem 0;
+        font-weight: 600;
+        font-size: 0.95rem;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      .item-b summary::-webkit-details-marker { display: none; }
+      .item-b summary::after {
+        content: '+';
+        color: var(--muted);
+        font-weight: 400;
+      }
+      .item-b[open] summary::after { content: '–'; }
+      .item-b .body {
+        padding: 0 0 1.1rem;
+      }
+      .item-b .body p {
+        font-size: 0.875rem;
+        color: var(--dim);
+        margin-bottom: 0.5rem;
+        max-width: 40rem;
+      }
+
+      /* C — Feature 4 + also */
+      .feat-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.75rem 2rem;
+        margin-bottom: 2rem;
+      }
+      @media (max-width: 700px) {
+        .feat-grid { grid-template-columns: 1fr; }
+      }
+      .feat h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.35rem;
+      }
+      .feat p {
+        font-size: 0.875rem;
+        color: var(--dim);
+        margin-bottom: 0.45rem;
+      }
+      .also {
+        font-size: 0.875rem;
+        color: var(--dim);
+        padding-top: 1rem;
+        border-top: 1px solid var(--border);
+      }
+      .also strong { color: var(--text); font-weight: 500; }
+
+      /* D — Strip chrome */
+      .list-d {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.35rem 2.5rem;
+      }
+      @media (max-width: 700px) {
+        .list-d { grid-template-columns: 1fr; }
+      }
+      .item-d h3 {
+        font-size: 0.95rem;
+        font-weight: 600;
+        margin-bottom: 0.3rem;
+      }
+      .item-d p {
+        font-size: 0.8125rem;
+        color: var(--dim);
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="top">
+      <a href="#a">A · Clean list</a>
+      <a href="#b">B · Expand</a>
+      <a href="#c">C · Feature 4</a>
+      <a href="#d">D · Strip chrome</a>
+      <a href="/">← Homepage</a>
+    </nav>
+
+    <main class="wrap">
+      <section class="sample" id="a">
+        <p class="tag">Option A · recommended</p>
+        <p class="note">No cards. Title + one line + plain flow text. Calmest.</p>
+        <p class="eyebrow">What we build</p>
+        <h2>Concrete systems, not slide decks</h2>
+        <p class="lead">Common systems we build for operators. Yours will look different.</p>
+        <div class="list-a">
+          <div class="item-a">
+            <h3>Client intake</h3>
+            <p>One form creates the record everywhere. No retyping into email, sheets, or your CRM.</p>
+            <p class="flow-plain">Inquiry → Enrich → Record created → Team notified</p>
+          </div>
+          <div class="item-a">
+            <h3>Ops dashboard</h3>
+            <p>What needs you today, what's stuck, and what's due. From the tools you already use.</p>
+            <p class="flow-plain">Your tools → One view → Exceptions surfaced → Act early</p>
+          </div>
+          <div class="item-a">
+            <h3>Document tracking</h3>
+            <p>Sent, opened, signed. No digging through inboxes or chasing status by hand.</p>
+            <p class="flow-plain">Send → Track delivery → Alert on open → Flag when done</p>
+          </div>
+          <div class="item-a">
+            <h3>Email organization</h3>
+            <p>Inbox sorted, labeled, and routed. Less noise, faster replies.</p>
+            <p class="flow-plain">Incoming mail → Classify → Route or label → Draft or alert</p>
+          </div>
+          <div class="item-a">
+            <h3>Automated reporting</h3>
+            <p>Daily, Monday morning, or monthly summaries from your tools, on schedule.</p>
+            <p class="flow-plain">Your data → Aggregate → Write summary → Deliver on time</p>
+          </div>
+          <div class="item-a">
+            <h3>Lead &amp; prospect research</h3>
+            <p>A new inquiry arrives with context. Your team walks in prepared.</p>
+            <p class="flow-plain">New lead → Research → Brief drafted → Team notified</p>
+          </div>
+          <div class="item-a">
+            <h3>Workflow automation</h3>
+            <p>Repetitive work on autopilot, with human checkpoints where judgment matters.</p>
+            <p class="flow-plain">Trigger → Process → Human review → Done</p>
+          </div>
+          <div class="item-a">
+            <h3>Follow-ups &amp; reminders</h3>
+            <p>Timed nudges and drafts so nothing sits forgotten while you wait on someone else.</p>
+            <p class="flow-plain">Waiting → Timer → Draft follow-up → You send</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="sample" id="b">
+        <p class="tag">Option B</p>
+        <p class="note">Quiet list of titles. Click one to reveal description + flow.</p>
+        <p class="eyebrow">What we build</p>
+        <h2>Concrete systems, not slide decks</h2>
+        <p class="lead">Common systems we build for operators. Yours will look different.</p>
+        <div class="list-b">
+          <details class="item-b" open>
+            <summary>Client intake</summary>
+            <div class="body">
+              <p>One form creates the record everywhere. No retyping into email, sheets, or your CRM.</p>
+              <p class="flow-plain">Inquiry → Enrich → Record created → Team notified</p>
+            </div>
+          </details>
+          <details class="item-b">
+            <summary>Ops dashboard</summary>
+            <div class="body">
+              <p>What needs you today, what's stuck, and what's due. From the tools you already use.</p>
+              <p class="flow-plain">Your tools → One view → Exceptions surfaced → Act early</p>
+            </div>
+          </details>
+          <details class="item-b">
+            <summary>Document tracking</summary>
+            <div class="body">
+              <p>Sent, opened, signed. No digging through inboxes or chasing status by hand.</p>
+              <p class="flow-plain">Send → Track delivery → Alert on open → Flag when done</p>
+            </div>
+          </details>
+          <details class="item-b">
+            <summary>Email organization</summary>
+            <div class="body">
+              <p>Inbox sorted, labeled, and routed. Less noise, faster replies.</p>
+              <p class="flow-plain">Incoming mail → Classify → Route or label → Draft or alert</p>
+            </div>
+          </details>
+          <details class="item-b">
+            <summary>Automated reporting</summary>
+            <div class="body">
+              <p>Daily, Monday morning, or monthly summaries from your tools, on schedule.</p>
+              <p class="flow-plain">Your data → Aggregate → Write summary → Deliver on time</p>
+            </div>
+          </details>
+          <details class="item-b">
+            <summary>Lead &amp; prospect research</summary>
+            <div class="body">
+              <p>A new inquiry arrives with context. Your team walks in prepared.</p>
+              <p class="flow-plain">New lead → Research → Brief drafted → Team notified</p>
+            </div>
+          </details>
+          <details class="item-b">
+            <summary>Workflow automation</summary>
+            <div class="body">
+              <p>Repetitive work on autopilot, with human checkpoints where judgment matters.</p>
+              <p class="flow-plain">Trigger → Process → Human review → Done</p>
+            </div>
+          </details>
+          <details class="item-b">
+            <summary>Follow-ups &amp; reminders</summary>
+            <div class="body">
+              <p>Timed nudges and drafts so nothing sits forgotten while you wait on someone else.</p>
+              <p class="flow-plain">Waiting → Timer → Draft follow-up → You send</p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="sample" id="c">
+        <p class="tag">Option C</p>
+        <p class="note">Four featured with detail. Other four as a short “also” line.</p>
+        <p class="eyebrow">What we build</p>
+        <h2>Concrete systems, not slide decks</h2>
+        <p class="lead">Common systems we build for operators. Yours will look different.</p>
+        <div class="feat-grid">
+          <div class="feat">
+            <h3>Client intake</h3>
+            <p>One form creates the record everywhere. No retyping into email, sheets, or your CRM.</p>
+            <p class="flow-plain">Inquiry → Enrich → Record created → Team notified</p>
+          </div>
+          <div class="feat">
+            <h3>Ops dashboard</h3>
+            <p>What needs you today, what's stuck, and what's due. From the tools you already use.</p>
+            <p class="flow-plain">Your tools → One view → Exceptions surfaced → Act early</p>
+          </div>
+          <div class="feat">
+            <h3>Document tracking</h3>
+            <p>Sent, opened, signed. No digging through inboxes or chasing status by hand.</p>
+            <p class="flow-plain">Send → Track delivery → Alert on open → Flag when done</p>
+          </div>
+          <div class="feat">
+            <h3>Workflow automation</h3>
+            <p>Repetitive work on autopilot, with human checkpoints where judgment matters.</p>
+            <p class="flow-plain">Trigger → Process → Human review → Done</p>
+          </div>
+        </div>
+        <p class="also">
+          <strong>Also:</strong> email organization, automated reporting, lead research, follow-ups &amp; reminders.
+        </p>
+      </section>
+
+      <section class="sample" id="d">
+        <p class="tag">Option D</p>
+        <p class="note">All eight kept. No boxes, no flow pills — title + description only.</p>
+        <p class="eyebrow">What we build</p>
+        <h2>Concrete systems, not slide decks</h2>
+        <p class="lead">Common systems we build for operators. Yours will look different.</p>
+        <div class="list-d">
+          <div class="item-d">
+            <h3>Client intake</h3>
+            <p>One form creates the record everywhere. No retyping into email, sheets, or your CRM.</p>
+          </div>
+          <div class="item-d">
+            <h3>Ops dashboard</h3>
+            <p>What needs you today, what's stuck, and what's due. From the tools you already use.</p>
+          </div>
+          <div class="item-d">
+            <h3>Document tracking</h3>
+            <p>Sent, opened, signed. No digging through inboxes or chasing status by hand.</p>
+          </div>
+          <div class="item-d">
+            <h3>Email organization</h3>
+            <p>Inbox sorted, labeled, and routed. Less noise, faster replies.</p>
+          </div>
+          <div class="item-d">
+            <h3>Automated reporting</h3>
+            <p>Daily, Monday morning, or monthly summaries from your tools, on schedule.</p>
+          </div>
+          <div class="item-d">
+            <h3>Lead &amp; prospect research</h3>
+            <p>A new inquiry arrives with context. Your team walks in prepared.</p>
+          </div>
+          <div class="item-d">
+            <h3>Workflow automation</h3>
+            <p>Repetitive work on autopilot, with human checkpoints where judgment matters.</p>
+          </div>
+          <div class="item-d">
+            <h3>Follow-ups &amp; reminders</h3>
+            <p>Timed nudges and drafts so nothing sits forgotten while you wait on someone else.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
