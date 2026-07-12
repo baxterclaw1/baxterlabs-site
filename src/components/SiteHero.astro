@@ -14,7 +14,8 @@
 
     <p class="site-hero-sub">
       We design, build, and run custom systems for how you operate.<br />
-      Your tools, your data, built for your team, not a product you bend to fit.
+      Your tools, your data, built for your team,<br class="site-hero-sub-break" />
+      not a product you bend&nbsp;to&nbsp;fit.
     </p>
 
     <div class="site-hero-rule" aria-hidden="true"></div>
@@ -79,8 +80,24 @@
     font-size: clamp(1.0625rem, 2vw, 1.1875rem);
     line-height: 1.7;
     color: var(--site-text-dim);
-    max-width: 46ch;
+    max-width: 36rem;
     margin: 0 auto;
+    text-wrap: pretty;
+  }
+
+  .site-hero-sub-break {
+    display: none;
+  }
+
+  @media (max-width: 520px) {
+    .site-hero-sub {
+      font-size: 1rem;
+      max-width: 22rem;
+    }
+
+    .site-hero-sub-break {
+      display: inline;
+    }
   }
 
   .site-hero-rule {
