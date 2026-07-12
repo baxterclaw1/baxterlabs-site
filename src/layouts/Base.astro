@@ -26,6 +26,19 @@ const {
   </head>
   <body>
     <slot />
+    <script>
+      document.querySelectorAll('[data-scroll-to]').forEach((el) => {
+        el.addEventListener('click', (event) => {
+          const id = el.getAttribute('data-scroll-to');
+          const target = id ? document.getElementById(id) : null;
+          if (!target) return;
+
+          event.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          history.replaceState(null, '', window.location.pathname + window.location.search);
+        });
+      });
+    </script>
   </body>
 </html>
 
