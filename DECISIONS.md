@@ -14,7 +14,8 @@
 
 - [x] Homepage approach: **Strategy D** — static shapes + proof band, no interactive demo
 - [x] Marketing page: **dark theme** (`#0c0d10` site)
-- [x] Sections: Hero → What we build (8 cards) → How we work → Before/After → CTA → Footer
+- [x] Sections: Hero → How we work → What we build (8 cards) → CTA → Footer
+- [x] Before/After: **removed** from homepage (component retained in repo)
 - [x] Nav: logo mark + wordmark + **Book a Call** button → `#contact`
 - [x] Logo: **stacked bars** — shorter width, taller height, hard corners; SVG in `LogoMark.astro`
 - [x] Corners: hard (no radius) on buttons and form inputs
