@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BaxterLabs — Archive · Glowing orb hero</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --bg: #09090b;
+        --fg: #fafafa;
+        --muted: #71717a;
+        --glow: #38bdf8;
+        --teal: #2dd4bf;
+        --glow-fg: #09090b;
+      }
+      body {
+        font-family: Inter, system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--fg);
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        line-height: 1.6;
+      }
+      .archive-bar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        padding: 0.65rem 1.25rem;
+        background: #141418;
+        border-bottom: 1px solid #1c1c22;
+        font-size: 0.75rem;
+        color: #71717a;
+        text-align: center;
+      }
+      .archive-bar a {
+        color: var(--glow);
+        text-decoration: none;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.55;
+        }
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes fade-up {
+        from {
+          opacity: 0;
+          transform: translateY(1.5rem);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes fade-scale {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      .hero {
+        position: relative;
+        overflow: hidden;
+        padding: 5rem 1.5rem 6rem;
+        min-height: calc(100vh - 2.5rem);
+        display: flex;
+        align-items: center;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse 60% 50% at 70% 40%, rgba(56, 189, 248, 0.06) 0%, transparent 70%),
+          radial-gradient(ellipse 40% 40% at 20% 70%, rgba(45, 212, 191, 0.04) 0%, transparent 60%);
+        pointer-events: none;
+      }
+      .dots {
+        position: absolute;
+        inset: 0;
+        opacity: 0.04;
+        background-image: radial-gradient(circle, #fff 0.8px, transparent 0.9px);
+        background-size: 24px 24px;
+        pointer-events: none;
+      }
+      .inner {
+        position: relative;
+        z-index: 1;
+        max-width: 72rem;
+        margin: 0 auto;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3rem;
+      }
+      @media (min-width: 1024px) {
+        .inner {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          gap: 4rem;
+        }
+      }
+      .copy {
+        flex: 1;
+        text-align: center;
+        animation: fade-up 1s ease-out forwards;
+      }
+      @media (min-width: 1024px) {
+        .copy {
+          text-align: left;
+        }
+      }
+      .accent-line {
+        width: 4rem;
+        height: 1px;
+        background: var(--glow);
+        margin: 0 auto 2.5rem;
+      }
+      @media (min-width: 1024px) {
+        .accent-line {
+          margin: 0 0 2.5rem;
+        }
+      }
+      .eyebrow {
+        font-size: 0.875rem;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--glow);
+        margin-bottom: 1.5rem;
+      }
+      h1 {
+        font-size: clamp(2.25rem, 5vw, 4.25rem);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+      }
+      h1 .grad {
+        display: block;
+        margin-top: 0.35rem;
+        background: linear-gradient(90deg, var(--glow), var(--teal));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .lede {
+        margin-top: 2rem;
+        max-width: 32rem;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: clamp(1.05rem, 2vw, 1.25rem);
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      @media (min-width: 1024px) {
+        .lede {
+          margin-left: 0;
+        }
+      }
+      .cta-row {
+        margin-top: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+      }
+      @media (min-width: 640px) {
+        .cta-row {
+          flex-direction: row;
+          justify-content: center;
+        }
+      }
+      @media (min-width: 1024px) {
+        .cta-row {
+          justify-content: flex-start;
+        }
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.95rem 2rem;
+        background: var(--glow);
+        color: var(--glow-fg);
+        font-size: 1rem;
+        font-weight: 500;
+        border: none;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        transition: box-shadow 0.25s, background 0.25s;
+      }
+      .btn:hover {
+        background: #5cc8f8;
+        box-shadow: 0 10px 30px rgba(56, 189, 248, 0.25);
+      }
+      .cta-note {
+        font-size: 0.875rem;
+        color: var(--muted);
+      }
+
+      /* Orb */
+      .orb-wrap {
+        flex-shrink: 0;
+        animation: fade-scale 1.2s ease-out 0.2s both;
+      }
+      .orb {
+        position: relative;
+        width: min(340px, 78vw);
+        height: min(340px, 78vw);
+      }
+      @media (min-width: 768px) {
+        .orb {
+          width: 420px;
+          height: 420px;
+        }
+      }
+      .orb-glow {
+        position: absolute;
+        border-radius: 50%;
+        animation: pulse 3s ease-in-out infinite;
+      }
+      .orb-glow.a {
+        inset: -3rem;
+        background: rgba(56, 189, 248, 0.04);
+        filter: blur(80px);
+      }
+      .orb-glow.b {
+        inset: -1rem;
+        background: rgba(56, 189, 248, 0.06);
+        filter: blur(48px);
+        animation-delay: 0.7s;
+      }
+      .orb-glow.c {
+        inset: 1.5rem;
+        background: rgba(45, 212, 191, 0.04);
+        filter: blur(32px);
+        animation-delay: 1.4s;
+      }
+      .orb-core {
+        position: absolute;
+        inset: 3.5rem;
+        border-radius: 50%;
+        border: 1px solid rgba(56, 189, 248, 0.2);
+        background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), rgba(45, 212, 191, 0.06));
+        backdrop-filter: blur(4px);
+      }
+      @media (min-width: 768px) {
+        .orb-core {
+          inset: 4rem;
+        }
+      }
+      .ring {
+        position: absolute;
+        border-radius: 50%;
+        border: 1px solid rgba(56, 189, 248, 0.08);
+        animation: spin linear infinite;
+      }
+      .ring.r1 {
+        inset: 0.75rem;
+        animation-duration: 25s;
+      }
+      .ring.r2 {
+        inset: 1.5rem;
+        border-color: rgba(45, 212, 191, 0.08);
+        animation-duration: 18s;
+        animation-direction: reverse;
+      }
+      .ring.r3 {
+        inset: 2.5rem;
+        border-color: rgba(56, 189, 248, 0.12);
+        animation-duration: 12s;
+      }
+      .ring.r4 {
+        inset: 3.5rem;
+        border-color: rgba(45, 212, 191, 0.06);
+        animation-duration: 8s;
+        animation-direction: reverse;
+      }
+      .core-dot-wrap {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .core-dot {
+        position: relative;
+        width: 1.25rem;
+        height: 1.25rem;
+        border-radius: 50%;
+        background: var(--glow);
+        box-shadow: 0 0 24px rgba(56, 189, 248, 0.6);
+      }
+      .core-dot::before {
+        content: "";
+        position: absolute;
+        inset: -0.75rem;
+        border-radius: 50%;
+        background: rgba(56, 189, 248, 0.2);
+        filter: blur(8px);
+        animation: pulse 2.5s ease-in-out infinite;
+      }
+      .orbit {
+        position: absolute;
+        inset: 0;
+        animation: spin linear infinite;
+      }
+      .particle {
+        position: absolute;
+        left: 50%;
+        border-radius: 50%;
+        transform: translateX(-50%);
+      }
+      .particle.sky {
+        background: rgba(56, 189, 248, 0.7);
+      }
+      .particle.teal {
+        background: rgba(45, 212, 191, 0.6);
+      }
+      .foot {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        padding: 0 1.5rem 3rem;
+        font-size: 0.8rem;
+        color: #52525b;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="archive-bar">
+      Archive sample · Glowing orb hero (Next.js era, simplified static) ·
+      <a href="/samples/">← all samples</a>
+    </div>
+
+    <section class="hero">
+      <div class="dots" aria-hidden="true"></div>
+      <div class="inner">
+        <div class="copy">
+          <div class="accent-line"></div>
+          <p class="eyebrow">AI Consulting &amp; Automation</p>
+          <h1>
+            <span>Your competitors are</span><br />
+            <span>already using AI.</span>
+            <span class="grad">Are you?</span>
+          </h1>
+          <p class="lede">
+            Most businesses know they should be leveraging AI. Few know how. We
+            bridge that gap and help show you what’s possible for your business.
+          </p>
+          <div class="cta-row">
+            <a class="btn" href="/samples/">Book a Free Consultation</a>
+            <span class="cta-note">No commitment. Just conversation.</span>
+          </div>
+        </div>
+
+        <div class="orb-wrap" aria-hidden="true">
+          <div class="orb">
+            <div class="orb-glow a"></div>
+            <div class="orb-glow b"></div>
+            <div class="orb-glow c"></div>
+            <div class="orb-core">
+              <div class="ring r1"></div>
+              <div class="ring r2"></div>
+              <div class="ring r3"></div>
+              <div class="ring r4"></div>
+              <div class="core-dot-wrap">
+                <div class="core-dot"></div>
+              </div>
+            </div>
+
+            <!-- Sky orbiting particles -->
+            <div class="orbit" style="animation-duration: 7s">
+              <div class="particle sky" style="top: 12%; width: 10px; height: 10px; box-shadow: 0 0 15px rgba(56,189,248,0.4)"></div>
+            </div>
+            <div class="orbit" style="animation-duration: 10s; animation-delay: -2s">
+              <div class="particle sky" style="top: 18%; width: 8px; height: 8px; box-shadow: 0 0 12px rgba(56,189,248,0.4)"></div>
+            </div>
+            <div class="orbit" style="animation-duration: 13s; animation-delay: -4s">
+              <div class="particle sky" style="top: 24%; width: 6px; height: 6px; box-shadow: 0 0 9px rgba(56,189,248,0.4)"></div>
+            </div>
+            <div class="orbit" style="animation-duration: 9s; animation-delay: -1s">
+              <div class="particle sky" style="top: 8%; width: 12px; height: 12px; box-shadow: 0 0 18px rgba(56,189,248,0.4)"></div>
+            </div>
+            <div class="orbit" style="animation-duration: 16s; animation-delay: -6s">
+              <div class="particle sky" style="top: 30%; width: 6px; height: 6px; box-shadow: 0 0 9px rgba(56,189,248,0.4)"></div>
+            </div>
+            <div class="orbit" style="animation-duration: 11s; animation-delay: -3s">
+              <div class="particle sky" style="top: 20%; width: 8px; height: 8px; box-shadow: 0 0 12px rgba(56,189,248,0.4)"></div>
+            </div>
+            <div class="orbit" style="animation-duration: 8s; animation-delay: -5s">
+              <div class="particle sky" style="top: 15%; width: 10px; height: 10px; box-shadow: 0 0 15px rgba(56,189,248,0.4)"></div>
+            </div>
+            <div class="orbit" style="animation-duration: 14s; animation-delay: -7s">
+              <div class="particle sky" style="top: 35%; width: 4px; height: 4px; box-shadow: 0 0 6px rgba(56,189,248,0.4)"></div>
+            </div>
+
+            <!-- Teal reverse orbits -->
+            <div class="orbit" style="animation-duration: 12s; animation-delay: -1s; animation-direction: reverse">
+              <div class="particle teal" style="top: 22%; width: 6px; height: 6px; box-shadow: 0 0 9px rgba(45,212,191,0.3)"></div>
+            </div>
+            <div class="orbit" style="animation-duration: 15s; animation-delay: -4s; animation-direction: reverse">
+              <div class="particle teal" style="top: 28%; width: 4px; height: 4px; box-shadow: 0 0 6px rgba(45,212,191,0.3)"></div>
+            </div>
+            <div class="orbit" style="animation-duration: 9s; animation-delay: -7s; animation-direction: reverse">
+              <div class="particle teal" style="top: 16%; width: 8px; height: 8px; box-shadow: 0 0 12px rgba(45,212,191,0.3)"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="foot">
+      Static recreation of the Next.js glowing-orb hero from
+      <code>~/Projects/baxterlabs-site</code> — hero only, not the full site.
+    </p>
+  </body>
+</html>

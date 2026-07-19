@@ -1,0 +1,120 @@
+---
+const items = [
+  {
+    q: 'Do I need to be technical?',
+    a: 'No. You describe the work in plain language. We handle how it gets built, and you approve what it does before it touches anything real.',
+  },
+  {
+    q: 'Will this replace my team?',
+    a: 'It takes the repetitive parts off their plate. Judgment calls stay with people. Most clients put the freed hours into work that grows the business.',
+  },
+  {
+    q: 'We already have tools. Do they get thrown out?',
+    a: 'No. We build around what works. Your systems connect to the tools you use today; nothing gets ripped out to make room for ours.',
+  },
+  {
+    q: 'What does it cost?',
+    a: 'Depends on scope. After the first call you get a fixed quote and a timeline before any work starts. No open-ended retainers.',
+  },
+  {
+    q: 'What happens if something breaks?',
+    a: 'We run and monitor what we build. When something needs attention, fixing it is our job, not yours.',
+  },
+];
+---
+
+<section class="answers" aria-labelledby="answers-heading">
+  <h2 id="answers-heading" data-reveal>Straight answers</h2>
+
+  <div class="answers-list" data-reveal style="--reveal-delay: 0.08s">
+    {
+      items.map((item) => (
+        <details class="answers-item">
+          <summary>
+            <span>{item.q}</span>
+            <span class="answers-marker" aria-hidden="true">+</span>
+          </summary>
+          <p>{item.a}</p>
+        </details>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .answers {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: calc(var(--section-pad-y) * 1.4) var(--section-pad-x);
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 2rem 4rem;
+    align-items: start;
+  }
+
+  .answers h2 {
+    font-size: clamp(1.9rem, 3.6vw, 2.6rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+  }
+
+  .answers-item {
+    border-top: 1px solid var(--site-border);
+  }
+
+  .answers-item:last-child {
+    border-bottom: 1px solid var(--site-border);
+  }
+
+  .answers-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.15rem 0;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .answers-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .answers-marker {
+    color: var(--site-accent);
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+
+  .answers-item[open] .answers-marker {
+    transform: rotate(45deg);
+  }
+
+  .answers-item p {
+    padding: 0 0 1.25rem;
+    max-width: 38rem;
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--site-text-dim);
+  }
+
+  @media (max-width: 820px) {
+    .answers {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .answers-marker {
+      transition: none;
+    }
+  }
+</style>

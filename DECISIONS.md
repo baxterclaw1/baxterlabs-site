@@ -18,6 +18,7 @@
 - [x] What we build: **Option D** — 8 items, no cards/flows, centered two-column list
 - [x] Nav: logo mark + wordmark + **Book a Call** button → `#contact`
 - [x] Logo: **stacked bars** — shorter width, taller height, hard corners; SVG in `LogoMark.astro`
+- [x] Logo personification: **square dot eyes** on the top bar (matches little-agent mascot); not a separate mascot mark yet
 - [x] Corners: hard (no radius) on buttons and form inputs
 - [x] Content width: **90rem** · side pad **2rem** (between original 72 and stretched 112)
 - [x] Demo walkthrough: **removed from homepage** (legacy demo code retained in repo)

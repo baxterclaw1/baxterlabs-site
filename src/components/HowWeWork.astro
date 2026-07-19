@@ -1,38 +1,41 @@
 ---
 const steps = [
   {
-    num: '01',
-    title: 'Discover',
-    body: 'One call to map your operations. What can be automated, what needs a human, and what ships first.',
+    n: '01',
+    title: 'We look at how you run',
+    body: 'A clear look at your day-to-day — where time goes, what slows you down, and what to improve first for the biggest return.',
   },
   {
-    num: '02',
-    title: 'Build',
-    body: 'Short cycles with working software early. You see real progress in days, not months of silence.',
+    n: '02',
+    title: 'We propose what fits',
+    body: 'A plan built around the tools you already use. Email, intake, dashboards — whatever unlocks capacity without starting over.',
   },
   {
-    num: '03',
-    title: 'Deploy & run',
-    body: 'Live on your infrastructure. We monitor, maintain, and evolve it as your business changes.',
+    n: '03',
+    title: 'You see what changes',
+    body: 'What gets built, what you can expect, and what it looks like in practice. Straight answers stay below.',
+  },
+  {
+    n: '04',
+    title: 'If you want more, reach out',
+    body: 'Ready to talk it through? The contact form below is the next step.',
   },
 ];
 ---
 
-<section class="site-section" id="how-we-work" aria-labelledby="process-heading">
-  <div class="site-section-head site-section-head--center">
-    <p class="site-section-eyebrow">How we work</p>
-    <h2 id="process-heading">Simple process. Serious results.</h2>
-    <p class="site-section-lead">
-      No bloated discovery phases. Fixed scope, clear timeline, you own what we build.
-    </p>
+<section class="process" aria-labelledby="process-heading">
+  <div class="process-head" data-reveal>
+    <p class="process-label">Placeholder</p>
+    <h2 id="process-heading">How we work</h2>
+    <p class="process-lead">Outline for now. Final layout and polish come later.</p>
   </div>
 
   <ol class="process-list">
     {
-      steps.map((step) => (
-        <li class="process-step">
-          <span class="process-num">{step.num}</span>
-          <div>
+      steps.map((step, i) => (
+        <li class="process-item" data-reveal style={`--reveal-delay: ${(i + 1) * 0.05}s`}>
+          <span class="process-n">{step.n}</span>
+          <div class="process-body">
             <h3>{step.title}</h3>
             <p>{step.body}</p>
           </div>
@@ -41,63 +44,3 @@ const steps = [
     }
   </ol>
 </section>
-
-<style>
-  .site-section-head--center {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .site-section-head--center .site-section-lead {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .process-list {
-    list-style: none;
-    padding: 0;
-    margin: 2rem auto 0;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 18rem));
-    justify-content: center;
-    gap: 1.25rem;
-  }
-
-  @media (max-width: 768px) {
-    .process-list {
-      grid-template-columns: 1fr;
-      max-width: 28rem;
-    }
-  }
-
-  .process-step {
-    padding: 1.25rem 1.35rem;
-    border: 1px solid var(--site-border);
-    border-radius: 0;
-    background: var(--site-surface);
-    text-align: center;
-  }
-
-  .process-num {
-    display: block;
-    font-size: 0.6875rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    color: var(--site-text-dim);
-    margin-bottom: 0.75rem;
-  }
-
-  .process-step h3 {
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    margin-bottom: 0.45rem;
-  }
-
-  .process-step p {
-    font-size: 0.875rem;
-    line-height: 1.55;
-    color: var(--site-text-dim);
-  }
-</style>

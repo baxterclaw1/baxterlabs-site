@@ -5,8 +5,8 @@ interface Props {
 }
 
 const {
-  title = 'BaxterLabs — Custom AI & Automation',
-  description = 'Custom AI workflows, dashboards, and agents for SMB operations — designed around how you work, deployed in weeks.',
+  title = 'BaxterLabs - Custom AI & Automation',
+  description = 'BaxterLabs designs, builds, and runs custom automation and AI systems for small business operations. Your tools connected, your repetitive work handled.',
 } = Astro.props;
 ---
 
@@ -16,16 +16,21 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#0a0b0d" />
     <title>{title}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="/fonts/plus-jakarta-sans-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
   </head>
   <body>
-    <slot />
+    <canvas class="site-particles" aria-hidden="true"></canvas>
+    <div class="site-content">
+      <slot />
+    </div>
     <script>
       document.querySelectorAll('[data-scroll-to]').forEach((el) => {
         el.addEventListener('click', (event) => {
@@ -38,6 +43,150 @@ const {
           history.replaceState(null, '', window.location.pathname + window.location.search);
         });
       });
+
+      const revealEls = document.querySelectorAll('[data-reveal]');
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!reduceMotion && 'IntersectionObserver' in window) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              entry.target.classList.add('is-visible');
+              io.unobserve(entry.target);
+            }
+          },
+          { threshold: 0.35, rootMargin: '0px 0px -15% 0px' }
+        );
+        revealEls.forEach((el) => io.observe(el));
+      } else {
+        revealEls.forEach((el) => el.classList.add('is-visible'));
+      }
+
+      /* Full-page particle canvas — one pool across the whole document */
+      const particleCanvas = document.querySelector('.site-particles');
+      if (particleCanvas instanceof HTMLCanvasElement) {
+        const pctx = particleCanvas.getContext('2d');
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        const CFG = {
+          countDiv: 48000,
+          repelR: 100,
+          repelS: 0.15,
+          speed: 0.07,
+          dotMin: 0.08,
+          dotMax: 0.20,
+          whiteRatio: 0.3,
+          sizeMin: 1.0,
+          sizeMax: 3.0,
+        };
+
+        let particles = [];
+        let mouse = { x: null, y: null };
+        let animId = null;
+        let pw = 0, ph = 0;
+
+        function pageSize() {
+          const content = document.querySelector('.site-content');
+          const contentH = content instanceof HTMLElement
+            ? Math.max(content.scrollHeight, content.offsetHeight)
+            : 0;
+          return {
+            w: Math.max(document.documentElement.clientWidth, window.innerWidth),
+            h: Math.max(contentH, window.innerHeight),
+          };
+        }
+
+        function pResize() {
+          const dpr = window.devicePixelRatio || 1;
+          const { w: ow, h: oh } = pageSize();
+          if (ow === pw && oh === ph) return;
+          particleCanvas.style.width = ow + 'px';
+          particleCanvas.style.height = oh + 'px';
+          particleCanvas.width = ow * dpr;
+          particleCanvas.height = oh * dpr;
+          pctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          pw = ow;
+          ph = oh;
+          pSpawn();
+        }
+
+        function pSpawn() {
+          const count = Math.floor((pw * ph) / CFG.countDiv) || 1;
+          particles = [];
+          for (let i = 0; i < count; i++) {
+            particles.push({
+              x: Math.random() * pw,
+              y: Math.random() * ph,
+              vx: (Math.random() - 0.5) * CFG.speed * 2,
+              vy: (Math.random() - 0.5) * CFG.speed * 2,
+              size: CFG.sizeMin + Math.random() * (CFG.sizeMax - CFG.sizeMin),
+              baseOpacity: CFG.dotMin + Math.random() * (CFG.dotMax - CFG.dotMin),
+              color: Math.random() < CFG.whiteRatio ? '#eceae6' : '#e07a5f',
+            });
+          }
+        }
+
+        function pDraw() {
+          pctx.clearRect(0, 0, pw, ph);
+          for (const p of particles) {
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.x < -20) p.x = pw + 20;
+            if (p.x > pw + 20) p.x = -20;
+            if (p.y < -20) p.y = ph + 20;
+            if (p.y > ph + 20) p.y = -20;
+
+            if (mouse.x != null) {
+              const dx = p.x - mouse.x;
+              const dy = p.y - mouse.y;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+              if (dist < CFG.repelR) {
+                const force = (CFG.repelR - dist) / CFG.repelR;
+                const angle = Math.atan2(dy, dx);
+                p.vx += Math.cos(angle) * force * CFG.repelS * 0.1;
+                p.vy += Math.sin(angle) * force * CFG.repelS * 0.1;
+              }
+            }
+
+            const cs = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
+            if (cs > CFG.speed * 3) { p.vx *= 0.98; p.vy *= 0.98; }
+            else if (cs > CFG.speed) { p.vx *= 0.995; p.vy *= 0.995; }
+          }
+
+          for (const p of particles) {
+            pctx.beginPath();
+            pctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            pctx.fillStyle = p.color;
+            pctx.globalAlpha = p.baseOpacity;
+            pctx.fill();
+            pctx.globalAlpha = 1;
+          }
+
+          animId = requestAnimationFrame(pDraw);
+        }
+
+        function pStart() {
+          pResize();
+          if (particles.length === 0) { requestAnimationFrame(pStart); return; }
+
+          if (!prefersReduced) {
+            window.addEventListener('mousemove', (e) => {
+              mouse.x = e.pageX;
+              mouse.y = e.pageY;
+            });
+            document.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
+          }
+
+          pDraw();
+          window.addEventListener('resize', pResize);
+          window.addEventListener('load', pResize);
+          const content = document.querySelector('.site-content');
+          if (content) new ResizeObserver(() => pResize()).observe(content);
+        }
+
+        requestAnimationFrame(pStart);
+      }
     </script>
   </body>
 </html>

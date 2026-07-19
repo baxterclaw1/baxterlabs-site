@@ -1,0 +1,185 @@
+---
+/*
+ * Short one-line copy for the calm bento. Titles come from the shared
+ * capabilities data; bodies are tightened for this layout.
+ */
+const cells = [
+  {
+    title: 'Workflow automation',
+    body: 'Repetitive work on autopilot, with human checkpoints where judgment matters.',
+    area: 'a',
+    variant: 'image',
+  },
+  { title: 'Client intake', body: 'One form creates the record everywhere. No retyping.', area: 'b', variant: 'plain' },
+  { title: 'Ops dashboard', body: 'One view of what needs you today.', area: 'c', variant: 'plain' },
+  { title: 'Email organization', body: 'Inbox sorted, routed, and answered faster.', area: 'd', variant: 'plain' },
+  { title: 'Automated reporting', body: 'The Monday summary writes itself.', area: 'e', variant: 'tint' },
+  { title: 'Follow-ups & reminders', body: "Nothing you're waiting on sits forgotten.", area: 'f', variant: 'plain' },
+];
+---
+
+<section class="bento-section" id="what-we-build" aria-labelledby="build-heading">
+  <div class="bento-head" data-reveal>
+    <h2 id="build-heading">Then we build your version.</h2>
+    <p>
+      Common shapes, never the same build. You see it working on your real tasks within days.
+    </p>
+  </div>
+
+  <div class="bento">
+    {
+      cells.map((cell, i) => (
+        <article
+          class:list={['bento-cell', `bento-cell--${cell.area}`, `bento-cell--${cell.variant}`]}
+          data-reveal
+          style={`--reveal-delay: ${(i % 3) * 0.08}s`}
+        >
+          {cell.variant === 'image' && (
+            <img
+              class="bento-bg"
+              src="/images/connect-nodes.jpg"
+              width="1536"
+              height="1024"
+              loading="lazy"
+              alt=""
+              aria-hidden="true"
+            />
+          )}
+          <div class="bento-body">
+            <h3>{cell.title}</h3>
+            <p>{cell.body}</p>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .bento-section {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: calc(var(--section-pad-y) * 1.4) var(--section-pad-x);
+  }
+
+  .bento-head {
+    max-width: 42rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .bento-head h2 {
+    font-size: clamp(1.9rem, 3.6vw, 2.6rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+    margin-bottom: 0.85rem;
+    text-wrap: balance;
+  }
+
+  .bento-head p {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--site-text-dim);
+    max-width: 36rem;
+  }
+
+  .bento {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-areas:
+      'a a a a a a a b b b b b'
+      'a a a a a a a c c c c c'
+      'd d d d e e e e f f f f';
+  }
+
+  .bento-cell {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--site-border);
+    background: var(--site-surface);
+    padding: 1.5rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 10rem;
+    transition: border-color 0.2s ease;
+  }
+
+  .bento-cell:hover {
+    border-color: #363b47;
+  }
+
+  .bento-cell--a { grid-area: a; min-height: 23rem; }
+  .bento-cell--b { grid-area: b; }
+  .bento-cell--c { grid-area: c; }
+  .bento-cell--d { grid-area: d; }
+  .bento-cell--e { grid-area: e; }
+  .bento-cell--f { grid-area: f; }
+
+  .bento-cell h3 {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.4rem;
+  }
+
+  .bento-cell p {
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--site-text-dim);
+    max-width: 28rem;
+  }
+
+  /* Image cell: dimmed network graphic behind a bottom scrim */
+  .bento-cell--image .bento-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.55;
+  }
+
+  .bento-cell--image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10, 11, 13, 0.05) 30%, rgba(10, 11, 13, 0.92) 82%);
+  }
+
+  .bento-cell--image .bento-body {
+    position: relative;
+    z-index: 1;
+  }
+
+  .bento-cell--image p {
+    color: #b5b1aa;
+  }
+
+  .bento-cell--tint {
+    background: rgba(224, 122, 95, 0.09);
+    border-color: rgba(224, 122, 95, 0.28);
+  }
+
+  @media (max-width: 900px) {
+    .bento {
+      grid-template-columns: 1fr;
+      grid-template-areas: none;
+    }
+
+    .bento-cell--a,
+    .bento-cell--b,
+    .bento-cell--c,
+    .bento-cell--d,
+    .bento-cell--e,
+    .bento-cell--f {
+      grid-area: auto;
+      min-height: 0;
+    }
+
+    .bento-cell--a {
+      min-height: 16rem;
+    }
+  }
+</style>

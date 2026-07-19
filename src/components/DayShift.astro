@@ -1,0 +1,95 @@
+---
+---
+
+<section class="dayshift" aria-labelledby="dayshift-heading">
+  <div class="dayshift-head" data-reveal>
+    <h2 id="dayshift-heading">The difference shows up on your desk.</h2>
+    <p>
+      Not a new app to learn. The same work you do today, minus the parts a system now carries.
+    </p>
+  </div>
+
+  <div class="dayshift-grid">
+    <figure data-reveal>
+      <img
+        src="/images/desk-before.jpg"
+        width="1536"
+        height="1024"
+        loading="lazy"
+        alt="A desk buried in paper stacks, sticky notes, and unfinished admin"
+      />
+      <figcaption>Evenings spent retyping, chasing, and catching up.</figcaption>
+    </figure>
+    <figure data-reveal style="--reveal-delay: 0.12s">
+      <img
+        src="/images/desk-after.jpg"
+        width="1536"
+        height="1024"
+        loading="lazy"
+        alt="The same desk cleared, with one notebook and a coffee cup in morning light"
+      />
+      <figcaption>The same desk, once the admin runs itself.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .dayshift {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: calc(var(--section-pad-y) * 1.4) var(--section-pad-x);
+  }
+
+  .dayshift-head {
+    max-width: 42rem;
+    margin: 0 auto 2.5rem;
+    text-align: center;
+  }
+
+  .dayshift-head h2 {
+    font-size: clamp(1.9rem, 3.6vw, 2.6rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+    margin-bottom: 0.85rem;
+  }
+
+  .dayshift-head p {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--site-text-dim);
+    max-width: 34rem;
+    margin: 0 auto;
+  }
+
+  .dayshift-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .dayshift-grid figure {
+    margin: 0;
+    border: 1px solid var(--site-border);
+  }
+
+  .dayshift-grid img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .dayshift-grid figcaption {
+    padding: 0.85rem 1.1rem;
+    font-size: 0.875rem;
+    color: var(--site-text-dim);
+    border-top: 1px solid var(--site-border);
+    background: var(--site-surface-muted);
+  }
+
+  @media (max-width: 720px) {
+    .dayshift-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

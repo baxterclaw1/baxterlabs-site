@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BaxterLabs — Top-tier pass sample</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0a0b0d;
+        --bg-band: #0e1014;
+        --bg-band-2: #101218;
+        --text: #eceae6;
+        --dim: #9a9690;
+        --muted: #5c5955;
+        --border: #23262e;
+        --accent: #e07a5f;
+        --surface: #12141a;
+        --pad-x: 2rem;
+        --pad-y: 4rem;
+        --content: 72rem;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      a { color: inherit; text-decoration: none; }
+
+      .grain {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 40;
+        opacity: 0.04;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-size: 180px 180px;
+        mix-blend-mode: overlay;
+      }
+
+      .banner {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem 1.25rem;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem 1.25rem;
+        background: rgba(14, 16, 20, 0.95);
+        border-bottom: 1px solid var(--border);
+        backdrop-filter: blur(8px);
+        font-size: 0.8rem;
+        color: var(--dim);
+      }
+      .banner strong { color: var(--accent); }
+      .banner a { color: var(--text); border-bottom: 1px solid var(--border); }
+      .banner a:hover { color: var(--accent); border-color: var(--accent); }
+
+      .wrap {
+        max-width: var(--content);
+        margin: 0 auto;
+        padding-left: var(--pad-x);
+        padding-right: var(--pad-x);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        padding: 1.25rem 0;
+      }
+      .nav-logo {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+      .nav-logo svg { color: var(--accent); display: block; }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.65rem 1.35rem;
+        font: inherit;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #0a0b0d;
+        background: var(--accent);
+        border: none;
+      }
+
+      /* Hero — still centered, signature visual below */
+      .hero {
+        position: relative;
+        overflow: hidden;
+        padding: 2rem var(--pad-x) 3.5rem;
+        text-align: center;
+      }
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(ellipse 70% 50% at 50% 10%, rgba(224, 122, 95, 0.14), transparent 58%),
+          radial-gradient(ellipse 40% 30% at 80% 60%, rgba(255,255,255,0.03), transparent 50%);
+      }
+      .hero-inner { position: relative; max-width: 40rem; margin: 0 auto; }
+      .eyebrow {
+        font-size: 0.8125rem;
+        font-weight: 500;
+        color: var(--accent);
+        margin-bottom: 1.5rem;
+      }
+      .hero h1 {
+        font-size: clamp(2.75rem, 7vw, 4.35rem);
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        line-height: 1.08;
+        margin-bottom: 1.35rem;
+      }
+      .hero h1 span { display: block; }
+      .hero-sub {
+        font-size: clamp(1.05rem, 2vw, 1.15rem);
+        color: var(--dim);
+        line-height: 1.7;
+        max-width: 34rem;
+        margin: 0 auto 2.5rem;
+      }
+
+      /* Signature visual — system flow board */
+      .system-board {
+        position: relative;
+        max-width: 44rem;
+        margin: 0 auto;
+        padding: 1.35rem 1.25rem 1.2rem;
+        border: 1px solid var(--border);
+        background:
+          linear-gradient(165deg, rgba(255,255,255,0.03), transparent 45%),
+          var(--surface);
+        text-align: left;
+      }
+      .system-board-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.1rem;
+        padding-bottom: 0.85rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .system-board-top p {
+        font-size: 0.7rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .system-board-top span {
+        font-size: 0.7rem;
+        color: var(--accent);
+      }
+      .flow {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.65rem;
+      }
+      @media (max-width: 640px) {
+        .flow { grid-template-columns: 1fr 1fr; }
+      }
+      .flow-step {
+        padding: 0.85rem 0.75rem;
+        border: 1px solid var(--border);
+        background: rgba(10, 11, 13, 0.55);
+        min-height: 4.5rem;
+      }
+      .flow-step strong {
+        display: block;
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-bottom: 0.35rem;
+      }
+      .flow-step span {
+        font-size: 0.72rem;
+        color: var(--dim);
+        line-height: 1.4;
+      }
+      .flow-step.is-accent {
+        border-color: rgba(224, 122, 95, 0.45);
+        box-shadow: inset 0 0 0 1px rgba(224, 122, 95, 0.12);
+      }
+      .flow-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1.25rem;
+        margin-top: 1rem;
+        font-size: 0.75rem;
+        color: var(--muted);
+      }
+      .flow-meta b { color: var(--dim); font-weight: 500; }
+
+      /* Proof strip */
+      .proof {
+        position: relative;
+        padding: 2.75rem 0;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        background:
+          radial-gradient(ellipse 70% 80% at 20% 50%, rgba(224, 122, 95, 0.06), transparent 55%),
+          var(--bg-band);
+      }
+      .proof-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+        gap: 2rem 3rem;
+        align-items: start;
+      }
+      @media (max-width: 800px) {
+        .proof-grid { grid-template-columns: 1fr; }
+      }
+      .proof-label {
+        font-size: 0.6875rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--dim);
+        margin-bottom: 0.75rem;
+      }
+      .proof h2 {
+        font-size: clamp(1.35rem, 2.5vw, 1.65rem);
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        line-height: 1.25;
+        margin-bottom: 0.85rem;
+        max-width: 22rem;
+      }
+      .proof-lead {
+        font-size: 0.95rem;
+        color: var(--dim);
+        max-width: 28rem;
+        line-height: 1.65;
+      }
+      .proof-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .proof-list li {
+        padding-left: 1rem;
+        border-left: 2px solid var(--accent);
+      }
+      .proof-list strong {
+        display: block;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+      }
+      .proof-list span {
+        font-size: 0.85rem;
+        color: var(--dim);
+        line-height: 1.5;
+      }
+
+      /* Process — horizontal connected, not 3 equal cards */
+      .process-band {
+        padding: var(--pad-y) 0;
+        background: transparent;
+      }
+      .section-head {
+        max-width: 36rem;
+        margin-bottom: 2.25rem;
+      }
+      .section-eyebrow {
+        font-size: 0.6875rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--dim);
+        margin-bottom: 0.75rem;
+      }
+      .section-head h2 {
+        font-size: clamp(1.5rem, 2.8vw, 1.875rem);
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        margin-bottom: 0.65rem;
+      }
+      .section-lead {
+        font-size: 0.95rem;
+        color: var(--dim);
+      }
+
+      .timeline {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        border-top: 1px solid var(--border);
+      }
+      @media (max-width: 768px) {
+        .timeline { grid-template-columns: 1fr; }
+      }
+      .timeline-step {
+        padding: 1.5rem 1.35rem 1.5rem 0;
+        border-right: 1px solid var(--border);
+      }
+      .timeline-step:last-child { border-right: none; padding-right: 0; }
+      @media (max-width: 768px) {
+        .timeline-step {
+          border-right: none;
+          border-bottom: 1px solid var(--border);
+          padding: 1.35rem 0;
+        }
+        .timeline-step:last-child { border-bottom: none; }
+      }
+      .timeline-num {
+        display: block;
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        color: var(--accent);
+        margin-bottom: 0.85rem;
+      }
+      .timeline h3 {
+        font-size: 1.05rem;
+        font-weight: 600;
+        margin-bottom: 0.45rem;
+      }
+      .timeline p {
+        font-size: 0.875rem;
+        color: var(--dim);
+        line-height: 1.55;
+        max-width: 18rem;
+      }
+
+      /* What we build — featured 4 + also */
+      .build-band {
+        padding: var(--pad-y) 0;
+        background:
+          radial-gradient(ellipse 60% 50% at 80% 20%, rgba(224, 122, 95, 0.05), transparent 50%),
+          var(--bg-band);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+      .build-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.75rem 2.5rem;
+        margin-bottom: 2rem;
+      }
+      @media (max-width: 700px) {
+        .build-grid { grid-template-columns: 1fr; }
+      }
+      .build-item h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.35rem;
+      }
+      .build-item p {
+        font-size: 0.875rem;
+        color: var(--dim);
+        line-height: 1.55;
+        margin-bottom: 0.45rem;
+      }
+      .build-flow {
+        font-size: 0.75rem;
+        color: var(--muted);
+      }
+      .also {
+        padding-top: 1.25rem;
+        border-top: 1px solid var(--border);
+        font-size: 0.9rem;
+        color: var(--dim);
+      }
+      .also strong { color: var(--text); font-weight: 500; }
+
+      /* Contact */
+      .contact {
+        padding: var(--pad-y) 0;
+        background:
+          radial-gradient(ellipse 70% 50% at 70% 100%, rgba(224, 122, 95, 0.07), transparent 55%),
+          var(--bg-band-2);
+      }
+      .cta {
+        display: grid;
+        gap: 2rem;
+      }
+      @media (min-width: 840px) {
+        .cta {
+          grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+          gap: 3rem;
+          align-items: start;
+        }
+      }
+      .cta h2 {
+        font-size: clamp(1.5rem, 3vw, 1.875rem);
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+      }
+      .cta-body {
+        font-size: 1rem;
+        color: var(--dim);
+        max-width: 34rem;
+      }
+      .form { display: flex; flex-direction: column; gap: 1rem; }
+      .row { display: grid; gap: 1rem; }
+      @media (min-width: 560px) { .row { grid-template-columns: 1fr 1fr; } }
+      label {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        font-size: 0.8125rem;
+        color: var(--dim);
+      }
+      input, textarea {
+        width: 100%;
+        padding: 0.75rem 0.9rem;
+        font: inherit;
+        font-size: 0.9375rem;
+        color: var(--text);
+        background: var(--surface);
+        border: 1px solid var(--border);
+      }
+      textarea { min-height: 8rem; resize: vertical; }
+
+      footer {
+        max-width: var(--content);
+        margin: 0 auto;
+        padding: 1.5rem var(--pad-x);
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        font-size: 0.8125rem;
+        color: var(--dim);
+        border-top: 1px solid var(--border);
+      }
+
+      .note-chip {
+        display: inline-block;
+        margin-top: 1rem;
+        font-size: 0.75rem;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+
+    <div class="banner">
+      <span><strong>Sample:</strong> top-tier pass — atmosphere + signature visual + proof + process rethink (not live)</span>
+      <span>
+        <a href="/samples/atmosphere-full.html">Atmosphere only</a>
+        ·
+        <a href="/">Live site</a>
+        ·
+        <a href="/samples/">Archive</a>
+      </span>
+    </div>
+
+    <header class="wrap nav">
+      <a class="nav-logo" href="/">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="30" height="30" fill="currentColor" aria-hidden="true">
+          <rect x="1" y="1" width="18" height="8"></rect>
+          <rect x="1" y="11" width="18" height="8"></rect>
+        </svg>
+        <span>BaxterLabs</span>
+      </a>
+      <a class="btn" href="#contact">Book a Call</a>
+    </header>
+
+    <section class="hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <p class="eyebrow">Custom systems for SMB operations</p>
+        <h1>
+          <span>Custom systems</span>
+          <span>for how you</span>
+          <span>actually work.</span>
+        </h1>
+        <p class="hero-sub">
+          We design, build, and run custom systems for how you operate.
+          Your tools, your data, built for your team, not a product you bend to fit.
+        </p>
+      </div>
+
+      <div class="system-board" aria-label="Example system flow">
+        <div class="system-board-top">
+          <p>Example system · intake to follow-up</p>
+          <span>Built around your tools</span>
+        </div>
+        <div class="flow">
+          <div class="flow-step">
+            <strong>Inquiry in</strong>
+            <span>Form, email, or CRM trigger</span>
+          </div>
+          <div class="flow-step">
+            <strong>Enrich</strong>
+            <span>Context pulled from your stack</span>
+          </div>
+          <div class="flow-step is-accent">
+            <strong>Record ready</strong>
+            <span>One source of truth, no retyping</span>
+          </div>
+          <div class="flow-step">
+            <strong>Team acts</strong>
+            <span>Alert, draft, or reminder queued</span>
+          </div>
+        </div>
+        <div class="flow-meta">
+          <span><b>Replaces:</b> spreadsheet chase</span>
+          <span><b>Touches:</b> inbox, CRM, calendar</span>
+          <span><b>Owner:</b> your team</span>
+        </div>
+      </div>
+      <p class="note-chip wrap" style="text-align:center;width:100%;">Signature visual under the hero — concrete, not decorative</p>
+    </section>
+
+    <section class="proof">
+      <div class="wrap proof-grid">
+        <div>
+          <p class="proof-label">Proof</p>
+          <h2>Built for operators who are already underwater.</h2>
+          <p class="proof-lead">
+            Sample outcomes language — swap for real client results when you have them.
+            The point is a trust beat that isn’t another feature list.
+          </p>
+        </div>
+        <ul class="proof-list">
+          <li>
+            <strong>Less double entry</strong>
+            <span>Intake lands once and shows up everywhere it needs to.</span>
+          </li>
+          <li>
+            <strong>Fewer “where is this?” days</strong>
+            <span>Status lives in one view instead of five tabs and a group chat.</span>
+          </li>
+          <li>
+            <strong>Follow-ups that don’t depend on memory</strong>
+            <span>Timers and drafts handle the waiting work.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="process-band">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="section-eyebrow">How we work</p>
+          <h2>Simple process. Serious results.</h2>
+          <p class="section-lead">
+            No bloated discovery phases. Fixed scope, clear timeline, you own what we build.
+          </p>
+        </div>
+        <div class="timeline">
+          <div class="timeline-step">
+            <span class="timeline-num">01 · Discover</span>
+            <h3>Map the real workflow</h3>
+            <p>One call to find what can be automated, what needs a human, and what ships first.</p>
+          </div>
+          <div class="timeline-step">
+            <span class="timeline-num">02 · Build</span>
+            <h3>Ship working software early</h3>
+            <p>Short cycles. You see progress in days, not months of silence.</p>
+          </div>
+          <div class="timeline-step">
+            <span class="timeline-num">03 · Deploy &amp; run</span>
+            <h3>Live on your infrastructure</h3>
+            <p>We monitor, maintain, and evolve it as the business changes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="build-band">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="section-eyebrow">What we build</p>
+          <h2>What we ship for operators</h2>
+          <p class="section-lead">
+            A few systems we build often. Yours will look different — we design around how you work.
+          </p>
+        </div>
+        <div class="build-grid">
+          <article class="build-item">
+            <h3>Client intake</h3>
+            <p>One form creates the record everywhere. No retyping into email, sheets, or your CRM.</p>
+            <p class="build-flow">Inquiry → Enrich → Record created → Team notified</p>
+          </article>
+          <article class="build-item">
+            <h3>Ops dashboard</h3>
+            <p>What needs you today, what's stuck, and what's due — from tools you already use.</p>
+            <p class="build-flow">Your tools → One view → Exceptions → Act early</p>
+          </article>
+          <article class="build-item">
+            <h3>Document tracking</h3>
+            <p>Sent, opened, signed. No digging through inboxes for status.</p>
+            <p class="build-flow">Send → Track → Alert → Done</p>
+          </article>
+          <article class="build-item">
+            <h3>Workflow automation</h3>
+            <p>Repetitive work on autopilot, with human checkpoints where judgment matters.</p>
+            <p class="build-flow">Trigger → Process → Review → Done</p>
+          </article>
+        </div>
+        <p class="also">
+          <strong>Also:</strong> email organization, automated reporting, lead research, follow-ups &amp; reminders.
+        </p>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="wrap cta">
+        <div>
+          <h2>Tell us what's slowing you down</h2>
+          <p class="cta-body">
+            A few lines is enough. What you do, what's getting in the way, and what you'd like
+            working better. We'll reply from there and set up a call if it looks like a fit.
+          </p>
+        </div>
+        <form class="form" onsubmit="event.preventDefault()">
+          <div class="row">
+            <label>Name <input type="text" placeholder="Your name" /></label>
+            <label>Email <input type="email" placeholder="you@company.com" /></label>
+          </div>
+          <label>Business <input type="text" placeholder="Company or what you do" /></label>
+          <label>What's going on
+            <textarea placeholder="Briefly: the bottleneck, the tools you use, or what you want built."></textarea>
+          </label>
+          <button class="btn" type="submit">Send message</button>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2026 BaxterLabs</p>
+      <p>Sample only — not live</p>
+    </footer>
+  </body>
+</html>

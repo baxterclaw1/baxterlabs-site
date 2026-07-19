@@ -1,5 +1,5 @@
 ---
-// Hub for hero direction samples (static HTML lives in public/samples/)
+// Full BaxterLabs site archive / sample gallery
 ---
 
 <!doctype html>
@@ -7,11 +7,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BaxterLabs — Hero samples</title>
+    <title>BaxterLabs — Site archive & samples</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -22,22 +22,22 @@
         margin: 0;
         padding: 0;
       }
-
       body {
-        font-family: 'DM Sans', system-ui, sans-serif;
-        background: #0c0c0e;
-        color: #e8e6e3;
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        background: #0a0b0d;
+        color: #eceae6;
         min-height: 100vh;
         line-height: 1.6;
         -webkit-font-smoothing: antialiased;
       }
-
+      a {
+        color: inherit;
+      }
       .wrap {
         max-width: 52rem;
         margin: 0 auto;
         padding: 3rem 1.5rem 4rem;
       }
-
       .label {
         font-size: 0.7rem;
         font-weight: 500;
@@ -46,7 +46,6 @@
         color: #8a8782;
         margin-bottom: 0.75rem;
       }
-
       h1 {
         font-size: clamp(1.75rem, 4vw, 2.25rem);
         font-weight: 600;
@@ -54,70 +53,12 @@
         line-height: 1.15;
         margin-bottom: 0.75rem;
       }
-
       .intro {
         color: #a8a5a0;
         font-size: 1rem;
-        max-width: 36rem;
-        margin-bottom: 2.5rem;
+        max-width: 38rem;
+        margin-bottom: 2rem;
       }
-
-      .grid {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      a.card {
-        display: block;
-        padding: 1.5rem 1.75rem;
-        background: #141416;
-        border: 1px solid #252528;
-        border-radius: 12px;
-        text-decoration: none;
-        color: inherit;
-        transition: border-color 0.2s, background 0.2s;
-      }
-
-      a.card:hover {
-        border-color: #3a3a3f;
-        background: #18181b;
-      }
-
-      a.card h2 {
-        font-size: 1.125rem;
-        font-weight: 600;
-        letter-spacing: -0.02em;
-        margin-bottom: 0.35rem;
-      }
-
-      a.card p {
-        font-size: 0.9rem;
-        color: #8a8782;
-      }
-
-      .tag {
-        display: inline-block;
-        font-size: 0.65rem;
-        font-weight: 500;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: #c9a227;
-        margin-bottom: 0.5rem;
-      }
-
-      .tag.b {
-        color: #e07a5f;
-      }
-
-      .tag.c {
-        color: #a8a5a0;
-      }
-
-      .tag.d {
-        color: #6bc97a;
-      }
-
       .section-title {
         font-size: 0.7rem;
         font-weight: 500;
@@ -126,11 +67,67 @@
         color: #6b6966;
         margin: 2.5rem 0 1rem;
       }
-
+      .grid {
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+      }
+      a.card {
+        display: block;
+        padding: 1.35rem 1.5rem;
+        background: #12141a;
+        border: 1px solid #23262e;
+        text-decoration: none;
+        color: inherit;
+        transition: border-color 0.2s, background 0.2s;
+      }
+      a.card:hover {
+        border-color: #3a3a3f;
+        background: #18181b;
+      }
+      a.card h2 {
+        font-size: 1.05rem;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        margin-bottom: 0.3rem;
+      }
+      a.card p {
+        font-size: 0.875rem;
+        color: #8a8782;
+      }
+      .tag {
+        display: inline-block;
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 0.45rem;
+      }
+      .tag.live {
+        color: #8fbf9f;
+      }
+      .tag.purple {
+        color: #a5a0ff;
+      }
+      .tag.blue {
+        color: #38bdf8;
+      }
+      .tag.terminal {
+        color: #4ade80;
+      }
+      .tag.orb {
+        color: #2dd4bf;
+      }
+      .tag.coral {
+        color: #e07a5f;
+      }
+      .tag.warm {
+        color: #c9a227;
+      }
       .note {
         margin-top: 2.5rem;
         padding-top: 1.5rem;
-        border-top: 1px solid #252528;
+        border-top: 1px solid #23262e;
         font-size: 0.85rem;
         color: #6b6966;
       }
@@ -138,96 +135,133 @@
   </head>
   <body>
     <div class="wrap">
-      <p class="label">Session 1 — pick a direction</p>
-      <h1>Hero visual samples</h1>
+      <p class="label">BaxterLabs archive</p>
+      <h1>Every site direction we can still open</h1>
       <p class="intro">
-        Compare combinations below (hero v2), then original A/B/C. Same copy on all. Resize for mobile.
+        Current live site, older eras from git / recreation, and all hero experiments from this redesign.
+        Browse each card to find a direction you liked — purple SaaS, blue/cyan Next, terminal agents,
+        glowing orb, or the coral typography work that became live.
       </p>
 
-      <p class="section-title">C refinements — typography direction</p>
-      <p class="intro" style="margin-bottom: 1.5rem; margin-top: -0.5rem;">
-        You picked Sample C. Three refinements — live homepage uses <strong>C-proof</strong>.
-      </p>
-
+      <p class="section-title">Live & full eras</p>
       <div class="grid">
-        <a class="card" href="/samples/hero-c-pure.html">
-          <span class="tag c">C-pure</span>
-          <h2>Typography-first</h2>
-          <p>Mesh · big type · white CTA · no diagram · Instrument Sans · most editorial</p>
+        <a class="card" href="/">
+          <span class="tag live">Live now</span>
+          <h2>Current Astro site (coral)</h2>
+          <p>Typography-led hero · stacked logo · How we work · What we build list · contact form</p>
         </a>
-
-        <a class="card" href="/samples/hero-c-warm.html">
-          <span class="tag b">C-warm</span>
-          <h2>Typography + coral</h2>
-          <p>Line stagger · coral accent · nav CTA only · no diagram · cleaner</p>
+        <a class="card" href="/samples/archive-purple.html">
+          <span class="tag purple">Legacy</span>
+          <h2>Purple / cyan SaaS (old live look)</h2>
+          <p>Inter · purple gradient · “while you sleep” · AI Automation Studio vibe · recreated sample</p>
         </a>
-
-        <a class="card" href="/samples/hero-c-proof.html">
-          <span class="tag d">C-proof</span>
-          <h2>Typography + diagram</h2>
-          <p>Stagger · animated workflow diagram · grain · on live homepage now</p>
+        <a class="card" href="/samples/archive-blue-cyan.html">
+          <span class="tag blue">Git era</span>
+          <h2>Blue / cyan Next.js</h2>
+          <p>“Your competitors are already using AI” · sky/teal glow · from commits e8b8237 / d436cb9</p>
+        </a>
+        <a class="card" href="/samples/archive-terminal-agents.html">
+          <span class="tag terminal">Era</span>
+          <h2>Terminal / agents</h2>
+          <p>JetBrains Mono · agent roster · brain architecture · from baxter-labs-site/index.html</p>
+        </a>
+        <a class="card" href="/samples/archive-glowing-orb.html">
+          <span class="tag orb">Era</span>
+          <h2>Glowing orb hero</h2>
+          <p>Sky/teal orb · orbiting particles · competitors headline · static recreation of Next hero</p>
         </a>
       </div>
 
-      <p class="section-title">Combinations — hero v2</p>
-      <p class="intro" style="margin-bottom: 1.5rem; margin-top: -0.5rem;">
-        Mix of elements from all samples. Same copy everywhere. Pick a favorite or describe a mix.
-      </p>
+      <p class="section-title">Hero experiments (this redesign)</p>
+      <div class="grid">
+        <a class="card" href="/samples/hero-c-warm.html">
+          <span class="tag coral">C-warm</span>
+          <h2>Typography + coral</h2>
+          <p>Closest ancestor of the current live hero</p>
+        </a>
+        <a class="card" href="/samples/hero-c-pure.html">
+          <span class="tag coral">C-pure</span>
+          <h2>Typography-first</h2>
+          <p>Mesh · big type · editorial</p>
+        </a>
+        <a class="card" href="/samples/hero-c-proof.html">
+          <span class="tag coral">C-proof</span>
+          <h2>Typography + diagram</h2>
+          <p>Stagger · workflow diagram · grain</p>
+        </a>
+        <a class="card" href="/samples/hero-a.html">
+          <span class="tag warm">A</span>
+          <h2>Calm consultant</h2>
+          <p>Split · workflow diagram · amber</p>
+        </a>
+        <a class="card" href="/samples/hero-b.html">
+          <span class="tag coral">B</span>
+          <h2>Quiet product</h2>
+          <p>Stacked · dashboard mock · coral</p>
+        </a>
+        <a class="card" href="/samples/hero-c.html">
+          <span class="tag coral">C</span>
+          <h2>Original typography-first</h2>
+          <p>Large headline · warm white CTA · soft mesh</p>
+        </a>
+      </div>
 
+      <p class="section-title">Hero combos</p>
       <div class="grid">
         <a class="card" href="/samples/hero-combo-1.html">
-          <span class="tag b">Combo 1</span>
+          <span class="tag coral">Combo 1</span>
           <h2>Split + live UI</h2>
-          <p>Split layout · real dashboard labels · amber badge pill · staggered reveal · “They build real tools”</p>
+          <p>Dashboard labels · amber badge · staggered reveal</p>
         </a>
-
         <a class="card" href="/samples/hero-combo-2.html">
-          <span class="tag b">Combo 2</span>
+          <span class="tag coral">Combo 2</span>
           <h2>Stacked + atmosphere</h2>
-          <p>Mesh background · larger headline · animated workflow diagram · coral glow · “Calm but not boring”</p>
+          <p>Mesh · workflow diagram · coral glow</p>
         </a>
-
         <a class="card" href="/samples/hero-combo-3.html">
-          <span class="tag d">Combo 3</span>
+          <span class="tag coral">Combo 3</span>
           <h2>Bold showcase</h2>
-          <p>Split · animated metrics + chart · mesh + grain · badge pill · “Interactive systems”</p>
+          <p>Metrics · chart · mesh + grain</p>
         </a>
-
         <a class="card" href="/samples/hero-combo-4.html">
-          <span class="tag c">Combo 4</span>
+          <span class="tag coral">Combo 4</span>
           <h2>Typography-led</h2>
-          <p>Largest headline · line stagger · mesh · minimal diagram · hero CTA button · “Design taste”</p>
+          <p>Largest headline · line stagger · minimal diagram</p>
+        </a>
+      </div>
+
+      <p class="section-title">Section experiments</p>
+      <div class="grid">
+        <a class="card" href="/samples/build-shapes.html">
+          <span class="tag coral">What we build</span>
+          <h2>Layout options A–D</h2>
+          <p>Clean list · expand · feature 4 · strip chrome (live uses D)</p>
+        </a>
+        <a class="card" href="/samples/atmosphere.html">
+          <span class="tag coral">Atmosphere</span>
+          <h2>Texture options A–E (full screen)</h2>
+          <p>Flat · grain · glow · hairlines · soft paper</p>
+        </a>
+        <a class="card" href="/samples/atmosphere-full.html">
+          <span class="tag coral">Atmosphere</span>
+          <h2>Full homepage mock with banding</h2>
+          <p>Grain + coral glow + lifted section bands — closest to a live apply</p>
+        </a>
+        <a class="card" href="/samples/top-tier-pass.html">
+          <span class="tag coral">Top-tier pass</span>
+          <h2>Atmosphere + visual + proof + process rethink</h2>
+          <p>Signature system board under hero, proof strip, timeline process, featured builds</p>
+        </a>
+        <a class="card" href="/samples/logo-mascot.html">
+          <span class="tag coral">Logo</span>
+          <h2>Personified mark (cute variants)</h2>
+          <p>16 SVG treatments of the stacked bars — large + mini-nav mock for each</p>
         </a>
       </div>
 
       <p class="note">
-        Reply with e.g. “Combo 3 motion + Combo 1 layout” or a single winner. We merge into the real homepage next.
-      </p>
-
-      <p class="section-title">Original samples</p>
-
-      <div class="grid">
-        <a class="card" href="/samples/hero-a.html">
-          <span class="tag">Sample A</span>
-          <h2>Calm consultant</h2>
-          <p>Split layout · workflow diagram · amber accent · nav links + CTA</p>
-        </a>
-
-        <a class="card" href="/samples/hero-b.html">
-          <span class="tag b">Sample B</span>
-          <h2>Quiet product</h2>
-          <p>Stacked layout · dashboard mock · coral accent · CTA only in nav</p>
-        </a>
-
-        <a class="card" href="/samples/hero-c.html">
-          <span class="tag c">Sample C</span>
-          <h2>Typography-first</h2>
-          <p>Large headline · minimal visual · warm white CTA · soft mesh background</p>
-        </a>
-      </div>
-
-      <p class="note" style="margin-top: 1.5rem; padding-top: 0; border-top: none;">
-        Live homepage: <a href="/" style="color: #a8a5a0;">/</a> (C-proof — typography + diagram)
+        Tip: local gallery at <code>/samples/</code>. Static HTML copies also live under
+        <code>public/samples/</code> for direct file opens.
       </p>
     </div>
   </body>

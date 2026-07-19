@@ -1,0 +1,1079 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BaxterLabs — Hero atmosphere catalog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      background: #0a0b0d;
+      color: #eceae6;
+      min-height: 100dvh;
+      padding-bottom: 4rem;
+    }
+
+    header {
+      max-width: 90rem;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 1.5rem;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.35rem;
+    }
+
+    header p {
+      font-size: 0.875rem;
+      color: #9a9690;
+      max-width: 40rem;
+    }
+
+    .cat {
+      max-width: 90rem;
+      margin: 2rem auto 0;
+      padding: 0 2rem;
+    }
+
+    .cat-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #e07a5f;
+      margin-bottom: 0.35rem;
+    }
+
+    .cat-name {
+      font-size: 1.125rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .cat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    @media (max-width: 860px) {
+      .cat-grid { grid-template-columns: 1fr; }
+      header { padding: 1.5rem 1rem 1rem; }
+      .cat { padding: 0 1rem; }
+    }
+
+    .panel {
+      position: relative;
+      border: 1px solid #23262e;
+      overflow: hidden;
+      min-height: 18rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0c0d10;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    .panel:hover {
+      border-color: #3b4050;
+    }
+
+    .panel-hint {
+      position: absolute;
+      bottom: 0.5rem;
+      right: 0.65rem;
+      font-size: 0.5625rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #4a4650;
+      z-index: 10;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .panel:hover .panel-hint {
+      opacity: 1;
+    }
+
+    /* Fullscreen overlay */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: #0a0b0d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .overlay.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .overlay-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 200;
+      width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: inherit;
+      font-size: 1.25rem;
+      color: #9a9690;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid #23262e;
+      border-radius: 0;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+    }
+
+    .overlay-close:hover {
+      color: #eceae6;
+      border-color: #3b4050;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .overlay-tag {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #8b8680;
+      background: #0a0b0d;
+      padding: 0.2rem 0.5rem;
+      border: 1px solid #23262e;
+      z-index: 200;
+    }
+
+    .overlay-stage {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .overlay .hero-inner {
+      max-width: 42rem;
+    }
+
+    .overlay .hero-line {
+      font-size: clamp(2rem, 5vw, 3rem);
+    }
+
+    .overlay .hero-slot {
+      font-size: clamp(2rem, 5vw, 3rem);
+    }
+
+    .overlay .hero-sub {
+      font-size: 1rem;
+    }
+
+    .panel-tag {
+      position: absolute;
+      top: 0.65rem;
+      left: 0.65rem;
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #8b8680;
+      background: #0a0b0d;
+      padding: 0.2rem 0.5rem;
+      border: 1px solid #23262e;
+      z-index: 10;
+    }
+
+    .hero-inner {
+      position: relative;
+      width: 100%;
+      max-width: 30rem;
+      padding: 1.5rem 1.25rem;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .hero-line {
+      display: block;
+      font-size: clamp(1.25rem, 2.8vw, 1.75rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+    }
+
+    .hero-slot {
+      display: block;
+      font-size: clamp(1.25rem, 2.8vw, 1.75rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+      color: #e07a5f;
+      margin-top: 0.1em;
+    }
+
+    .hero-sub {
+      font-size: 0.8125rem;
+      color: #9a9690;
+      margin-top: 0.65rem;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 85% 55% at 50% 0%, rgba(224,122,95,0.1), transparent 58%),
+        radial-gradient(ellipse 45% 35% at 70% 40%, rgba(255,255,255,0.04), transparent 50%);
+    }
+
+    /* ══════════════════════════════════════════ */
+    /* A. TEXTURE LAYERS                         */
+    /* ══════════════════════════════════════════ */
+
+    .panel--film-grain .grain-layer {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 160px 160px;
+    }
+
+    .panel--halftone .halftone-layer {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0.025;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.5) 1px, transparent 1px);
+      background-size: 8px 8px;
+    }
+
+    .panel--canvas .canvas-layer {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0.03;
+      background:
+        repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(255,255,255,0.08) 1px, rgba(255,255,255,0.08) 2px),
+        repeating-linear-gradient(90deg, transparent, transparent 1px, rgba(255,255,255,0.06) 1px, rgba(255,255,255,0.06) 2px);
+      background-size: 3px 3px;
+    }
+
+    .panel--woven .woven-layer {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0.025;
+      background:
+        repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255,255,255,0.12) 2px, rgba(255,255,255,0.12) 4px),
+        repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(255,255,255,0.12) 2px, rgba(255,255,255,0.12) 4px);
+      background-size: 8px 8px;
+    }
+
+    /* ══════════════════════════════════════════ */
+    /* B. LIGHT / ATMOSPHERE                     */
+    /* ══════════════════════════════════════════ */
+
+    .panel--breathing .breath-layer {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background:
+        radial-gradient(ellipse 50% 40% at 40% 30%, rgba(224,122,95,0.16), transparent 55%),
+        radial-gradient(ellipse 40% 30% at 70% 60%, rgba(224,122,95,0.10), transparent 50%);
+      animation: drift-breathe 8s ease-in-out infinite alternate;
+    }
+    @keyframes drift-breathe {
+      0%   { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+
+    .panel--bloom-wander .bloom-layer {
+      position: absolute; z-index: 1; pointer-events: none;
+      width: 260px; height: 260px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(224,122,95,0.22), transparent 60%);
+      filter: blur(55px);
+      animation: bloom-wander 16s ease-in-out infinite alternate;
+    }
+    @keyframes bloom-wander {
+      0%   { top: 5%;  left: 10%; }
+      50%  { top: 55%; left: 55%; }
+      100% { top: 15%; left: 45%; }
+    }
+
+    .panel--light-ray .ray-layer {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background:
+        linear-gradient(110deg, rgba(224,122,95,0.0) 30%, rgba(224,122,95,0.08) 45%, rgba(224,122,95,0.14) 48%, rgba(224,122,95,0.06) 52%, transparent 60%);
+      animation: ray-shift 12s ease-in-out infinite alternate;
+    }
+    @keyframes ray-shift {
+      0%   { opacity: 0.6; transform: translateX(-5%); }
+      100% { opacity: 1; transform: translateX(3%); }
+    }
+
+    .panel--parallax-depth .depth-shape {
+      position: absolute; z-index: 1; pointer-events: none;
+      border: 1px solid rgba(224,122,95,0.06);
+    }
+    .panel--parallax-depth .depth-s1 {
+      width: 120px; height: 80px; top: 18%; left: 12%; transform: rotate(-8deg);
+      border-color: rgba(224,122,95,0.08);
+    }
+    .panel--parallax-depth .depth-s2 {
+      width: 80px; height: 120px; top: 40%; right: 15%; transform: rotate(12deg);
+      border-color: rgba(224,122,95,0.06);
+    }
+    .panel--parallax-depth .depth-s3 {
+      width: 200px; height: 60px; bottom: 22%; left: 20%; transform: rotate(-3deg);
+      border-color: rgba(224,122,95,0.05);
+    }
+
+    /* ══════════════════════════════════════════ */
+    /* C. STRUCTURAL / GEOMETRIC                 */
+    /* ══════════════════════════════════════════ */
+
+    .panel--dot-grid .grid-layer {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0.035;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px);
+      background-size: 44px 44px;
+    }
+
+    .panel--hairlines .hair-layer {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0.04;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 31px,
+        rgba(255,255,255,0.2) 31px,
+        rgba(255,255,255,0.2) 32px
+      );
+    }
+
+    .panel--corner-brackets::before {
+      content: ''; position: absolute; z-index: 1;
+      top: 1rem; left: 1rem; width: 40px; height: 40px;
+      border-top: 1px solid rgba(224,122,95,0.15);
+      border-left: 1px solid rgba(224,122,95,0.15);
+    }
+    .panel--corner-brackets::after {
+      content: ''; position: absolute; z-index: 1;
+      bottom: 1rem; right: 1rem; width: 40px; height: 40px;
+      border-bottom: 1px solid rgba(224,122,95,0.15);
+      border-right: 1px solid rgba(224,122,95,0.15);
+    }
+
+    .panel--rule-lines .rule-layer {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0.06;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 39px,
+        rgba(224,122,95,0.4) 39px,
+        rgba(224,122,95,0.4) 40px
+      );
+    }
+
+    /* ══════════════════════════════════════════ */
+    /* D. PARTICLE / AMBIENT MOTION              */
+    /* ══════════════════════════════════════════ */
+
+    .panel--dust .dust {
+      position: absolute; border-radius: 50%; z-index: 1;
+      background: rgba(224,122,95,0.2);
+      animation-timing-function: ease-in-out; animation-iteration-count: infinite; animation-direction: alternate;
+    }
+    .d1 { width: 2px; height: 2px; animation: dust-rise 9s infinite; top: 80%; left: 20%; }
+    .d2 { width: 3px; height: 3px; animation: dust-rise 12s 2s infinite; top: 75%; left: 55%; }
+    .d3 { width: 2px; height: 2px; animation: dust-rise 11s 4s infinite; top: 82%; left: 70%; }
+    .d4 { width: 1px; height: 1px; animation: dust-rise 8s 1s infinite; top: 78%; left: 35%; }
+    .d5 { width: 2px; height: 2px; animation: dust-rise 10s 3s infinite; top: 85%; left: 50%; }
+    .d6 { width: 3px; height: 3px; animation: dust-rise 13s 5s infinite; top: 72%; left: 80%; }
+    .d7 { width: 1px; height: 1px; animation: dust-rise 7s 0s infinite; top: 88%; left: 12%; }
+    .d8 { width: 2px; height: 2px; animation: dust-rise 10.5s 3.5s infinite; top: 76%; left: 62%; }
+
+    @keyframes dust-rise {
+      0%   { transform: translateY(0) translateX(0); opacity: 0; }
+      20%  { opacity: 0.7; }
+      100% { transform: translateY(-240px) translateX(30px); opacity: 0; }
+    }
+
+    .panel--floating-dots .fdot {
+      position: absolute; border-radius: 50%; z-index: 1;
+      background: rgba(224,122,95,0.25);
+      animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); animation-iteration-count: infinite;
+    }
+    .fd1 { width: 4px; height: 4px; top: 25%; left: 20%; animation: fdot-a 14s infinite; }
+    .fd2 { width: 3px; height: 3px; top: 50%; left: 65%; animation: fdot-b 18s 3s infinite; }
+    .fd3 { width: 5px; height: 5px; top: 35%; left: 45%; animation: fdot-c 16s 5s infinite; }
+    .fd4 { width: 3px; height: 3px; top: 60%; left: 25%; animation: fdot-a 20s 7s infinite; }
+    .fd5 { width: 4px; height: 4px; top: 45%; left: 80%; animation: fdot-b 15s 2s infinite; }
+    @keyframes fdot-a {
+      0%, 100% { transform: translate(0, 0); }
+      25%  { transform: translate(30px, -20px); }
+      50%  { transform: translate(-15px, -40px); }
+      75%  { transform: translate(-25px, -10px); }
+    }
+    @keyframes fdot-b {
+      0%, 100% { transform: translate(0, 0); }
+      33%  { transform: translate(-25px, -30px); }
+      66%  { transform: translate(20px, -50px); }
+    }
+    @keyframes fdot-c {
+      0%, 100% { transform: translate(0, 0); }
+      50%  { transform: translate(20px, -25px); }
+    }
+
+    .panel--nodes .nodes-layer {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background-image:
+        radial-gradient(circle, rgba(224,122,95,0.2) 2px, transparent 2px),
+        radial-gradient(circle, rgba(224,122,95,0.12) 1px, transparent 1px);
+      background-size: 200px 160px, 120px 100px;
+      background-position: 0 0, 30px 20px;
+      opacity: 0.5;
+    }
+
+    .panel--data-stream .stream {
+      position: absolute; z-index: 1; pointer-events: none;
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+      font-size: 10px; color: rgba(224,122,95,0.06); white-space: nowrap;
+      animation: stream-scroll 30s linear infinite;
+    }
+    .stream:nth-child(1) { top: 15%; left: -5%; animation-duration: 36s; }
+    .stream:nth-child(2) { top: 42%; left: -8%; animation-duration: 42s; animation-delay: 5s; }
+    .stream:nth-child(3) { top: 68%; left: -3%; animation-duration: 33s; animation-delay: 10s; }
+    @keyframes stream-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(calc(100vw + 200px)); }
+    }
+
+    /* ══════════════════════════════════════════ */
+    /* E. REACTIVE / INTERACTIVE                 */
+    /* ══════════════════════════════════════════ */
+
+    .panel--mouse-glow .mouse-glow {
+      position: absolute; z-index: 1; pointer-events: none;
+      width: 200px; height: 200px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(224,122,95,0.28), transparent 55%);
+      transform: translate(-50%, -50%);
+      transition: left 0.4s ease-out, top 0.4s ease-out;
+      left: 60%; top: 40%;
+    }
+
+    .panel--scroll-parallax .para-object {
+      position: absolute; z-index: 1; pointer-events: none;
+      border: 1px solid rgba(224,122,95,0.08);
+      border-radius: 50%;
+    }
+    .para-o1 { width: 60px; height: 60px; top: 20%; left: 18%; }
+    .para-o2 { width: 40px; height: 40px; top: 50%; right: 22%; }
+    .para-o3 { width: 30px; height: 30px; bottom: 25%; left: 35%; }
+
+    .panel--text-parallax .hero-inner {
+      transform-style: preserve-3d;
+      perspective: 800px;
+    }
+
+    /* ══════════════════════════════════════════ */
+    /* F. VISUAL STORYTELLING                    */
+    /* ══════════════════════════════════════════ */
+
+    .panel--morph-shapes .morph-layer {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    }
+    .morph-dot {
+      position: absolute; border-radius: 50%;
+      background: rgba(224,122,95,0.12);
+      animation: morph-pulse 6s ease-in-out infinite alternate;
+    }
+    .md1 { width: 80px; height: 80px; top: 15%; left: 15%; animation-delay: 0s; }
+    .md2 { width: 50px; height: 50px; top: 60%; right: 20%; animation-delay: 1.5s; }
+    .md3 { width: 30px; height: 30px; bottom: 20%; left: 50%; animation-delay: 3s; }
+    .md4 { width: 45px; height: 45px; top: 35%; left: 60%; animation-delay: 4.5s; }
+    @keyframes morph-pulse {
+      0%   { transform: scale(1); opacity: 0.12; }
+      100% { transform: scale(1.6); opacity: 0.04; }
+    }
+
+    .panel--desk-silhouette .silhouette {
+      position: absolute; bottom: -60px; left: 50%; transform: translateX(-50%); z-index: 1;
+      width: 320px; height: 140px;
+      background: rgba(255,255,255,0.015);
+      border-top: 1px solid rgba(255,255,255,0.03);
+      border-radius: 4px 4px 0 0;
+      mask-image: linear-gradient(0deg, rgba(0,0,0,0.25) 0%, transparent 100%);
+    }
+
+    .panel--wireframe .wire-box {
+      position: absolute; border: 1px solid rgba(224,122,95,0.06); z-index: 1;
+    }
+    .wb1 { width: 60px; height: 40px; top: 25%; left: 18%; }
+    .wb2 { width: 40px; height: 30px; top: 35%; left: 35%; }
+    .wb3 { width: 70px; height: 45px; top: 22%; left: 55%; }
+    .wb4 { width: 50px; height: 35px; bottom: 30%; left: 30%; }
+    .wb5 { width: 35px; height: 25px; bottom: 28%; left: 52%; }
+
+    /* ══════════════════════════════════════════ */
+    /* G. TYPOGRAPHY AS TEXTURE                  */
+    /* ══════════════════════════════════════════ */
+
+    .panel--giant-wordmark .big-word {
+      position: absolute; z-index: 0;
+      font-size: clamp(4rem, 12vw, 9rem);
+      font-weight: 700;
+      color: rgba(255,255,255,0.012);
+      letter-spacing: -0.04em;
+      white-space: nowrap;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .panel--ghost-words .ghost-word {
+      position: absolute; z-index: 0;
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 600;
+      color: rgba(224,122,95,0.025);
+      letter-spacing: -0.03em;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .panel--scattered-characters .chars {
+      position: absolute; inset: 0; z-index: 0;
+      overflow: hidden;
+    }
+    .chars span {
+      position: absolute;
+      font-weight: 700;
+      color: rgba(255,255,255,0.015);
+      font-size: 5rem;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* nav at top */
+    .nav-top {
+      max-width: 90rem;
+      margin: 0 auto;
+      padding: 0.75rem 2rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+    .nav-top a {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #8b8680;
+      text-decoration: none;
+      padding: 0.25rem 0.4rem;
+      border: 1px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .nav-top a:hover {
+      color: #e07a5f;
+      border-color: rgba(224,122,95,0.2);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Hero atmosphere catalog</h1>
+  <p>Every technique available for sprucing up a dark hero background. Each panel uses the same text; only the atmosphere changes. <strong>Click any panel to view it fullscreen.</strong> Scroll or jump via nav.</p>
+</header>
+
+<nav class="nav-top">
+  <a href="#A">A. Texture</a>
+  <a href="#B">B. Light</a>
+  <a href="#C">C. Structure</a>
+  <a href="#D">D. Ambient</a>
+  <a href="#E">E. Reactive</a>
+  <a href="#F">F. Story</a>
+  <a href="#G">G. Type</a>
+</nav>
+
+<!-- ═══════════════ A. TEXTURE ═══════════════ -->
+<div class="cat" id="A">
+  <div class="cat-label">Category A</div>
+  <div class="cat-name">Texture layers — static, tactile depth</div>
+  <div class="cat-grid">
+
+    <div class="panel panel--film-grain">
+      <span class="panel-tag">Film grain</span>
+      <div class="hero-bg"></div>
+      <div class="grain-layer"></div>
+      <div class="hero-inner">
+        <span class="hero-line">We automate</span>
+        <span class="hero-slot">the busywork</span>
+        <p class="hero-sub">Your potential is bottlenecked by yesterday's tools.</p>
+      </div>
+    </div>
+
+    <div class="panel panel--halftone">
+      <span class="panel-tag">Halftone dots</span>
+      <div class="hero-bg"></div>
+      <div class="halftone-layer"></div>
+      <div class="hero-inner">
+        <span class="hero-line">We automate</span>
+        <span class="hero-slot">the busywork</span>
+        <p class="hero-sub">Your potential is bottlenecked by yesterday's tools.</p>
+      </div>
+    </div>
+
+    <div class="panel panel--canvas">
+      <span class="panel-tag">Canvas / linen</span>
+      <div class="hero-bg"></div>
+      <div class="canvas-layer"></div>
+      <div class="hero-inner">
+        <span class="hero-line">We automate</span>
+        <span class="hero-slot">the busywork</span>
+        <p class="hero-sub">Your potential is bottlenecked by yesterday's tools.</p>
+      </div>
+    </div>
+
+    <div class="panel panel--woven">
+      <span class="panel-tag">Woven thread</span>
+      <div class="hero-bg"></div>
+      <div class="woven-layer"></div>
+      <div class="hero-inner">
+        <span class="hero-line">We automate</span>
+        <span class="hero-slot">the busywork</span>
+        <p class="hero-sub">Your potential is bottlenecked by yesterday's tools.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ B. LIGHT ═══════════════ -->
+<div class="cat" id="B">
+  <div class="cat-label">Category B</div>
+  <div class="cat-name">Light & atmosphere — soft, breathing presence</div>
+  <div class="cat-grid">
+
+    <div class="panel panel--breathing">
+      <span class="panel-tag">Breathing radial glow</span>
+      <div class="hero-bg"></div>
+      <div class="breath-layer"></div>
+      <div class="hero-inner">
+        <span class="hero-line">We automate</span>
+        <span class="hero-slot">the busywork</span>
+        <p class="hero-sub">Your potential is bottlenecked by yesterday's tools.</p>
+      </div>
+    </div>
+
+    <div class="panel panel--bloom-wander">
+      <span class="panel-tag">Slow bloom wander</span>
+      <div class="hero-bg"></div>
+      <div class="bloom-layer"></div>
+      <div class="hero-inner">
+        <span class="hero-line">We automate</span>
+        <span class="hero-slot">the busywork</span>
+        <p class="hero-sub">Your potential is bottlenecked by yesterday's tools.</p>
+      </div>
+    </div>
+
+    <div class="panel panel--light-ray">
+      <span class="panel-tag">Light ray / beam</span>
+      <div class="hero-bg"></div>
+      <div class="ray-layer"></div>
+      <div class="hero-inner">
+        <span class="hero-line">We automate</span>
+        <span class="hero-slot">the busywork</span>
+        <p class="hero-sub">Your potential is bottlenecked by yesterday's tools.</p>
+      </div>
+    </div>
+
+    <div class="panel panel--parallax-depth">
+      <span class="panel-tag">Layered translucent shapes</span>
+      <div class="hero-bg"></div>
+      <div class="depth-shape depth-s1"></div>
+      <div class="depth-shape depth-s2"></div>
+      <div class="depth-shape depth-s3"></div>
+      <div class="hero-inner">
+        <span class="hero-line">We automate</span>
+        <span class="hero-slot">the busywork</span>
+        <p class="hero-sub">Your potential is bottlenecked by yesterday's tools.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ C. STRUCTURAL ═══════════════ -->
+<div class="cat" id="C">
+  <div class="cat-label">Category C</div>
+  <div class="cat-name">Structural & geometric — architectural, technical</div>
+  <div class="cat-grid">
+
+    <div class="panel panel--dot-grid">
+      <span class="panel-tag">Dot grid</span>
+      <div class="hero-bg"></div>
+      <div class="grid-layer"></div>
+      <div class="hero-inner">
+        <span class="hero-line">We automate</span>
+        <span class="hero-slot">the busywork</span>
+        <p class="hero-sub">Your potential is bottlenecked by yesterday's tools.</p>
+      </div>
+    </div>
+
+    <div class="panel panel--hairlines">
+      <span class="panel-tag">Horizontal hairlines</span>
+      <div class="hero-bg"></div>
+      <div class="hair-layer"></div>
+      <div class="hero-inner">
+        <span class="hero-line">We automate</span>
+        <span class="hero-slot">the busywork</span>
+        <p class="hero-sub">Your potential is bottlenecked by yesterday's tools.</p>
+      </div>
+    </div>
+
+    <div class="panel panel--corner-brackets">
+      <span class="panel-tag">Corner brackets</span>
+      <div class="hero-bg"></div>
+      <div class="hero-inner">
+        <span class="hero-line">We automate</span>
+        <span class="hero-slot">the busywork</span>
+        <p class="hero-sub">Your potential is bottlenecked by yesterday's tools.</p>
+      </div>
+    </div>
+
+    <div class="panel panel--rule-lines">
+      <span class="panel-tag">Coral rule lines</span>
+      <div class="hero-bg"></div>
+      <div class="rule-layer"></div>
+      <div class="hero-inner">
+        <span class="hero-line">We automate</span>
+        <span class="hero-slot">the busywork</span>
+        <p class="hero-sub">Your potential is bottlenecked by yesterday's tools.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ D. AMBIENT MOTION ═══════════════ -->
+<div class="cat" id="D">
+  <div class="cat-label">Category D</div>
+  <div class="cat-name">Particle & ambient motion — alive but quiet</div>
+  <div class="cat-grid">
+
+    <div class="panel panel--dust">
+      <span class="panel-tag">Dust in light (rising)</span>
+      <div class="hero-bg"></div>
+      <div class="dust d1"></div><div class="dust d2"></div><div class="dust d3"></div><div class="dust d4"></div>
+      <div class="dust d5"></div><div class="dust d6"></div><div class="dust d7"></div><div class="dust d8"></div>
+      <div class="hero-inner">
+        <span class="hero-line">We automate</span>
+        <span class="hero-slot">the busywork</span>
+        <p class="hero-sub">Your potential is bottlenecked by yesterday's tools.</p>
+      </div>
+    </div>
+
+    <div class="panel panel--floating-dots">
+      <span class="panel-tag">Floating dots</span>
+      <div class="hero-bg"></div>
+      <div class="fdot fd1"></div><div class="fdot fd2"></div><div class="fdot fd3"></div>
+      <div class="fdot fd4"></div><div class="fdot fd5"></div>
+      <div class="hero-inner">
+        <span class="hero-line">We automate</span>
+        <span class="hero-slot">the busywork</span>
+        <p class="hero-sub">Your potential is bottlenecked by yesterday's tools.</p>
+      </div>
+    </div>
+
+    <div class="panel panel--nodes">
+      <span class="panel-tag">Connected nodes</span>
+      <div class="hero-bg"></div>
+      <div class="nodes-layer"></div>
+      <div class="hero-inner">
+        <span class="hero-line">We automate</span>
+        <span class="hero-slot">the busywork</span>
+        <p class="hero-sub">Your potential is bottlenecked by yesterday's tools.</p>
+      </div>
+    </div>
+
+    <div class="panel panel--data-stream">
+      <span class="panel-tag">Data stream (abstract)</span>
+      <div class="hero-bg"></div>
+      <div class="stream">01001101 01100001 01100100 01100101 00100000 01100110 01101111 01110010 00100000 01111001 01101111 01110101 00100000</div>
+      <div class="stream">function run() { automate(); connect(); deploy(); } // BaxterLabs · ship · iterate · run · 24/7</div>
+      <div class="stream">n8n → supabase → claude → postgres → docker → tailscale → api → cron → webhook → trigger → workflow</div>
+      <div class="hero-inner">
+        <span class="hero-line">We automate</span>
+        <span class="hero-slot">the busywork</span>
+        <p class="hero-sub">Your potential is bottlenecked by yesterday's tools.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ E. REACTIVE ═══════════════ -->
+<div class="cat" id="E">
+  <div class="cat-label">Category E</div>
+  <div class="cat-name">Reactive & interactive — responds to the visitor</div>
+  <div class="cat-grid">
+
+    <div class="panel panel--mouse-glow" id="mouse-glow-panel">
+      <span class="panel-tag">Mouse-follow glow</span>
+      <div class="hero-bg"></div>
+      <div class="mouse-glow" id="mouse-glow-el"></div>
+      <div class="hero-inner">
+        <span class="hero-line">We automate</span>
+        <span class="hero-slot">the busywork</span>
+        <p class="hero-sub">Your potential is bottlenecked by yesterday's tools. (Move cursor over panel)</p>
+      </div>
+    </div>
+
+    <div class="panel panel--scroll-parallax" id="scroll-parallax-panel">
+      <span class="panel-tag">Scroll-driven parallax</span>
+      <div class="hero-bg"></div>
+      <div class="para-object para-o1"></div>
+      <div class="para-object para-o2"></div>
+      <div class="para-object para-o3"></div>
+      <div class="hero-inner">
+        <span class="hero-line">We automate</span>
+        <span class="hero-slot">the busywork</span>
+        <p class="hero-sub">Your potential is bottlenecked by yesterday's tools. (Scroll the page slowly)</p>
+      </div>
+    </div>
+
+    <div class="panel panel--text-parallax" id="text-parallax-panel">
+      <span class="panel-tag">Mouse-tilted text</span>
+      <div class="hero-bg"></div>
+      <div class="hero-inner">
+        <span class="hero-line">We automate</span>
+        <span class="hero-slot">the busywork</span>
+        <p class="hero-sub">Your potential is bottlenecked by yesterday's tools. (Hover over this panel)</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ F. STORY ═══════════════ -->
+<div class="cat" id="F">
+  <div class="cat-label">Category F</div>
+  <div class="cat-name">Visual storytelling — abstract narrative elements</div>
+  <div class="cat-grid">
+
+    <div class="panel panel--morph-shapes">
+      <span class="panel-tag">Morphing abstract shapes</span>
+      <div class="hero-bg"></div>
+      <div class="morph-layer">
+        <div class="morph-dot md1"></div><div class="morph-dot md2"></div>
+        <div class="morph-dot md3"></div><div class="morph-dot md4"></div>
+      </div>
+      <div class="hero-inner">
+        <span class="hero-line">We automate</span>
+        <span class="hero-slot">the busywork</span>
+        <p class="hero-sub">Your potential is bottlenecked by yesterday's tools.</p>
+      </div>
+    </div>
+
+    <div class="panel panel--desk-silhouette">
+      <span class="panel-tag">Desk / workstation silhouette</span>
+      <div class="hero-bg"></div>
+      <div class="silhouette"></div>
+      <div class="hero-inner">
+        <span class="hero-line">We automate</span>
+        <span class="hero-slot">the busywork</span>
+        <p class="hero-sub">Your potential is bottlenecked by yesterday's tools.</p>
+      </div>
+    </div>
+
+    <div class="panel panel--wireframe">
+      <span class="panel-tag">Faint wireframes → order</span>
+      <div class="hero-bg"></div>
+      <div class="wire-box wb1"></div><div class="wire-box wb2"></div>
+      <div class="wire-box wb3"></div><div class="wire-box wb4"></div><div class="wire-box wb5"></div>
+      <div class="hero-inner">
+        <span class="hero-line">We automate</span>
+        <span class="hero-slot">the busywork</span>
+        <p class="hero-sub">Your potential is bottlenecked by yesterday's tools.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ G. TYPOGRAPHY ═══════════════ -->
+<div class="cat" id="G">
+  <div class="cat-label">Category G</div>
+  <div class="cat-name">Typography as texture — the word is the background</div>
+  <div class="cat-grid">
+
+    <div class="panel panel--giant-wordmark">
+      <span class="panel-tag">Giant wordmark behind</span>
+      <div class="hero-bg"></div>
+      <div class="big-word">BAXTERLABS</div>
+      <div class="hero-inner">
+        <span class="hero-line">We automate</span>
+        <span class="hero-slot">the busywork</span>
+        <p class="hero-sub">Your potential is bottlenecked by yesterday's tools.</p>
+      </div>
+    </div>
+
+    <div class="panel panel--ghost-words">
+      <span class="panel-tag">Ghost of rotating word</span>
+      <div class="hero-bg"></div>
+      <div class="ghost-word">the busywork</div>
+      <div class="hero-inner">
+        <span class="hero-line">We automate</span>
+        <span class="hero-slot">the busywork</span>
+        <p class="hero-sub">Your potential is bottlenecked by yesterday's tools.</p>
+      </div>
+    </div>
+
+    <div class="panel panel--scattered-characters">
+      <span class="panel-tag">Scattered characters</span>
+      <div class="hero-bg"></div>
+      <div class="chars">
+        <span style="top:8%;left:10%">A</span>
+        <span style="top:12%;left:75%">B</span>
+        <span style="top:55%;left:5%">X</span>
+        <span style="top:45%;right:12%">T</span>
+        <span style="bottom:10%;left:40%">L</span>
+        <span style="bottom:15%;right:18%">R</span>
+      </div>
+      <div class="hero-inner">
+        <span class="hero-line">We automate</span>
+        <span class="hero-slot">the busywork</span>
+        <p class="hero-sub">Your potential is bottlenecked by yesterday's tools.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  /* Click-to-expand fullscreen */
+  const allPanels = document.querySelectorAll('.panel');
+
+  /* Create overlay once */
+  const overlay = document.createElement('div');
+  overlay.className = 'overlay';
+  overlay.innerHTML = `
+    <div class="overlay-stage"></div>
+    <span class="overlay-tag"></span>
+    <button class="overlay-close" title="Close">✕</button>
+  `;
+  document.body.appendChild(overlay);
+
+  const overlayStage = overlay.querySelector('.overlay-stage');
+  const overlayTag = overlay.querySelector('.overlay-tag');
+  const overlayClose = overlay.querySelector('.overlay-close');
+
+  /* Add hint text to every panel */
+  allPanels.forEach(p => {
+    if (!p.querySelector('.panel-hint')) {
+      const hint = document.createElement('span');
+      hint.className = 'panel-hint';
+      hint.textContent = 'View fullscreen →';
+      p.appendChild(hint);
+    }
+  });
+
+  allPanels.forEach(panel => {
+    panel.addEventListener('click', () => {
+      overlayStage.innerHTML = panel.innerHTML;
+      overlayTag.textContent = panel.querySelector('.panel-tag')?.textContent || '';
+      overlay.classList.add('is-open');
+    });
+  });
+
+  overlayClose.addEventListener('click', (e) => {
+    e.stopPropagation();
+    overlay.classList.remove('is-open');
+  });
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      overlay.classList.remove('is-open');
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('is-open')) {
+      overlay.classList.remove('is-open');
+    }
+  });
+
+  /* Mouse-follow glow */
+  const glowPanel = document.getElementById('mouse-glow-panel');
+  const glowEl = document.getElementById('mouse-glow-el');
+  if (glowPanel && glowEl) {
+    glowPanel.addEventListener('mousemove', (e) => {
+      const rect = glowPanel.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      glowEl.style.left = x + 'px';
+      glowEl.style.top = y + 'px';
+    });
+    glowPanel.addEventListener('mouseleave', () => {
+      glowEl.style.transition = 'left 0.8s ease-out, top 0.8s ease-out, opacity 0.8s';
+      glowEl.style.opacity = '0.3';
+    });
+    glowPanel.addEventListener('mouseenter', () => {
+      glowEl.style.transition = 'left 0.4s ease-out, top 0.4s ease-out, opacity 0.3s';
+      glowEl.style.opacity = '1';
+    });
+  }
+
+  /* Scroll parallax */
+  let paraObjects = [];
+  const paraPanel = document.getElementById('scroll-parallax-panel');
+  if (paraPanel) {
+    paraObjects = Array.from(paraPanel.querySelectorAll('.para-object'));
+    window.addEventListener('scroll', () => {
+      const rect = paraPanel.getBoundingClientRect();
+      if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+      const progress = 1 - (rect.top / window.innerHeight);
+      paraObjects.forEach((obj, i) => {
+        const speed = (i + 1) * 15;
+        obj.style.transform = `translateY(${-progress * speed}px)`;
+      });
+    });
+  }
+
+  /* Mouse-tilt text */
+  const tiltPanel = document.getElementById('text-parallax-panel');
+  if (tiltPanel) {
+    const inner = tiltPanel.querySelector('.hero-inner');
+    tiltPanel.addEventListener('mousemove', (e) => {
+      const rect = tiltPanel.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      inner.style.transform = `rotateX(${-y * 4}deg) rotateY(${x * 4}deg)`;
+    });
+    tiltPanel.addEventListener('mouseleave', () => {
+      inner.style.transition = 'transform 0.6s ease-out';
+      inner.style.transform = 'rotateX(0) rotateY(0)';
+    });
+    tiltPanel.addEventListener('mouseenter', () => {
+      inner.style.transition = 'transform 0.1s ease-out';
+    });
+  }
+</script>
+
+</body>
+</html>

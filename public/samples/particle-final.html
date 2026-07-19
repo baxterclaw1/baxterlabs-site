@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BaxterLabs — Best combination</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      background: #0a0b0d;
+      color: #eceae6;
+      min-height: 100dvh;
+      padding-bottom: 4rem;
+    }
+    header {
+      max-width: 90rem;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 1.5rem;
+    }
+    header h1 { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 0.35rem; }
+    header p { font-size: 0.875rem; color: #9a9690; max-width: 44rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      max-width: 90rem;
+      margin: 0 auto;
+      padding: 0 2rem 2.5rem;
+    }
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; }
+      header { padding: 1.5rem 1rem 1rem; }
+      .grid { padding: 0 1rem 2rem; }
+    }
+    .panel {
+      position: relative; border: 1px solid #23262e; overflow: hidden; min-height: 24rem;
+      display: flex; align-items: center; justify-content: center; background: #0c0d10;
+      cursor: pointer; transition: border-color 0.2s;
+    }
+    .panel:hover { border-color: #3b4050; }
+    .panel canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; }
+    .panel-tag {
+      position: absolute; top: 0.65rem; left: 0.65rem; font-size: 0.625rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase; color: #8b8680; background: #0a0b0d;
+      padding: 0.2rem 0.5rem; border: 1px solid #23262e; z-index: 10;
+    }
+    .panel-desc {
+      position: absolute; bottom: 0.65rem; left: 0.65rem; font-size: 0.6rem; color: #5a5650; z-index: 10; max-width: 65%;
+    }
+    .panel-hint {
+      position: absolute; bottom: 0.5rem; right: 0.65rem; font-size: 0.5625rem; font-weight: 500;
+      letter-spacing: 0.04em; text-transform: uppercase; color: #4a4650; z-index: 10;
+      opacity: 0; transition: opacity 0.2s;
+    }
+    .panel:hover .panel-hint { opacity: 1; }
+    .hero-inner { position: relative; width: 100%; max-width: 34rem; padding: 1.5rem 1.25rem; text-align: center; z-index: 2; }
+    .hero-line { display: block; font-size: clamp(1.25rem, 2.8vw, 1.75rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.12; }
+    .hero-slot { display: block; font-size: clamp(1.25rem, 2.8vw, 1.75rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.12; color: #e07a5f; margin-top: 0.1em; }
+    .hero-sub { font-size: 0.8125rem; color: #9a9690; margin-top: 0.65rem; }
+
+    .overlay { position: fixed; inset: 0; z-index: 100; background: #0a0b0d; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.25s ease; }
+    .overlay.is-open { opacity: 1; pointer-events: auto; }
+    .overlay-close { position: absolute; top: 1rem; right: 1rem; z-index: 200; width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center; font-family: inherit; font-size: 1.25rem; color: #9a9690; background: rgba(255,255,255,0.04); border: 1px solid #23262e; border-radius: 0; cursor: pointer; transition: color 0.15s, border-color 0.15s, background 0.15s; }
+    .overlay-close:hover { color: #eceae6; border-color: #3b4050; background: rgba(255,255,255,0.08); }
+    .overlay-tag { position: absolute; top: 1rem; left: 1rem; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #8b8680; background: #0a0b0d; padding: 0.3rem 0.6rem; border: 1px solid #23262e; z-index: 200; }
+    .overlay .hero-inner { max-width: 44rem; }
+    .overlay .hero-line { font-size: clamp(2rem, 5vw, 3rem); }
+    .overlay .hero-slot { font-size: clamp(2rem, 5vw, 3rem); }
+    .overlay .hero-sub { font-size: 1rem; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>G + H + mixed sizes — final tuning</h1>
+  <p>
+    All based on slower drift, coral + warm white mix, varied dot sizes.
+    Dials: speed, color balance, and size variance.
+    <strong>Click any panel to view fullscreen.</strong>
+  </p>
+</header>
+
+<div class="grid">
+
+  <!-- 1. The exact mix: G speed, H colors, mixed sizes -->
+  <div class="panel" data-canvas="exact">
+    <span class="panel-tag">1. Exact mix — G+H+mix</span>
+    <span class="panel-desc">Slow drift, 70% coral 30% white, sizes 0.8–2.5px, light repel</span>
+    <canvas></canvas>
+    <div class="hero-inner">
+      <span class="hero-line">We automate</span>
+      <span class="hero-slot">the busywork</span>
+      <p class="hero-sub">Your potential is bottlenecked by yesterday's tools.</p>
+    </div>
+  </div>
+
+  <!-- 2. Slightly more white -->
+  <div class="panel" data-canvas="more-white">
+    <span class="panel-tag">2. More white — 50/50</span>
+    <span class="panel-desc">Equal split coral/white, same slow drift and size mix</span>
+    <canvas></canvas>
+    <div class="hero-inner">
+      <span class="hero-line">We automate</span>
+      <span class="hero-slot">the busywork</span>
+      <p class="hero-sub">Your potential is bottlenecked by yesterday's tools.</p>
+    </div>
+  </div>
+
+  <!-- 3. Slightly larger size variance -->
+  <div class="panel" data-canvas="wider-size">
+    <span class="panel-tag">3. Wider size range</span>
+    <span class="panel-desc">Same colors & speed, sizes 0.5–3.5px for more variety</span>
+    <canvas></canvas>
+    <div class="hero-inner">
+      <span class="hero-line">We automate</span>
+      <span class="hero-slot">the busywork</span>
+      <p class="hero-sub">Your potential is bottlenecked by yesterday's tools.</p>
+    </div>
+  </div>
+
+  <!-- 4. Even slower -->
+  <div class="panel" data-canvas="even-slower">
+    <span class="panel-tag">4. Even slower drift</span>
+    <span class="panel-desc">Same colors & sizes, barely perceptible movement</span>
+    <canvas></canvas>
+    <div class="hero-inner">
+      <span class="hero-line">We automate</span>
+      <span class="hero-slot">the busywork</span>
+      <p class="hero-sub">Your potential is bottlenecked by yesterday's tools.</p>
+    </div>
+  </div>
+
+  <!-- 5. Slightly more visible opacity -->
+  <div class="panel" data-canvas="more-opaque">
+    <span class="panel-tag">5. Slightly more visible</span>
+    <span class="panel-desc">Same setup, 25% higher base opacity to see easier</span>
+    <canvas></canvas>
+    <div class="hero-inner">
+      <span class="hero-line">We automate</span>
+      <span class="hero-slot">the busywork</span>
+      <p class="hero-sub">Your potential is bottlenecked by yesterday's tools.</p>
+    </div>
+  </div>
+
+  <!-- 6. Less visible opacity -->
+  <div class="panel" data-canvas="less-opaque">
+    <span class="panel-tag">6. More ghosted</span>
+    <span class="panel-desc">Same setup, 30% lower opacity, barely there</span>
+    <canvas></canvas>
+    <div class="hero-inner">
+      <span class="hero-line">We automate</span>
+      <span class="hero-slot">the busywork</span>
+      <p class="hero-sub">Your potential is bottlenecked by yesterday's tools.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="overlay" id="overlay">
+  <span class="overlay-tag" id="overlay-tag"></span>
+  <button class="overlay-close" id="overlay-close" title="Close">✕</button>
+  <div id="overlay-stage" style="position:absolute;inset:0;overflow:hidden;"></div>
+</div>
+
+<script>
+  function makeEngine(id) {
+    const configs = {
+      exact:      { countDiv: 24000, repelR: 100, repelS: 0.15, speed: 0.07, dotMin: 0.04, dotMax: 0.14, whiteRatio: 0.3, sizeMin: 0.8, sizeMax: 2.5 },
+      moreWhite:  { countDiv: 24000, repelR: 100, repelS: 0.15, speed: 0.07, dotMin: 0.04, dotMax: 0.14, whiteRatio: 0.5, sizeMin: 0.8, sizeMax: 2.5 },
+      widerSize:  { countDiv: 24000, repelR: 100, repelS: 0.15, speed: 0.07, dotMin: 0.04, dotMax: 0.14, whiteRatio: 0.3, sizeMin: 0.5, sizeMax: 3.5 },
+      evenSlower: { countDiv: 24000, repelR: 80,  repelS: 0.10, speed: 0.04, dotMin: 0.04, dotMax: 0.14, whiteRatio: 0.3, sizeMin: 0.8, sizeMax: 2.5 },
+      moreOpaque: { countDiv: 24000, repelR: 100, repelS: 0.15, speed: 0.07, dotMin: 0.05, dotMax: 0.18, whiteRatio: 0.3, sizeMin: 0.8, sizeMax: 2.5 },
+      lessOpaque: { countDiv: 24000, repelR: 100, repelS: 0.15, speed: 0.07, dotMin: 0.03, dotMax: 0.10, whiteRatio: 0.3, sizeMin: 0.8, sizeMax: 2.5 },
+    };
+
+    const cfg = configs[id] || configs.exact;
+
+    return {
+      cfg, particles: [],
+      mouse: { x: null, y: null },
+      w: 0, h: 0, ctx: null, animId: null, container: null,
+
+      start(canvas, container) {
+        this.ctx = canvas.getContext('2d');
+        this.container = container;
+        this.resize();
+        const self = this;
+        container.addEventListener('mousemove', (e) => {
+          const rect = container.getBoundingClientRect();
+          self.mouse.x = e.clientX - rect.left;
+          self.mouse.y = e.clientY - rect.top;
+        });
+        container.addEventListener('mouseleave', () => { self.mouse.x = null; self.mouse.y = null; });
+        new ResizeObserver(() => self.resize()).observe(container);
+        this.draw();
+      },
+
+      resize() {
+        const rect = this.container.getBoundingClientRect();
+        const dpr = window.devicePixelRatio || 1;
+        this.ctx.canvas.width = rect.width * dpr;
+        this.ctx.canvas.height = rect.height * dpr;
+        this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        this.w = rect.width;
+        this.h = rect.height;
+        this.initParticles();
+      },
+
+      initParticles() {
+        const count = Math.floor((this.w * this.h) / cfg.countDiv);
+        this.particles = [];
+        for (let i = 0; i < count; i++) {
+          this.particles.push({
+            x: Math.random() * this.w,
+            y: Math.random() * this.h,
+            vx: (Math.random() - 0.5) * cfg.speed * 2,
+            vy: (Math.random() - 0.5) * cfg.speed * 2,
+            size: cfg.sizeMin + Math.random() * (cfg.sizeMax - cfg.sizeMin),
+            baseOpacity: cfg.dotMin + Math.random() * (cfg.dotMax - cfg.dotMin),
+            color: Math.random() < cfg.whiteRatio ? '#eceae6' : '#e07a5f',
+          });
+        }
+      },
+
+      draw() {
+        const { w, h, ctx, particles, mouse } = this;
+        ctx.clearRect(0, 0, w, h);
+
+        for (const p of particles) {
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < -20) p.x = w + 20;
+          if (p.x > w + 20) p.x = -20;
+          if (p.y < -20) p.y = h + 20;
+          if (p.y > h + 20) p.y = -20;
+
+          if (mouse.x != null) {
+            const dx = p.x - mouse.x;
+            const dy = p.y - mouse.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < cfg.repelR) {
+              const force = (cfg.repelR - dist) / cfg.repelR;
+              const angle = Math.atan2(dy, dx);
+              p.vx += Math.cos(angle) * force * cfg.repelS * 0.1;
+              p.vy += Math.sin(angle) * force * cfg.repelS * 0.1;
+            }
+          }
+
+          const currentSpeed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
+          if (currentSpeed > cfg.speed * 3) {
+            p.vx *= 0.98; p.vy *= 0.98;
+          } else if (currentSpeed > cfg.speed) {
+            p.vx *= 0.995; p.vy *= 0.995;
+          }
+        }
+
+        for (const p of particles) {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = p.baseOpacity;
+          ctx.fill();
+          ctx.globalAlpha = 1;
+        }
+
+        this.animId = requestAnimationFrame(() => this.draw());
+      },
+
+      stop() { cancelAnimationFrame(this.animId); },
+    };
+  }
+
+  const panels = document.querySelectorAll('.panel[data-canvas]');
+  panels.forEach(panel => {
+    const key = panel.dataset.canvas;
+    const canvas = panel.querySelector('canvas');
+    if (!canvas) return;
+    const engine = makeEngine(key);
+    engine.start(canvas, panel);
+
+    const hint = document.createElement('span');
+    hint.className = 'panel-hint';
+    hint.textContent = 'View fullscreen →';
+    panel.appendChild(hint);
+
+    panel._engine = engine;
+    panel._key = key;
+  });
+
+  const overlay = document.getElementById('overlay');
+  const overlayStage = document.getElementById('overlay-stage');
+  const overlayTag = document.getElementById('overlay-tag');
+  const overlayClose = document.getElementById('overlay-close');
+  let overlayEngine = null;
+
+  panels.forEach(panel => {
+    panel.addEventListener('click', () => {
+      const heroInner = panel.querySelector('.hero-inner');
+      const tag = panel.querySelector('.panel-tag').textContent;
+      if (overlayEngine) { overlayEngine.stop(); overlayEngine = null; }
+      overlayStage.innerHTML = '';
+
+      const fullCanvas = document.createElement('canvas');
+      fullCanvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;z-index:1;';
+      overlayStage.appendChild(fullCanvas);
+
+      if (heroInner) {
+        const clone = heroInner.cloneNode(true);
+        clone.style.cssText = 'position:relative;z-index:2;max-width:44rem;margin:0 auto;padding:2rem 1.5rem;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;';
+        overlayStage.appendChild(clone);
+      }
+
+      overlayTag.textContent = tag;
+      overlay.classList.add('is-open');
+      overlayEngine = makeEngine(panel._key);
+      overlayEngine.start(fullCanvas, overlayStage);
+    });
+  });
+
+  function closeOverlay() {
+    overlay.classList.remove('is-open');
+    if (overlayEngine) { overlayEngine.stop(); overlayEngine = null; }
+    overlayStage.innerHTML = '';
+  }
+
+  overlayClose.addEventListener('click', (e) => { e.stopPropagation(); closeOverlay(); });
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) closeOverlay(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeOverlay(); });
+</script>
+
+</body>
+</html>
