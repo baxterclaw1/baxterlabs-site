@@ -77,7 +77,9 @@ const words = [
     position: relative;
     width: 100%;
     max-width: 58rem;
+    /* Half the previous lift — nudged up from center, not top-heavy */
     padding: clamp(2rem, 5vw, 3.5rem) 0 clamp(1.5rem, 3vw, 2rem);
+    transform: translateY(-9vh);
     text-align: center;
     z-index: 1;
   }
