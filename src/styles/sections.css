@@ -47,6 +47,8 @@
   margin: 0 auto;
   padding: calc(var(--section-pad-y) * 1.6) var(--section-pad-x);
   text-align: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .process-head {
@@ -124,5 +126,20 @@
     grid-template-columns: 4rem minmax(0, 1fr);
     gap: 1.75rem;
     padding: 1.75rem 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .process-item {
+    grid-template-columns: 2.25rem minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  .process-body h3 {
+    font-size: 1rem;
+  }
+
+  .process-body p {
+    font-size: 0.875rem;
   }
 }

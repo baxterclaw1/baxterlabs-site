@@ -14,7 +14,7 @@ const {
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0a0b0d" />
     <title>{title}</title>
@@ -91,8 +91,9 @@ const {
           const contentH = content instanceof HTMLElement
             ? Math.max(content.scrollHeight, content.offsetHeight)
             : 0;
+          /* clientWidth only — pixel canvas width must never widen the document */
           return {
-            w: Math.max(document.documentElement.clientWidth, window.innerWidth),
+            w: document.documentElement.clientWidth,
             h: Math.max(contentH, window.innerHeight),
           };
         }
@@ -101,10 +102,11 @@ const {
           const dpr = window.devicePixelRatio || 1;
           const { w: ow, h: oh } = pageSize();
           if (ow === pw && oh === ph) return;
-          particleCanvas.style.width = ow + 'px';
+          particleCanvas.style.width = '100%';
+          particleCanvas.style.maxWidth = '100%';
           particleCanvas.style.height = oh + 'px';
-          particleCanvas.width = ow * dpr;
-          particleCanvas.height = oh * dpr;
+          particleCanvas.width = Math.max(1, Math.floor(ow * dpr));
+          particleCanvas.height = Math.max(1, Math.floor(oh * dpr));
           pctx.setTransform(dpr, 0, 0, dpr, 0, 0);
           pw = ow;
           ph = oh;
