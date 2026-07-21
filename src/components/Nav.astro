@@ -3,15 +3,24 @@ import LogoMark from './LogoMark.astro';
 ---
 
 <header class="nav">
-  <a class="nav-logo" href="/">
-    <LogoMark />
-    <span>BaxterLabs</span>
-  </a>
-  <a class="btn nav-cta" href="#contact" data-scroll-to="contact">Book a Call</a>
+  <div class="nav-inner">
+    <a class="nav-logo" href="/">
+      <LogoMark />
+      <span>BaxterLabs</span>
+    </a>
+    <a class="btn nav-cta" href="#contact" data-scroll-to="contact">Book a Call</a>
+  </div>
 </header>
 
 <style>
   .nav {
+    width: 100%;
+    background: var(--site-bg);
+    position: relative;
+    z-index: 2;
+  }
+
+  .nav-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -21,9 +30,6 @@ import LogoMark from './LogoMark.astro';
     width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
-    background: var(--site-bg);
-    position: relative;
-    z-index: 2;
   }
 
   .nav-logo {
@@ -54,7 +60,7 @@ import LogoMark from './LogoMark.astro';
   }
 
   @media (max-width: 520px) {
-    .nav {
+    .nav-inner {
       padding: 1rem var(--section-pad-x);
       gap: 0.5rem;
     }
