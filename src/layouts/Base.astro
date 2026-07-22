@@ -76,7 +76,7 @@ const {
           speed: 0.07,
           dotMin: 0.15,
           dotMax: 0.34,
-          whiteRatio: 0.3,
+          whiteRatio: 0.12,
           sizeMin: 1.0,
           sizeMax: 3.0,
         };
@@ -136,7 +136,7 @@ const {
               vy: (Math.random() - 0.5) * CFG.speed * 2,
               size: CFG.sizeMin + Math.random() * (CFG.sizeMax - CFG.sizeMin),
               baseOpacity: CFG.dotMin + Math.random() * (CFG.dotMax - CFG.dotMin),
-              color: Math.random() < CFG.whiteRatio ? '#eceae6' : '#e07a5f',
+              color: Math.random() < CFG.whiteRatio ? '#e8c4b8' : '#e07a5f',
             });
           }
         }

@@ -104,18 +104,24 @@ const contactEmail = 'baxterlabs.io@gmail.com';
     max-width: none;
     margin: 0;
     padding: var(--section-pad-y) var(--section-pad-x);
-    background: var(--site-bg);
+    background: linear-gradient(
+      180deg,
+      rgba(224, 122, 95, 0.14) 0%,
+      rgba(224, 122, 95, 0.05) 55%,
+      var(--site-bg) 100%
+    );
     position: relative;
   }
 
   .site-cta-panel {
     max-width: var(--content-width);
     margin: 0 auto;
-    border: 1px solid var(--site-border);
+    border: 1px solid rgba(224, 122, 95, 0.35);
+    background: var(--site-bg);
     box-shadow:
-      0 0 0 1px rgba(224, 122, 95, 0.06),
-      0 0 28px rgba(224, 122, 95, 0.12),
-      0 0 64px rgba(224, 122, 95, 0.06);
+      0 0 0 1px rgba(224, 122, 95, 0.1),
+      0 0 36px rgba(224, 122, 95, 0.22),
+      0 0 80px rgba(224, 122, 95, 0.1);
     padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 4vw, 2.75rem) clamp(2rem, 4vw, 2.75rem);
   }
 
