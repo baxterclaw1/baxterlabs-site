@@ -24,6 +24,7 @@ const words = [
     <p class="hero-sub">
       Your business has evolved. Your tools should too.
     </p>
+    <a class="btn hero-cta" href="#contact" data-scroll-to="contact">Book a Call</a>
   </div>
 </section>
 
@@ -151,6 +152,10 @@ const words = [
       animation: hero-fade 0.5s ease-out 0.3s both;
     }
 
+    .hero-cta {
+      animation: hero-fade 0.5s ease-out 0.38s both;
+    }
+
     @keyframes hero-rise {
       from {
         opacity: 0;
@@ -181,8 +186,37 @@ const words = [
     line-height: 1.4;
     color: var(--site-text-dim);
     max-width: 38rem;
-    margin: clamp(1.15rem, 2.5vw, 1.6rem) auto 0;
+    margin: clamp(1rem, 2vw, 1.25rem) auto 0;
     text-wrap: pretty;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: clamp(1.5rem, 2.8vw, 2rem);
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    font-weight: 500;
+    padding: 0.8rem 2rem;
+    color: #0a0b0d;
+    background: var(--site-accent);
+    border: none;
+    border-radius: 0;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .hero-cta:hover {
+    background: var(--site-accent-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(224, 122, 95, 0.3);
+  }
+
+  .hero-cta:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: none;
   }
 
   /* Phone only — larger type, still fits the longest rotating phrases */

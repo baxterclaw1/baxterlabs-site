@@ -1,0 +1,140 @@
+<section class="work-section" id="how-we-work">
+  <div class="work-section-inner">
+    <div class="site-section-head" data-reveal>
+      <h2 class="site-section-title">How we work</h2>
+      <p class="site-section-subtitle">
+        One conversation, no charge. You walk us through your operation.
+        We come back with a plan, a fixed price, and a timeline.
+      </p>
+    </div>
+
+    <div class="work-process" data-reveal>
+      <div class="work-step">
+        <div class="work-marker" aria-hidden="true">
+          <span class="work-marker-bar"></span>
+        </div>
+        <h3 class="work-title">We learn how you operate</h3>
+        <p class="work-desc">
+          You walk us through what you do, where the friction is,
+          what you would stop doing tomorrow if you could. If it is
+          not a fit, we tell you. If it is, we come back with
+          something to look at.
+        </p>
+      </div>
+
+      <div class="work-step">
+        <div class="work-marker" aria-hidden="true">
+          <span class="work-marker-bar"></span>
+        </div>
+        <h3 class="work-title">We put a plan on the table</h3>
+        <p class="work-desc">
+          Built around the tools and processes you already have.
+          You get a fixed price and a clear picture of what changes,
+          what stays, and how long it takes. No template, no retainer
+          before you know what you are getting.
+        </p>
+      </div>
+
+      <div class="work-step">
+        <div class="work-marker" aria-hidden="true">
+          <span class="work-marker-bar"></span>
+        </div>
+        <h3 class="work-title">We show our work</h3>
+        <p class="work-desc">
+          You see real pieces as they come together, not a finished
+          thing dropped on you weeks later. You give feedback as we go.
+          If something needs to change direction, we change it.
+          Not after the invoice.
+        </p>
+      </div>
+
+      <div class="work-step">
+        <div class="work-marker">
+          <span class="work-marker-bar"></span>
+        </div>
+        <h3 class="work-title">We stay with it</h3>
+        <p class="work-desc">
+          After launch, we monitor, maintain, and adjust as your
+          business changes. If something breaks, fixing it is our job.
+          Not a support ticket queue. Not a line item on your to-do list.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .work-section {
+    padding: var(--section-pad-y) var(--section-pad-x);
+  }
+
+  .work-section-inner {
+    max-width: var(--content-width);
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .work-process {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem 3rem;
+    max-width: 52rem;
+    margin: 0 auto;
+  }
+
+  .work-step {
+    position: relative;
+  }
+
+  .work-marker {
+    margin-bottom: 1.25rem;
+  }
+
+  .work-marker-bar {
+    display: block;
+    width: 2rem;
+    height: 3px;
+    background: var(--site-accent);
+  }
+
+  .work-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--site-text);
+    margin-bottom: 0.5rem;
+  }
+
+  .work-desc {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--site-text-dim);
+    max-width: 24rem;
+  }
+
+  @media (max-width: 600px) {
+    .work-process {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .work-step {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0 1rem;
+    }
+
+    .work-marker {
+      margin-bottom: 0;
+      padding-top: 0.45rem;
+    }
+
+    .work-title {
+      grid-column: 2;
+    }
+
+    .work-desc {
+      grid-column: 2;
+    }
+  }
+</style>

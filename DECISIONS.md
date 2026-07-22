@@ -14,7 +14,7 @@
 
 - [x] Homepage approach: **Strategy D** — static shapes + proof band, no interactive demo
 - [x] Marketing page: **dark theme** (`#0c0d10` site)
-- [x] Sections: Hero → How we work → What we build (8 cards) → CTA → Footer
+- [x] Sections: Hero → What we build (8 items) → How we work → Systems proof (placeholder) → Contact → Footer
 - [x] What we build: **Option D** — 8 items, no cards/flows, centered two-column list
 - [x] Nav: logo mark + wordmark + **Book a Call** button → `#contact`
 - [x] Logo: **stacked bars** — shorter width, taller height, hard corners; SVG in `LogoMark.astro`
@@ -22,7 +22,7 @@
 - [x] Corners: hard (no radius) on buttons and form inputs
 - [x] Content width: **90rem** · side pad **2rem** (between original 72 and stretched 112)
 - [x] Demo walkthrough: **removed from homepage** (legacy demo code retained in repo)
-- [x] CTAs: **one Book a Call** (nav only → `#contact`); hero has no CTA button; bottom is contact form
+- [x] CTAs: **one Book a Call** below hero subtitle → `#contact`; nav is logo only (centered)
 - [x] Contact form: name, email, optional business, message → `baxterlabs.io@gmail.com` via FormSubmit
 
 ## Copy
@@ -31,7 +31,7 @@
 - [x] Voice: direct, no-nonsense, professional, not salesy
 - [x] Audience: SMB owners who can afford custom work; mostly non-technical
 - [x] Hero style: **typography-led** (C-warm) · coral mesh · staggered headline · no side panel · **centered text column**
-- [x] Proof band: removed from homepage (systems proof not on v1)
+- [ ] Proof content: placeholder prompt in `SystemsProof.astro` — ask a different AI for 3-4 real production system names and descriptions, then fill cards
 - [x] Meta title: BaxterLabs — Custom AI & Automation
 
 ## Deploy
