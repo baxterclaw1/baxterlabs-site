@@ -1,6 +1,4 @@
 ---
-import LogoMark from './LogoMark.astro';
-
 const words = [
   'the busywork',
   'the invoice chasing',
@@ -14,7 +12,6 @@ const words = [
 <section class="hero">
   <div class="hero-bg" aria-hidden="true"></div>
   <div class="hero-inner">
-    <LogoMark class="hero-mascot" />
     <h1 class="hero-title">
       <span class="hero-line">We automate</span>
       <span class="hero-slot">
@@ -81,19 +78,11 @@ const words = [
     position: relative;
     width: 100%;
     max-width: 58rem;
-    padding: clamp(1.5rem, 4vw, 2.5rem) 0 clamp(2rem, 5vw, 3.5rem);
-    transform: translateY(-7vh);
+    /* Half the previous lift — nudged up from center, not top-heavy */
+    padding: clamp(2rem, 5vw, 3.5rem) 0 clamp(1.5rem, 3vw, 2rem);
+    transform: translateY(-9vh);
     text-align: center;
     z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .hero-inner :global(.hero-mascot) {
-    width: clamp(7.5rem, 18vw, 11rem);
-    height: clamp(7.5rem, 18vw, 11rem);
-    margin-bottom: clamp(1.75rem, 4vw, 2.75rem);
   }
 
   .hero-title {
@@ -153,10 +142,6 @@ const words = [
     .hero-line,
     .hero-slot {
       animation: hero-rise 0.55s ease-out both;
-    }
-
-    .hero-inner :global(.hero-mascot) {
-      animation: hero-fade 0.5s ease-out both;
     }
 
     .hero-slot {
@@ -243,13 +228,7 @@ const words = [
 
     .hero-inner {
       max-width: 100%;
-      transform: translateY(-5vh);
-    }
-
-    .hero-inner :global(.hero-mascot) {
-      width: clamp(5.5rem, 28vw, 7rem);
-      height: clamp(5.5rem, 28vw, 7rem);
-      margin-bottom: 1.5rem;
+      transform: translateY(-6vh);
     }
 
     .hero-title {
@@ -288,13 +267,7 @@ const words = [
     }
 
     .hero-inner {
-      transform: translateY(-3vh);
-    }
-
-    .hero-inner :global(.hero-mascot) {
-      width: 5rem;
-      height: 5rem;
-      margin-bottom: 1.25rem;
+      transform: translateY(-4vh);
     }
 
     .hero-title {
