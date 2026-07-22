@@ -1,48 +1,63 @@
-<section class="build-section" id="what-we-build">
+<section class="build-section" id="built-for-how-you-run">
   <div class="build-section-inner">
     <div class="site-section-head" data-reveal>
-      <span class="site-section-eyebrow">What We Build</span>
-      <h2 class="site-section-title">Everything AI can automate, we can build.</h2>
+      <h2 class="site-section-title">Built for how you run</h2>
       <p class="site-section-subtitle">
-        Each of these is a system we design and deploy for real businesses.
-        No templates, no cookie-cutter setups.
+        Some examples of real systems we've designed and deployed.
       </p>
     </div>
 
-    <ul class="build-list" data-reveal>
-      <li class="build-item">
-        <h3 class="build-item-title">Work that handles itself</h3>
-        <p class="build-item-desc">Autonomous agents that monitor your operations, make decisions, and take action — 24/7, without a human in the loop.</p>
-      </li>
-      <li class="build-item">
-        <h3 class="build-item-title">Tools that talk to each other</h3>
-        <p class="build-item-desc">Connect your existing software so data moves automatically. No more copying from QuickBooks into a spreadsheet into an email.</p>
-      </li>
-      <li class="build-item">
-        <h3 class="build-item-title">Client records that stay current</h3>
-        <p class="build-item-desc">Custom CRM and database systems that track your customers, cases, and deals — synced across every tool you use.</p>
-      </li>
-      <li class="build-item">
-        <h3 class="build-item-title">Dashboards that tell you what matters</h3>
-        <p class="build-item-desc">Real-time operational views of your business. Not vanity metrics. The numbers that actually drive decisions.</p>
-      </li>
-      <li class="build-item">
-        <h3 class="build-item-title">Reports that compile themselves</h3>
-        <p class="build-item-desc">Scheduled data collection, processing, and delivery. Weekly reports, inventory snapshots, pipeline summaries — ready when you need them.</p>
-      </li>
-      <li class="build-item">
-        <h3 class="build-item-title">Documents that process themselves</h3>
-        <p class="build-item-desc">Incoming forms, contracts, and emails classified, extracted, and routed automatically. No manual data entry.</p>
-      </li>
-      <li class="build-item">
-        <h3 class="build-item-title">Follow-ups that don't get forgotten</h3>
-        <p class="build-item-desc">Automated client communication sequences. Reminders, check-ins, and status updates that fire on schedule.</p>
-      </li>
-      <li class="build-item">
-        <h3 class="build-item-title">AI that fits your existing stack</h3>
-        <p class="build-item-desc">Smart search, auto-categorization, and chat interfaces layered on top of the tools you already use — not replacing them.</p>
-      </li>
-    </ul>
+    <div class="build-stagger">
+      <div class="build-row" data-reveal>
+        <div class="build-media">
+          <img src="/images/n8n-workflow.png" width="800" height="500" loading="lazy" alt="" />
+        </div>
+        <div class="build-copy">
+          <h3 class="build-title">Workflow automation</h3>
+          <p class="build-desc">The repetitive steps between your tools, automated. Client intake, invoicing, scheduling, approvals. Data flows where it needs to go without someone retyping it or remembering to push it along.</p>
+        </div>
+      </div>
+
+      <div class="build-row" data-reveal>
+        <div class="build-copy">
+          <h3 class="build-title">Dashboards and reports</h3>
+          <p class="build-desc">One clear view of how your operation is actually running. Revenue, pipeline, utilization, whatever metrics matter to you. A single source of truth that stays current on its own.</p>
+        </div>
+        <div class="build-media">
+          <img src="/images/dashboard.png" width="800" height="500" loading="lazy" alt="" />
+        </div>
+      </div>
+
+      <div class="build-row" data-reveal>
+        <div class="build-media">
+          <img src="/images/doc-processing.png?v=3" width="800" height="500" loading="lazy" alt="" />
+        </div>
+        <div class="build-copy">
+          <h3 class="build-title">Document processing</h3>
+          <p class="build-desc">Forms, contracts, invoices. Extracted, classified, and routed as they arrive. Filed, tagged, and sent to the right person. Automatically.</p>
+        </div>
+      </div>
+
+      <div class="build-row" data-reveal>
+        <div class="build-copy">
+          <h3 class="build-title">CRM and client systems</h3>
+          <p class="build-desc">Custom databases built around how you track relationships. Contacts, deals, communication history, follow-ups. Synced across the tools you already use.</p>
+        </div>
+        <div class="build-media">
+          <img src="/images/crm-preview.png" width="800" height="500" loading="lazy" alt="" />
+        </div>
+      </div>
+
+      <div class="build-row" data-reveal>
+        <div class="build-media">
+          <img class="is-art" src="/images/agents.svg?v=6" width="800" height="500" loading="lazy" alt="" />
+        </div>
+        <div class="build-copy">
+          <h3 class="build-title">AI integration</h3>
+          <p class="build-desc">AI agents that watch, decide, and act on their own. Monitoring, triaging, flagging what needs attention. Running 24/7 on your infrastructure, governed by your rules.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -57,34 +72,72 @@
     margin: 0 auto;
   }
 
-  .build-list {
-    list-style: none;
+  .build-stagger {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .build-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2rem 3rem;
-    max-width: 56rem;
-    margin: 0 auto;
+    gap: 2.5rem;
+    align-items: center;
   }
 
-  .build-item-title {
-    font-size: 0.95rem;
+  .build-media {
+    line-height: 0;
+    border: 1px solid var(--site-border);
+    overflow: hidden;
+  }
+
+  .build-media img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/10;
+    object-fit: cover;
+    filter: brightness(0.65) contrast(1.05) saturate(0.4);
+  }
+
+  .build-media img.is-art {
+    filter: none;
+    object-fit: contain;
+    background: #0a0b0d;
+  }
+
+  .build-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .build-title {
+    font-size: clamp(1.2rem, 2.2vw, 1.6rem);
     font-weight: 600;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
     color: var(--site-text);
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.75rem;
   }
 
-  .build-item-desc {
-    font-size: 0.85rem;
-    line-height: 1.6;
+  .build-desc {
+    font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+    line-height: 1.7;
     color: var(--site-text-dim);
-    max-width: 24rem;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 26rem;
   }
 
-  @media (max-width: 600px) {
-    .build-list {
+  @media (max-width: 640px) {
+    .build-row {
       grid-template-columns: 1fr;
-      gap: 1.5rem;
+      gap: 1rem;
+    }
+
+    .build-media {
+      order: -1;
     }
   }
 </style>

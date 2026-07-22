@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="42%" r="48%">
+      <stop offset="0%" stop-color="#e07a5f" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#0a0b0d" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="500" fill="#0a0b0d"/>
+  <rect width="800" height="500" fill="url(#glow)"/>
+
+  <!-- ground plane -->
+  <line x1="0" y1="390" x2="800" y2="390" stroke="#23262e" stroke-width="1"/>
+  <g stroke="#e07a5f" stroke-width="1" opacity="0.14">
+    <line x1="400" y1="390" x2="80" y2="500"/>
+    <line x1="400" y1="390" x2="180" y2="500"/>
+    <line x1="400" y1="390" x2="280" y2="500"/>
+    <line x1="400" y1="390" x2="520" y2="500"/>
+    <line x1="400" y1="390" x2="620" y2="500"/>
+    <line x1="400" y1="390" x2="720" y2="500"/>
+    <line x1="0" y1="425" x2="800" y2="425"/>
+    <line x1="0" y1="460" x2="800" y2="460"/>
+  </g>
+
+  <!-- signal waves -->
+  <g fill="none" stroke="#e07a5f" stroke-linecap="round">
+    <path d="M230 190 Q210 240 230 290" stroke-width="3" opacity="0.45"/>
+    <path d="M208 160 Q180 240 208 320" stroke-width="2.5" opacity="0.28"/>
+    <path d="M186 130 Q148 240 186 350" stroke-width="2" opacity="0.15"/>
+    <path d="M570 190 Q590 240 570 290" stroke-width="3" opacity="0.45"/>
+    <path d="M592 160 Q620 240 592 320" stroke-width="2.5" opacity="0.28"/>
+    <path d="M614 130 Q652 240 614 350" stroke-width="2" opacity="0.15"/>
+  </g>
+
+  <!-- agent with original radar dish + smaller bolt eyes -->
+  <g transform="translate(280,115)">
+    <path d="M88 28 A44 24 0 0 1 152 28" fill="none" stroke="#e07a5f" stroke-width="9" stroke-linecap="round"/>
+    <line x1="120" y1="28" x2="120" y2="52" stroke="#e07a5f" stroke-width="7" stroke-linecap="round"/>
+    <path d="M72 16 A56 32 0 0 1 168 16" fill="none" stroke="#e07a5f" stroke-width="3.5" opacity="0.35"/>
+    <rect x="40" y="56" width="160" height="80" rx="4" fill="#e07a5f"/>
+    <!-- mid-size slim bolts -->
+    <path d="M75 75 L91 75 L83 92 L100 92 L68 125 L81 100 L65 100 Z" fill="#0a0b0d"/>
+    <path d="M149 75 L165 75 L157 92 L174 92 L142 125 L155 100 L139 100 Z" fill="#0a0b0d"/>
+    <rect x="40" y="148" width="160" height="80" rx="4" fill="#e07a5f"/>
+  </g>
+</svg>
