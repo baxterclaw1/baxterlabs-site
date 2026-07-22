@@ -62,7 +62,7 @@
 
   .timeline {
     position: relative;
-    max-width: 56rem;
+    max-width: 60rem;
     margin: 0 auto;
     display: flex;
     gap: 0;
@@ -73,14 +73,14 @@
     position: absolute;
     left: 0;
     right: 0;
-    top: 1rem;
+    top: 1.35rem;
     height: 1px;
     background: var(--site-border);
   }
 
   .timeline-step {
     position: relative;
-    padding-top: 2.5rem;
+    padding-top: 3.25rem;
     flex: 1;
     min-width: 0;
     text-align: center;
@@ -91,13 +91,13 @@
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 2rem;
-    height: 2rem;
+    width: 2.75rem;
+    height: 2.75rem;
     border-radius: 50%;
-    border: 1px solid var(--site-accent);
+    border: 1.5px solid var(--site-accent);
     background: var(--site-bg);
     color: var(--site-accent);
-    font-size: 0.75rem;
+    font-size: 0.95rem;
     font-weight: 600;
     display: flex;
     align-items: center;
@@ -106,18 +106,18 @@
   }
 
   .timeline-title {
-    font-size: 0.95rem;
+    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
     font-weight: 600;
     letter-spacing: -0.01em;
     color: var(--site-text);
-    margin-bottom: 0.45rem;
+    margin-bottom: 0.55rem;
   }
 
   .timeline-desc {
-    font-size: 0.8125rem;
-    line-height: 1.55;
+    font-size: clamp(0.9rem, 1.2vw, 0.98rem);
+    line-height: 1.6;
     color: var(--site-text-dim);
-    padding: 0 0.75rem;
+    padding: 0 0.6rem;
   }
 
   @media (max-width: 640px) {
