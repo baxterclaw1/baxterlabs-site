@@ -74,8 +74,8 @@ const {
           repelR: 100,
           repelS: 0.15,
           speed: 0.07,
-          dotMin: 0.13,
-          dotMax: 0.29,
+          dotMin: 0.15,
+          dotMax: 0.34,
           whiteRatio: 0.3,
           sizeMin: 1.0,
           sizeMax: 3.0,
@@ -115,11 +115,23 @@ const {
 
         function pSpawn() {
           const count = Math.floor((pw * ph) / CFG.countDiv) || 1;
+          /* Lay out particles on a grid with jitter for uniform coverage.
+             Random spawn creates clusters and gaps; grid+jitter spreads evenly. */
+          const cols = Math.ceil(Math.sqrt(count * (pw / ph)));
+          const rows = Math.ceil(count / cols);
+          const cellW = pw / cols;
+          const cellH = ph / rows;
+
           particles = [];
           for (let i = 0; i < count; i++) {
+            const col = i % cols;
+            const row = Math.floor(i / cols);
+            /* Jitter within 70% of the cell so particles don't overlap neighbors */
+            const jitX = (Math.random() - 0.5) * cellW * 0.7;
+            const jitY = (Math.random() - 0.5) * cellH * 0.7;
             particles.push({
-              x: Math.random() * pw,
-              y: Math.random() * ph,
+              x: col * cellW + cellW * 0.5 + jitX,
+              y: row * cellH + cellH * 0.5 + jitY,
               vx: (Math.random() - 0.5) * CFG.speed * 2,
               vy: (Math.random() - 0.5) * CFG.speed * 2,
               size: CFG.sizeMin + Math.random() * (CFG.sizeMax - CFG.sizeMin),
