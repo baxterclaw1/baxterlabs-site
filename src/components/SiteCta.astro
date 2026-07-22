@@ -100,12 +100,17 @@ const contactEmail = 'baxterlabs.io@gmail.com';
 
 <style>
   .site-cta {
-    max-width: var(--content-width);
-    margin: 0 auto;
+    width: 100%;
+    max-width: none;
+    margin: 0;
     padding: var(--section-pad-y) var(--section-pad-x);
+    background: var(--site-bg);
+    position: relative;
   }
 
   .site-cta-panel {
+    max-width: var(--content-width);
+    margin: 0 auto;
     border: 1px solid var(--site-border);
     box-shadow:
       0 0 0 1px rgba(224, 122, 95, 0.06),
