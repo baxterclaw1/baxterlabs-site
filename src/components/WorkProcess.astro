@@ -1,62 +1,48 @@
-<section class="work-section" id="how-we-work">
+<section class="work-section" id="what-to-expect">
   <div class="work-section-inner">
     <div class="site-section-head" data-reveal>
-      <h2 class="site-section-title">How we work</h2>
+      <h2 class="site-section-title">What to expect</h2>
       <p class="site-section-subtitle">
-        One conversation, no charge. You walk us through your operation.
-        We come back with a plan, a fixed price, and a timeline.
+        Save time, save money, expand your bandwidth.
       </p>
     </div>
 
-    <div class="work-process" data-reveal>
-      <div class="work-step">
-        <div class="work-marker" aria-hidden="true">
-          <span class="work-marker-bar"></span>
-        </div>
-        <h3 class="work-title">We learn how you operate</h3>
-        <p class="work-desc">
-          You walk us through what you do, where the friction is,
-          what you would stop doing tomorrow if you could. If it is
-          not a fit, we tell you. If it is, we come back with
-          something to look at.
+    <div class="timeline" data-reveal>
+      <div class="timeline-track" aria-hidden="true"></div>
+
+      <div class="timeline-step">
+        <div class="timeline-dot" aria-hidden="true">1</div>
+        <h3 class="timeline-title">Discover</h3>
+        <p class="timeline-desc">
+          A conversation about your operation. Together we find what
+          slows you down and if our services are a good fit.
         </p>
       </div>
 
-      <div class="work-step">
-        <div class="work-marker" aria-hidden="true">
-          <span class="work-marker-bar"></span>
-        </div>
-        <h3 class="work-title">We put a plan on the table</h3>
-        <p class="work-desc">
-          Built around the tools and processes you already have.
-          You get a fixed price and a clear picture of what changes,
-          what stays, and how long it takes. No template, no retainer
-          before you know what you are getting.
+      <div class="timeline-step">
+        <div class="timeline-dot" aria-hidden="true">2</div>
+        <h3 class="timeline-title">Propose</h3>
+        <p class="timeline-desc">
+          You get a written proposal. Scope, pricing, timeline, and how
+          we integrate with your existing systems.
         </p>
       </div>
 
-      <div class="work-step">
-        <div class="work-marker" aria-hidden="true">
-          <span class="work-marker-bar"></span>
-        </div>
-        <h3 class="work-title">We show our work</h3>
-        <p class="work-desc">
-          You see real pieces as they come together, not a finished
-          thing dropped on you weeks later. You give feedback as we go.
-          If something needs to change direction, we change it.
-          Not after the invoice.
+      <div class="timeline-step">
+        <div class="timeline-dot" aria-hidden="true">3</div>
+        <h3 class="timeline-title">Build</h3>
+        <p class="timeline-desc">
+          A weekly meeting keeps progress transparent, while also
+          incorporating your input to keep the vision aligned.
         </p>
       </div>
 
-      <div class="work-step">
-        <div class="work-marker">
-          <span class="work-marker-bar"></span>
-        </div>
-        <h3 class="work-title">We stay with it</h3>
-        <p class="work-desc">
-          After launch, we monitor, maintain, and adjust as your
-          business changes. If something breaks, fixing it is our job.
-          Not a support ticket queue. Not a line item on your to-do list.
+      <div class="timeline-step">
+        <div class="timeline-dot" aria-hidden="true">4</div>
+        <h3 class="timeline-title">Run</h3>
+        <p class="timeline-desc">
+          We monitor, we maintain, we adapt as your business and
+          technology evolve. Long-term relationships over volume.
         </p>
       </div>
     </div>
@@ -74,67 +60,106 @@
     margin: 0 auto;
   }
 
-  .work-process {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2.5rem 3rem;
-    max-width: 52rem;
-    margin: 0 auto;
-  }
-
-  .work-step {
+  .timeline {
     position: relative;
+    max-width: 56rem;
+    margin: 0 auto;
+    display: flex;
+    gap: 0;
+    padding: 0 0 1.5rem;
   }
 
-  .work-marker {
-    margin-bottom: 1.25rem;
+  .timeline-track {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 1rem;
+    height: 1px;
+    background: var(--site-border);
   }
 
-  .work-marker-bar {
-    display: block;
+  .timeline-step {
+    position: relative;
+    padding-top: 2.5rem;
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 2rem;
-    height: 3px;
-    background: var(--site-accent);
+    height: 2rem;
+    border-radius: 50%;
+    border: 1px solid var(--site-accent);
+    background: var(--site-bg);
+    color: var(--site-accent);
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
   }
 
-  .work-title {
-    font-size: 1.05rem;
+  .timeline-title {
+    font-size: 0.95rem;
     font-weight: 600;
     letter-spacing: -0.01em;
     color: var(--site-text);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.45rem;
   }
 
-  .work-desc {
-    font-size: 0.85rem;
-    line-height: 1.6;
+  .timeline-desc {
+    font-size: 0.8125rem;
+    line-height: 1.55;
     color: var(--site-text-dim);
-    max-width: 24rem;
+    padding: 0 0.75rem;
   }
 
-  @media (max-width: 600px) {
-    .work-process {
-      grid-template-columns: 1fr;
-      gap: 2rem;
+  @media (max-width: 640px) {
+    .timeline {
+      flex-direction: column;
+      gap: 0;
     }
 
-    .work-step {
+    .timeline-track {
+      left: 1rem;
+      right: auto;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      height: auto;
+    }
+
+    .timeline-step {
       display: grid;
       grid-template-columns: auto 1fr;
-      gap: 0 1rem;
+      gap: 0 1.25rem;
+      padding: 0 0 2.5rem;
+      text-align: left;
     }
 
-    .work-marker {
-      margin-bottom: 0;
-      padding-top: 0.45rem;
+    .timeline-step:last-child {
+      padding-bottom: 0;
     }
 
-    .work-title {
+    .timeline-dot {
+      position: static;
+      transform: none;
+      grid-column: 1;
+    }
+
+    .timeline-title,
+    .timeline-desc {
       grid-column: 2;
     }
 
-    .work-desc {
-      grid-column: 2;
+    .timeline-desc {
+      padding: 0;
     }
   }
 </style>
