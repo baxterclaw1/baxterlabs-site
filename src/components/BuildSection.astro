@@ -10,7 +10,7 @@
     <div class="build-stagger">
       <div class="build-row" data-reveal>
         <div class="build-media">
-          <img src="/images/n8n-workflow.png?v=1" width="800" height="500" loading="lazy" alt="" />
+          <img class="is-dim" src="/images/n8n-workflow.png?v=1" width="800" height="500" loading="lazy" alt="" />
         </div>
         <div class="build-copy">
           <h3 class="build-title">Workflow automation</h3>
@@ -30,7 +30,7 @@
 
       <div class="build-row" data-reveal>
         <div class="build-media">
-          <img src="/images/doc-processing.png?v=4" width="800" height="500" loading="lazy" alt="" />
+          <img class="is-soft" src="/images/doc-processing.png?v=4" width="800" height="500" loading="lazy" alt="" />
         </div>
         <div class="build-copy">
           <h3 class="build-title">Document processing</h3>
@@ -98,6 +98,14 @@
     aspect-ratio: 16/10;
     object-fit: cover;
     filter: brightness(0.92) contrast(1.05) saturate(0.75);
+  }
+
+  .build-media img.is-dim {
+    filter: brightness(0.65) contrast(1.05) saturate(0.4);
+  }
+
+  .build-media img.is-soft {
+    filter: brightness(0.8) contrast(1.05) saturate(0.65);
   }
 
   .build-media img.is-art {
