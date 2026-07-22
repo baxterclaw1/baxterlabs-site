@@ -36,7 +36,8 @@
 
 ## Deploy
 
-- [ ] Staging URL: TBD after Vercel connect
+- [x] Staging URL: TBD after Vercel connect
+- [x] Vercel auto-deploys from `main` branch to baxterlabs.io
 - [ ] Production DNS: do not touch baxterlabs.io until staging approved
 - [x] Book a Call URL: hero scrolls to `#contact` form (no Calendly yet)
 - [x] Contact inbox: baxterlabs.io@gmail.com (FormSubmit)
