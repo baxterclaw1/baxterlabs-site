@@ -36,7 +36,7 @@ Astro → static HTML. Local dev: `npm run dev`. Deploy: Vercel preview, then ba
 
 ## Team
 
-- **Mike** (co-founder) — Baxterclaw1@gmail.com
+- **Mike** (co-founder) — mike@baxterlabs.io
 - **Costa** (co-founder) — costa@baxterlabs.io
 - **Company**: BaxterLabs — father & son AI architects
 

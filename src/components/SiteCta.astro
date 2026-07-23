@@ -5,9 +5,9 @@ const contactEmail = 'baxterlabs.io@gmail.com';
 <section class="site-cta" id="contact" aria-labelledby="cta-heading">
   <div class="site-cta-panel">
     <div class="site-section-head">
-      <h2 id="cta-heading" class="site-section-title">Ready to see what's possible?</h2>
+      <h2 id="cta-heading" class="site-section-title">Send us a job description</h2>
       <p class="site-section-subtitle">
-        Book a 30-minute consultation. We'll discuss your biggest bottlenecks and explore if automation is right for you.
+        We'll design the agent that does the work — then tell you what it takes to build it.
       </p>
     </div>
 
@@ -31,17 +31,17 @@ const contactEmail = 'baxterlabs.io@gmail.com';
       </label>
 
       <label class="site-contact-field">
-        <span>What's going on</span>
+        <span>Job description</span>
         <textarea
           name="message"
           required
           rows="5"
-          placeholder="What's stuck, the tools you use, or what you'd like us to look at."
+          placeholder="Paste the role, the tools they use, and what a good week looks like."
         ></textarea>
       </label>
 
       <div class="site-contact-footer">
-        <button class="btn" type="submit" id="contact-submit">Send message</button>
+        <button class="btn" type="submit" id="contact-submit">Build your first agent</button>
         <p class="site-contact-status" id="contact-status" role="status" aria-live="polite" hidden></p>
       </div>
     </form>
@@ -92,7 +92,7 @@ const contactEmail = 'baxterlabs.io@gmail.com';
         statusEl.textContent = `Something went wrong. Email us at ${contactEmail}.`;
       } finally {
         submitBtn.disabled = false;
-        submitBtn.textContent = 'Send message';
+        submitBtn.textContent = 'Build your first agent';
       }
     });
   }

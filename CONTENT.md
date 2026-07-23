@@ -9,10 +9,17 @@
 
 ## Nav
 
-- Services `# DRAFT`
-- Process `# DRAFT`
-- Stack `# DRAFT`
-- Get in Touch `# DRAFT`
+- Home
+- Meet founders
+
+## Meet founders
+
+- **Title**: Costa & Mike
+- **Page intro**: none (no father-son line)
+- **Costa**: Co-founder · costa@baxterlabs.io · portrait sketch
+  - Bio: Costa trained as an organic chemist and spent years in industrial research and quality control. He later moved into AI and business systems, building workflows and internal tools for teams still stuck in manual process.
+- **Mike**: Co-founder · mike@baxterlabs.io · placeholder until photo · bio TBD
+- **Our ethos**: below portraits (see Our ethos section)
 
 ## Hero
 
@@ -36,6 +43,14 @@
 4. **Custom Dashboards** — Real-time operational dashboards that give you visibility into what matters. Live data, clean design, zero clutter. `# DRAFT`
 5. **Data Pipelines** — Collect, process, and route data from any source. Scheduled jobs, real-time streams, intelligent transformations. `# DRAFT`
 6. **AI Integration** — Plug intelligence into your existing tools. Document processing, smart search, auto-classification, chat interfaces — you name it. `# DRAFT`
+
+## Our ethos
+
+- **Title**: Our ethos
+- **Body**:
+  - Trust is earned in how we work: showing up prepared, communicating clearly, keeping our commitments, and following through with care. We are open about what we know, what we do not, what a project will cost, and what results are realistic. We do not hide behind technical language, overpromise to win work, or recommend complexity a client does not need.
+  - We hold ourselves to a high standard because this work affects real businesses, teams, and decisions. Every system we build should be dependable, secure, understandable, and worth the investment. We work hard, stay curious, and keep improving until the job is done properly, and we make sure clients always know where things stand, why decisions were made, and what they are getting.
+  - We measure success by the satisfaction of our partners and the strength of the relationships we build. Long-term, high-quality partnerships over a high volume of clients.
 
 ## Process
 
@@ -64,9 +79,10 @@
 
 ## CTA
 
-- **Title**: Let's build something that works for you. `# DRAFT`
-- **Body**: Tell us what's slowing your team down. We'll tell you what AI can do about it — no pitch decks, no fluff. `# DRAFT`
-- **Button**: costa@baxterlabs.io `# DRAFT`
+- **Title**: Send us a job description
+- **Body**: We'll design the agent that does the work — then tell you what it takes to build it.
+- **Form field**: Job description (paste the role, tools, what a good week looks like)
+- **Button**: Build your first agent
 
 ## Footer
 

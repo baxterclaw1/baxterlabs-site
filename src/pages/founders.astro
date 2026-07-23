@@ -1,0 +1,199 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Ethos from '../components/Ethos.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Base
+  title="Meet the founders — BaxterLabs"
+  description="Costa and Mike, co-founders of BaxterLabs — custom AI and automation for small business operations."
+>
+  <Nav />
+
+  <main class="founders">
+    <div class="founders-inner">
+      <header class="founders-head">
+        <p class="founders-label">Meet the founders</p>
+        <h1 class="founders-title">Costa &amp; Mike</h1>
+      </header>
+
+      <div class="founders-grid">
+        <article class="founder">
+          <div class="founder-portrait">
+            <img
+              src="/images/costa.jpg"
+              alt="Pencil sketch portrait of Costa"
+              width="1024"
+              height="686"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </div>
+          <h2 class="founder-name">Costa</h2>
+          <p class="founder-role">Co-founder</p>
+          <p class="founder-bio">
+            Costa trained as an organic chemist and spent years in industrial research and quality control.
+            He later moved into AI and business systems, building workflows and internal tools for teams still stuck in manual process.
+          </p>
+          <a class="founder-contact" href="mailto:costa@baxterlabs.io">costa@baxterlabs.io</a>
+        </article>
+
+        <article class="founder">
+          <div class="founder-portrait founder-portrait--placeholder" aria-hidden="true">
+            <span class="founder-initial">M</span>
+          </div>
+          <h2 class="founder-name">Mike</h2>
+          <p class="founder-role">Co-founder</p>
+          <a class="founder-contact" href="mailto:mike@baxterlabs.io">mike@baxterlabs.io</a>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <Ethos />
+  <Footer />
+</Base>
+
+<style>
+  .founders {
+    width: 100%;
+    padding: clamp(2.5rem, 6vw, 4.5rem) var(--section-pad-x) clamp(3rem, 8vw, 6rem);
+  }
+
+  .founders-inner {
+    max-width: var(--content-width);
+    margin: 0 auto;
+  }
+
+  .founders-head {
+    max-width: 36rem;
+    margin: 0 auto clamp(2.5rem, 6vw, 4rem);
+    text-align: center;
+  }
+
+  .founders-label {
+    margin: 0 0 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--site-accent);
+  }
+
+  .founders-title {
+    margin: 0;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .founders-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1.75rem, 4vw, 3rem);
+    max-width: 52rem;
+    margin: 0 auto;
+  }
+
+  .founder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 0;
+  }
+
+  .founder-portrait {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background: var(--site-surface);
+    margin-bottom: 1.15rem;
+    position: relative;
+  }
+
+  .founder-portrait img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 18%;
+    filter: brightness(0.72) contrast(1.05) saturate(0.85);
+  }
+
+  .founder-portrait::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(10, 11, 13, 0.12) 0%,
+      rgba(10, 11, 13, 0.28) 100%
+    );
+    pointer-events: none;
+  }
+
+  .founder-portrait--placeholder {
+    display: grid;
+    place-items: center;
+    background: linear-gradient(180deg, #16181f 0%, #101116 100%);
+    border: 1px solid var(--site-border);
+  }
+
+  .founder-portrait--placeholder::after {
+    display: none;
+  }
+
+  .founder-initial {
+    font-size: clamp(3.5rem, 10vw, 5.5rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    color: color-mix(in srgb, var(--site-text-dim) 55%, transparent);
+    line-height: 1;
+    user-select: none;
+  }
+
+  .founder-name {
+    margin: 0;
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .founder-role {
+    margin: 0.25rem 0 0.75rem;
+    font-size: 0.875rem;
+    color: var(--site-text-muted);
+  }
+
+  .founder-bio {
+    margin: 0 0 0.85rem;
+    max-width: 22rem;
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--site-text-dim);
+    text-wrap: pretty;
+  }
+
+  .founder-contact {
+    font-size: 0.875rem;
+    color: var(--site-accent);
+    text-decoration: none;
+    word-break: break-word;
+  }
+
+  .founder-contact:hover {
+    color: var(--site-accent-hover);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  @media (max-width: 640px) {
+    .founders-grid {
+      grid-template-columns: 1fr;
+      max-width: 22rem;
+    }
+  }
+</style>

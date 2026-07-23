@@ -14,16 +14,17 @@
 
 - [x] Homepage approach: **Strategy D** — static shapes + proof band, no interactive demo
 - [x] Marketing page: **dark theme** (`#0c0d10` site)
-- [x] Sections: Hero → What we build (8 items) → How we work → Systems proof (placeholder) → Contact → Footer
+- [x] Sections: Hero → What we build → How we work → Contact → Footer
 - [x] What we build: **Option D** — 8 items, no cards/flows, centered two-column list
-- [x] Nav: logo mark + wordmark (CTA lives in hero; scrolls to `#contact`)
+- [x] Nav: logo mark + wordmark left; **hamburger** upper right → Home, Meet founders
 - [x] Logo: **stacked bars** — shorter width, taller height, hard corners; SVG in `LogoMark.astro`
 - [x] Logo personification: **square dot eyes** on the top bar (matches little-agent mascot); not a separate mascot mark yet
 - [x] Corners: hard (no radius) on buttons and form inputs
 - [x] Content width: **90rem** · side pad **2rem** (between original 72 and stretched 112)
 - [x] Demo walkthrough: **removed from homepage** (legacy demo code retained in repo)
-- [x] CTAs: **one Build your first agent** below hero subtitle → `#contact`; nav is logo only (centered)
-- [x] Contact form: name, email, optional business, message → `baxterlabs.io@gmail.com` via FormSubmit
+- [x] CTAs: **one Build your first agent** below hero subtitle → `#contact`
+- [x] Meet founders: `/founders` — Costa portrait (`/images/costa.jpg` sketch), Mike placeholder initial until photo arrives; not on homepage hero
+- [x] Our ethos: on `/founders` below founder portraits; trust, transparency, no overpromise, quality over volume
 
 ## Copy
 
