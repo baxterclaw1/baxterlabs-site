@@ -12,14 +12,23 @@
 - Home
 - Meet the founders
 
+## About BaxterLabs
+
+- **Title**: About BaxterLabs (expandable button; collapsed on homepage)
+- **Sub** (coral): Meet the founders
+- **Costa** / **Mike** bios
+- **Sub** (coral): Our approach
+- Nav link: `/#about` opens the panel · `/founders` starts open
+
 ## Meet founders
 
 - **Title**: Costa & Mike
 - **Page intro**: none (no father-son line)
 - **Costa**: Co-founder · costa@baxterlabs.io · portrait sketch
-  - Bio: Costa trained as an organic chemist and spent years in industrial research and quality control. He later moved into AI and business systems, building workflows and internal tools for teams still stuck in manual process.
-- **Mike**: Co-founder · mike@baxterlabs.io · placeholder until photo · bio TBD
-- **Our ethos**: below portraits (see Our ethos section)
+  - Bio: Costa has a master's in organic chemistry where he spent years in industrial research and engineering. He later moved into AI and business systems, building workflows and internal tools for teams still stuck in manual process. On the team he focuses on system design and AI workflows.
+- **Mike**: Co-founder · mike@baxterlabs.io · placeholder until photo
+  - Bio: Mike spent nearly twenty years as a general manager running operations end to end. He contributes logistics and a ground-level understanding of how businesses operate, including years of managing and delegating the manual work that slows teams down.
+- **Our approach**: coral subhead under founders in the About block
 
 ## Hero
 
@@ -44,13 +53,13 @@
 5. **Data Pipelines** — Collect, process, and route data from any source. Scheduled jobs, real-time streams, intelligent transformations. `# DRAFT`
 6. **AI Integration** — Plug intelligence into your existing tools. Document processing, smart search, auto-classification, chat interfaces — you name it. `# DRAFT`
 
-## Our ethos
+## Our approach
 
-- **Title**: Our ethos
-- **Body**:
-  - Trust is earned in how we work: showing up prepared, communicating clearly, keeping our commitments, and following through with care. We are open about what we know, what we do not, what a project will cost, and what results are realistic. We do not hide behind technical language, overpromise to win work, or recommend complexity a client does not need.
-  - We hold ourselves to a high standard because this work affects real businesses, teams, and decisions. Every system we build should be dependable, secure, understandable, and worth the investment. We work hard, stay curious, and keep improving until the job is done properly, and we make sure clients always know where things stand, why decisions were made, and what they are getting.
-  - We measure success by the satisfaction of our partners and the strength of the relationships we build. Long-term, high-quality partnerships over a high volume of clients.
+- **Title**: Our approach
+- **Body** (synthesized from product principles: Tarmac, AutoFoundry, Baxter Financial Mentor, Bit Buzz, LJS):
+  - We start with the smallest dependable version that works. Simple, fast, private, and polished. Complexity gets added only when it has earned its place through real value, not because it was possible.
+  - Research comes before generation. Ideas become structured, testable systems with clear planning and patterns you can maintain. Automation should stay understandable and grounded, not a black box nobody can explain.
+  - We teach before we automate. Users stay informed, decisions stay in human hands, and every interaction should make sense: what it does, why it matters, and what happens next. Technology can speed up the work and keep records clean, but it should never hide responsibility or judgment.
 
 ## Process
 
@@ -79,9 +88,9 @@
 
 ## CTA
 
-- **Title**: Send us a job description
-- **Body**: We'll design the agent that does the work — then tell you what it takes to build it.
-- **Form field**: Job description (paste the role, tools, what a good week looks like)
+- **Title**: Ready to see what's possible?
+- **Body**: Book a 30-minute consultation. We'll discuss your biggest bottlenecks and explore if automation is right for you.
+- **Form field**: What's going on (about your business, the tools you use, questions, or a job description you'd like automated)
 - **Button**: Build your first agent
 
 ## Footer

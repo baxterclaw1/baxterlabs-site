@@ -1,0 +1,404 @@
+---
+interface Props {
+  /** Open on load (e.g. dedicated /founders page). Homepage stays collapsed. */
+  startOpen?: boolean;
+}
+
+const { startOpen = false } = Astro.props;
+---
+
+<section
+  id="about"
+  data-about
+  data-start-open={startOpen ? 'true' : 'false'}
+  class:list={['about', { 'is-open': startOpen }]}
+>
+  <div class="about-inner">
+    <button
+      class="about-toggle"
+      type="button"
+      aria-expanded={startOpen ? 'true' : 'false'}
+      aria-controls="about-panel"
+      data-about-toggle
+    >
+      <span class="about-toggle-label">About BaxterLabs</span>
+      <span class="about-toggle-icon" aria-hidden="true"></span>
+    </button>
+
+    <div
+      class="about-panel"
+      id="about-panel"
+      data-about-panel
+      aria-hidden={startOpen ? 'false' : 'true'}
+      inert={!startOpen ? true : undefined}
+    >
+      <div class="about-panel-inner">
+        <div class="about-card">
+          <h3 class="about-section-title" id="meet-the-founders">Meet the founders</h3>
+
+          <div class="about-founders">
+            <article class="about-founder">
+              <div class="about-portrait">
+                <img
+                  src="/images/costa.jpg"
+                  alt="Pencil sketch portrait of Costa"
+                  width="1024"
+                  height="686"
+                  loading="lazy"
+                />
+              </div>
+              <h3 class="about-name">Costa</h3>
+              <p class="about-role">Co-founder</p>
+              <p class="about-bio">
+                Costa has a master's in organic chemistry where he spent years in industrial research and engineering.
+                He later moved into AI and business systems, building workflows and internal tools for teams still stuck in manual process.
+                On the team he focuses on system design and AI workflows.
+              </p>
+              <a class="about-contact" href="mailto:costa@baxterlabs.io">costa@baxterlabs.io</a>
+            </article>
+
+            <article class="about-founder">
+              <div class="about-portrait about-portrait--placeholder" aria-hidden="true">
+                <span class="about-initial">M</span>
+              </div>
+              <h3 class="about-name">Mike</h3>
+              <p class="about-role">Co-founder</p>
+              <p class="about-bio">
+                Mike spent nearly twenty years as a general manager running operations end to end.
+                He contributes logistics and a ground-level understanding of how businesses operate, including years of managing and delegating the manual work that slows teams down.
+              </p>
+              <a class="about-contact" href="mailto:mike@baxterlabs.io">mike@baxterlabs.io</a>
+            </article>
+          </div>
+
+          <h3 class="about-section-title about-section-title--spaced" id="approach">Our approach</h3>
+          <div class="about-approach">
+            <p>
+              We start with the smallest dependable version that works.
+              Simple, fast, private, and polished. Complexity gets added only when it
+              has earned its place through real value, not because it was possible.
+            </p>
+            <p>
+              Research comes before generation. Ideas become structured, testable systems
+              with clear planning and patterns you can maintain. Automation should stay
+              understandable and grounded, not a black box nobody can explain.
+            </p>
+            <p>
+              We teach before we automate. Users stay informed, decisions stay in human
+              hands, and every interaction should make sense: what it does, why it matters,
+              and what happens next. Technology can speed up the work and keep records
+              clean, but it should never hide responsibility or judgment.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const root = document.querySelector('[data-about]');
+  const toggle = document.querySelector('[data-about-toggle]');
+  const panel = document.querySelector('[data-about-panel]');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (
+    root instanceof HTMLElement &&
+    toggle instanceof HTMLButtonElement &&
+    panel instanceof HTMLElement
+  ) {
+    const setOpen = (open, { scroll } = { scroll: false }) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      root.classList.toggle('is-open', open);
+      panel.setAttribute('aria-hidden', String(!open));
+      if (open) panel.removeAttribute('inert');
+      else panel.setAttribute('inert', '');
+      if (open && scroll) {
+        root.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+      }
+    };
+
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') !== 'true';
+      setOpen(open);
+    });
+
+    const hashTargets = new Set(['#about', '#meet-the-founders', '#approach', '#ethos']);
+    const openFromHash = () => {
+      if (hashTargets.has(window.location.hash)) setOpen(true, { scroll: true });
+    };
+
+    openFromHash();
+    window.addEventListener('hashchange', openFromHash);
+
+    if (root.dataset.startOpen === 'true') setOpen(true);
+  }
+</script>
+
+<style>
+  .about {
+    padding: var(--section-pad-y) var(--section-pad-x);
+  }
+
+  .about-inner {
+    max-width: var(--content-width);
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-toggle {
+    appearance: none;
+    -webkit-appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.9rem;
+    margin: 0;
+    padding: 0.35rem 0.15rem 0.55rem;
+    border: none;
+    border-bottom: 1px solid color-mix(in srgb, var(--site-text) 22%, transparent);
+    border-radius: 0;
+    background: transparent;
+    color: var(--site-text);
+    cursor: pointer;
+    font-family: inherit;
+    box-shadow: none;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .about-toggle:hover {
+    color: var(--site-accent);
+    border-bottom-color: var(--site-accent);
+  }
+
+  .about.is-open .about-toggle {
+    color: var(--site-accent);
+    border-bottom-color: var(--site-accent);
+  }
+
+  .about-toggle-label {
+    font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .about-toggle-icon {
+    display: block;
+    width: 0.75rem;
+    height: 0.75rem;
+    margin-top: 0.35rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform 0.35s ease;
+    flex-shrink: 0;
+    opacity: 0.85;
+  }
+
+  .about.is-open .about-toggle-icon {
+    margin-top: 0.55rem;
+    transform: rotate(225deg);
+  }
+
+  .about-panel {
+    width: 100%;
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .about.is-open .about-panel {
+    grid-template-rows: 1fr;
+  }
+
+  .about-panel-inner {
+    overflow: hidden;
+    min-height: 0;
+    opacity: 0;
+    transform: translateY(-0.75rem);
+    transition:
+      opacity 0.4s ease 0.05s,
+      transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .about.is-open .about-panel-inner {
+    opacity: 1;
+    transform: translateY(0);
+    padding-top: 1.5rem;
+  }
+
+  .about-card {
+    width: 100%;
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: clamp(1.75rem, 4vw, 2.75rem) clamp(1.25rem, 3vw, 2.25rem);
+    border: 1px solid color-mix(in srgb, var(--site-accent) 28%, var(--site-border));
+    background:
+      linear-gradient(
+        165deg,
+        color-mix(in srgb, var(--site-accent) 14%, #0a0b0d) 0%,
+        color-mix(in srgb, var(--site-accent) 6%, #0c0d10) 45%,
+        #0a0b0d 100%
+      );
+    text-align: center;
+  }
+
+  .about-section-title {
+    margin: 0 0 1.35rem;
+    padding-bottom: 0.65rem;
+    font-size: clamp(1.2rem, 2.4vw, 1.45rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--site-text);
+    border-bottom: 1px solid color-mix(in srgb, var(--site-accent) 22%, var(--site-border));
+  }
+
+  .about-section-title--spaced {
+    margin-top: 2.5rem;
+  }
+
+  .about-founders {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1.25rem, 3vw, 2rem);
+    max-width: 38rem;
+    margin: 0 auto;
+  }
+
+  .about-founder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 0;
+    height: 100%;
+  }
+
+  .about-portrait {
+    width: 100%;
+    max-width: 11.5rem;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background: var(--site-surface);
+    margin-bottom: 0.85rem;
+    position: relative;
+  }
+
+  .about-portrait img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 18%;
+    filter: brightness(0.72) contrast(1.05) saturate(0.85);
+  }
+
+  .about-portrait::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(10, 11, 13, 0.12) 0%,
+      rgba(10, 11, 13, 0.28) 100%
+    );
+    pointer-events: none;
+  }
+
+  .about-portrait--placeholder {
+    display: grid;
+    place-items: center;
+    background: linear-gradient(180deg, #16181f 0%, #101116 100%);
+    border: 1px solid var(--site-border);
+  }
+
+  .about-portrait--placeholder::after {
+    display: none;
+  }
+
+  .about-initial {
+    font-size: clamp(2.25rem, 6vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    color: color-mix(in srgb, var(--site-text-dim) 55%, transparent);
+    line-height: 1;
+    user-select: none;
+  }
+
+  .about-name {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .about-role {
+    margin: 0.15rem 0 0.55rem;
+    font-size: 0.8125rem;
+    color: var(--site-text-muted);
+  }
+
+  .about-bio {
+    margin: 0;
+    max-width: 18rem;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--site-text-dim);
+    text-wrap: pretty;
+    flex: 1 1 auto;
+  }
+
+  .about-contact {
+    margin-top: 0.65rem;
+    font-size: 0.8125rem;
+    color: var(--site-accent);
+    text-decoration: none;
+    word-break: break-word;
+  }
+
+  .about-contact:hover {
+    color: var(--site-accent-hover);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .about-approach {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 36rem;
+    margin: 0 auto;
+  }
+
+  .about-approach p {
+    margin: 0;
+    font-size: clamp(0.9375rem, 1.4vw, 1.05rem);
+    line-height: 1.65;
+    color: var(--site-text-dim);
+    text-wrap: pretty;
+  }
+
+  @media (max-width: 640px) {
+    .about-founders {
+      grid-template-columns: 1fr;
+      max-width: 16rem;
+    }
+
+    .about-portrait {
+      max-width: 10rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .about-toggle,
+    .about-toggle-icon,
+    .about-panel,
+    .about-panel-inner {
+      transition: none;
+    }
+  }
+</style>

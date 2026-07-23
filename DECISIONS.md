@@ -14,7 +14,7 @@
 
 - [x] Homepage approach: **Strategy D** — static shapes + proof band, no interactive demo
 - [x] Marketing page: **dark theme** (`#0c0d10` site)
-- [x] Sections: Hero → What we build → How we work → Contact → Footer
+- [x] Sections: Hero → What we build → What to expect → Contact → About BaxterLabs → Footer
 - [x] What we build: **Option D** — 8 items, no cards/flows, centered two-column list
 - [x] Nav: logo mark + wordmark left; **hamburger** upper right → Home, Meet the founders
 - [x] Logo: **stacked bars** — shorter width, taller height, hard corners; SVG in `LogoMark.astro`
@@ -23,8 +23,7 @@
 - [x] Content width: **90rem** · side pad **2rem** (between original 72 and stretched 112)
 - [x] Demo walkthrough: **removed from homepage** (legacy demo code retained in repo)
 - [x] CTAs: **one Build your first agent** below hero subtitle → `#contact`
-- [x] Meet founders: `/founders` — Costa portrait (`/images/costa.jpg` sketch), Mike placeholder initial until photo arrives; not on homepage hero
-- [x] Our ethos: on `/founders` below founder portraits; trust, transparency, no overpromise, quality over volume
+- [x] About BaxterLabs: expandable control after Contact (collapsed by default); opens to Meet the founders + Our approach; `/#about` opens panel; `/founders` starts open; nav → `/#about`
 
 ## Copy
 
