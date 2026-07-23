@@ -10,7 +10,7 @@
 ## Nav
 
 - Home
-- Meet founders
+- Meet the founders
 
 ## Meet founders
 

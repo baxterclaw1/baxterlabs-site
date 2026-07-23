@@ -16,7 +16,7 @@
 - [x] Marketing page: **dark theme** (`#0c0d10` site)
 - [x] Sections: Hero → What we build → How we work → Contact → Footer
 - [x] What we build: **Option D** — 8 items, no cards/flows, centered two-column list
-- [x] Nav: logo mark + wordmark left; **hamburger** upper right → Home, Meet founders
+- [x] Nav: logo mark + wordmark left; **hamburger** upper right → Home, Meet the founders
 - [x] Logo: **stacked bars** — shorter width, taller height, hard corners; SVG in `LogoMark.astro`
 - [x] Logo personification: **square dot eyes** on the top bar (matches little-agent mascot); not a separate mascot mark yet
 - [x] Corners: hard (no radius) on buttons and form inputs
