@@ -160,53 +160,94 @@ const { startOpen = false } = Astro.props;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.9rem;
+    gap: 1rem;
     margin: 0;
-    padding: 0.35rem 0.15rem 0.55rem;
-    border: none;
-    border-bottom: 1px solid color-mix(in srgb, var(--site-text) 22%, transparent);
+    padding: 0.95rem 1.35rem 1.05rem 1.5rem;
+    border: 1px solid color-mix(in srgb, var(--site-accent) 42%, var(--site-border));
     border-radius: 0;
-    background: transparent;
+    background: color-mix(in srgb, var(--site-accent) 8%, transparent);
     color: var(--site-text);
     cursor: pointer;
     font-family: inherit;
     box-shadow: none;
-    transition: color 0.2s ease, border-color 0.2s ease;
+    transition:
+      color 0.2s ease,
+      border-color 0.2s ease,
+      background 0.2s ease;
   }
 
-  .about-toggle:hover {
-    color: var(--site-accent);
-    border-bottom-color: var(--site-accent);
+  .about-toggle:hover,
+  .about-toggle:focus-visible {
+    color: var(--site-text);
+    border-color: var(--site-accent);
+    background: color-mix(in srgb, var(--site-accent) 14%, transparent);
+  }
+
+  .about-toggle:focus-visible {
+    outline: 2px solid var(--site-accent);
+    outline-offset: 3px;
   }
 
   .about.is-open .about-toggle {
-    color: var(--site-accent);
-    border-bottom-color: var(--site-accent);
+    border-color: var(--site-accent);
+    background: color-mix(in srgb, var(--site-accent) 12%, transparent);
   }
 
   .about-toggle-label {
-    font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+    font-size: clamp(1.55rem, 4vw, 2.35rem);
     font-weight: 600;
     letter-spacing: -0.03em;
     line-height: 1.1;
   }
 
   .about-toggle-icon {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    flex-shrink: 0;
+    border: 1px solid color-mix(in srgb, var(--site-accent) 55%, var(--site-border));
+    color: var(--site-accent);
+    transition: border-color 0.2s ease, transform 0.35s ease, background 0.2s ease;
+  }
+
+  .about-toggle-icon::before {
+    content: '';
     display: block;
-    width: 0.75rem;
-    height: 0.75rem;
-    margin-top: 0.35rem;
+    width: 0.55rem;
+    height: 0.55rem;
+    margin-top: -0.15rem;
     border-right: 2px solid currentColor;
     border-bottom: 2px solid currentColor;
     transform: rotate(45deg);
-    transition: transform 0.35s ease;
-    flex-shrink: 0;
-    opacity: 0.85;
+    transition: transform 0.35s ease, margin-top 0.35s ease;
   }
 
+  .about-toggle:hover .about-toggle-icon,
   .about.is-open .about-toggle-icon {
-    margin-top: 0.55rem;
+    border-color: var(--site-accent);
+    background: color-mix(in srgb, var(--site-accent) 16%, transparent);
+  }
+
+  .about.is-open .about-toggle-icon::before {
+    margin-top: 0.2rem;
     transform: rotate(225deg);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .about:not(.is-open) .about-toggle-icon {
+      animation: about-chevron-nudge 1.8s ease-in-out infinite;
+    }
+  }
+
+  @keyframes about-chevron-nudge {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(0.2rem);
+    }
   }
 
   .about-panel {
@@ -404,6 +445,7 @@ const { startOpen = false } = Astro.props;
     .about-panel,
     .about-panel-inner {
       transition: none;
+      animation: none;
     }
   }
 </style>

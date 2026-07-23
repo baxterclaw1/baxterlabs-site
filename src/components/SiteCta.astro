@@ -41,7 +41,7 @@ const contactEmail = 'baxterlabs.io@gmail.com';
       </label>
 
       <div class="site-contact-footer">
-        <button class="btn" type="submit" id="contact-submit">Build your first agent</button>
+        <button class="btn btn--green" type="submit" id="contact-submit">Submit</button>
         <p class="site-contact-status" id="contact-status" role="status" aria-live="polite" hidden></p>
       </div>
     </form>
@@ -210,7 +210,12 @@ const contactEmail = 'baxterlabs.io@gmail.com';
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    margin-top: 0.25rem;
+    margin-top: clamp(1.25rem, 2.5vw, 1.75rem);
+  }
+
+  .site-contact-footer .btn {
+    font-size: 1.0625rem;
+    padding: 0.95rem 1.55rem 0.95rem 1.85rem;
   }
 
   .site-contact-footer .btn:disabled {

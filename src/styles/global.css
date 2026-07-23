@@ -96,28 +96,51 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.65rem 1.35rem;
+  gap: 0.65rem;
+  padding: 0.75rem 1.25rem 0.75rem 1.5rem;
   font-family: inherit;
   font-size: 0.875rem;
   font-weight: 500;
   color: #0a0b0d;
   background: var(--site-accent);
   border: none;
-  border-radius: 0;
+  border-radius: 0.7rem;
   text-decoration: none;
   cursor: pointer;
   white-space: nowrap;
+  box-shadow: 0 10px 28px rgba(224, 122, 95, 0.24);
   transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn::after {
+  content: '→';
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform 0.15s ease;
 }
 
 .btn:hover {
   background: var(--site-accent-hover);
   transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(224, 122, 95, 0.25);
+  box-shadow: 0 14px 34px rgba(224, 122, 95, 0.34);
+}
+
+.btn:hover::after {
+  transform: translateX(3px);
 }
 
 .btn:active {
   transform: translateY(0) scale(0.98);
+}
+
+.btn--green {
+  background: #5f9a68;
+  box-shadow: 0 10px 28px rgba(95, 154, 104, 0.28);
+}
+
+.btn--green:hover {
+  background: #6eaa77;
+  box-shadow: 0 14px 34px rgba(95, 154, 104, 0.38);
 }
 
 /* Scroll reveal (gated by reduced motion; JS adds .is-visible) */

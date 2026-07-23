@@ -9,16 +9,15 @@
 
 ## Nav
 
-- Home
-- Meet the founders
+- Logo mark + wordmark only (links home). No hamburger / section menu.
 
 ## About BaxterLabs
 
-- **Title**: About BaxterLabs (expandable button; collapsed on homepage)
+- **Title**: About BaxterLabs (expandable control; bordered + chevron so it reads as clickable; collapsed on homepage)
 - **Sub** (coral): Meet the founders
 - **Costa** / **Mike** bios
 - **Sub** (coral): Our approach
-- Nav link: `/#about` opens the panel · `/founders` starts open
+- Deep link: `/#about` opens the panel · `/founders` starts open
 
 ## Meet founders
 
@@ -90,8 +89,9 @@
 
 - **Title**: Ready to see what's possible?
 - **Body**: Book a 30-minute consultation. We'll discuss your biggest bottlenecks and explore if automation is right for you.
+- **Button**: Submit (green)
+- **Hero CTA**: Build your first agent (scrolls to `#contact`)
 - **Form field**: What's going on (about your business, the tools you use, questions, or a job description you'd like automated)
-- **Button**: Build your first agent
 
 ## Footer
 

@@ -9,7 +9,7 @@ const words = [
 ];
 ---
 
-<section class="hero">
+<section class="hero" id="top">
   <div class="hero-bg" aria-hidden="true"></div>
   <div class="hero-inner">
     <h1 class="hero-title">
@@ -191,32 +191,9 @@ const words = [
   }
 
   .hero-cta {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
     margin-top: clamp(1.5rem, 2.8vw, 2rem);
     font-size: clamp(1rem, 1.5vw, 1.125rem);
-    font-weight: 500;
-    padding: 0.8rem 2rem;
-    color: #0a0b0d;
-    background: var(--site-accent);
-    border: none;
-    border-radius: 0;
-    text-decoration: none;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
-  }
-
-  .hero-cta:hover {
-    background: var(--site-accent-hover);
-    transform: translateY(-1px);
-    box-shadow: 0 8px 24px rgba(224, 122, 95, 0.3);
-  }
-
-  .hero-cta:active {
-    transform: translateY(0) scale(0.98);
-    box-shadow: none;
+    padding: 0.85rem 1.5rem 0.85rem 1.85rem;
   }
 
   /* Phone only — larger type, still fits the longest rotating phrases */

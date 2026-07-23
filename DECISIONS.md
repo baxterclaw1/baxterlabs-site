@@ -16,14 +16,15 @@
 - [x] Marketing page: **dark theme** (`#0c0d10` site)
 - [x] Sections: Hero → What we build → What to expect → Contact → About BaxterLabs → Footer
 - [x] What we build: **Option D** — 8 items, no cards/flows, centered two-column list
-- [x] Nav: logo mark + wordmark left; **hamburger** upper right → Home, Meet the founders
+- [x] Nav: logo mark + wordmark left only (no hamburger / section menu)
 - [x] Logo: **stacked bars** — shorter width, taller height, hard corners; SVG in `LogoMark.astro`
 - [x] Logo personification: **square dot eyes** on the top bar (matches little-agent mascot); not a separate mascot mark yet
-- [x] Corners: hard (no radius) on buttons and form inputs
+- [x] Corners: hard (no radius) on form inputs; primary CTA soft radius (option O)
+- [x] Primary CTA style: soft corners + arrow + warm coral glow (hero); contact Submit uses green variant of same shape
 - [x] Content width: **90rem** · side pad **2rem** (between original 72 and stretched 112)
 - [x] Demo walkthrough: **removed from homepage** (legacy demo code retained in repo)
 - [x] CTAs: **one Build your first agent** below hero subtitle → `#contact`
-- [x] About BaxterLabs: expandable control after Contact (collapsed by default); opens to Meet the founders + Our approach; `/#about` opens panel; `/founders` starts open; nav → `/#about`
+- [x] About BaxterLabs: expandable control after Contact (collapsed by default); bordered control + chevron so it reads as clickable; opens to Meet the founders + Our approach; `/#about` opens panel; `/founders` starts open
 
 ## Copy
 

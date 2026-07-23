@@ -1,7 +1,5 @@
 ---
 import LogoMark from './LogoMark.astro';
-
-const pathname = Astro.url.pathname;
 ---
 
 <header class="nav">
@@ -10,68 +8,8 @@ const pathname = Astro.url.pathname;
       <LogoMark />
       <span>BaxterLabs</span>
     </a>
-
-    <button
-      class="nav-menu-btn"
-      type="button"
-      aria-expanded="false"
-      aria-controls="nav-menu"
-      aria-label="Open menu"
-      data-nav-toggle
-    >
-      <span class="nav-menu-icon" aria-hidden="true">
-        <span></span>
-        <span></span>
-        <span></span>
-      </span>
-    </button>
-  </div>
-
-  <div class="nav-menu" id="nav-menu" data-nav-menu hidden>
-    <nav class="nav-menu-panel" aria-label="Site">
-      <a class:list={['nav-menu-link', { 'is-active': pathname === '/' }]} href="/">Home</a>
-      <a
-        class:list={['nav-menu-link', { 'is-active': pathname.startsWith('/founders') }]}
-        href="/#about"
-      >
-        Meet the founders
-      </a>
-    </nav>
   </div>
 </header>
-
-<script>
-  const toggle = document.querySelector('[data-nav-toggle]');
-  const menu = document.querySelector('[data-nav-menu]');
-
-  if (toggle instanceof HTMLButtonElement && menu instanceof HTMLElement) {
-    const setOpen = (open) => {
-      toggle.setAttribute('aria-expanded', String(open));
-      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-      toggle.classList.toggle('is-open', open);
-      menu.hidden = !open;
-      document.body.classList.toggle('nav-menu-open', open);
-    };
-
-    toggle.addEventListener('click', () => {
-      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
-    });
-
-    menu.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => setOpen(false));
-    });
-
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') setOpen(false);
-    });
-
-    document.addEventListener('click', (event) => {
-      if (!(event.target instanceof Node)) return;
-      if (toggle.contains(event.target) || menu.contains(event.target)) return;
-      if (toggle.getAttribute('aria-expanded') === 'true') setOpen(false);
-    });
-  }
-</script>
 
 <style>
   .nav {
@@ -116,105 +54,6 @@ const pathname = Astro.url.pathname;
     flex-shrink: 0;
   }
 
-  .nav-menu-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.75rem;
-    height: 2.75rem;
-    margin: 0;
-    padding: 0;
-    border: 1px solid color-mix(in srgb, var(--site-text) 28%, var(--site-border));
-    background: transparent;
-    color: var(--site-text);
-    cursor: pointer;
-    flex-shrink: 0;
-    transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
-  }
-
-  .nav-menu-btn:hover {
-    border-color: var(--site-accent);
-    color: var(--site-accent);
-  }
-
-  .nav-menu-icon {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 1.2rem;
-    height: 0.9rem;
-  }
-
-  .nav-menu-icon span {
-    display: block;
-    height: 2px;
-    width: 100%;
-    background: currentColor;
-    transform-origin: center;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-  }
-
-  .nav-menu-btn.is-open .nav-menu-icon span:nth-child(1) {
-    transform: translateY(0.35rem) rotate(45deg);
-  }
-
-  .nav-menu-btn.is-open .nav-menu-icon span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .nav-menu-btn.is-open .nav-menu-icon span:nth-child(3) {
-    transform: translateY(-0.35rem) rotate(-45deg);
-  }
-
-  .nav-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: color-mix(in srgb, var(--site-bg) 94%, transparent);
-    border-bottom: 1px solid var(--site-border);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-  }
-
-  .nav-menu[hidden] {
-    display: none;
-  }
-
-  .nav-menu-panel {
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-    max-width: var(--content-width);
-    margin: 0 auto;
-    padding: 0.5rem var(--section-pad-x) 1.25rem;
-  }
-
-  .nav-menu-link {
-    display: block;
-    padding: 0.85rem 0;
-    font-size: 1.125rem;
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    text-decoration: none;
-    color: var(--site-text);
-    border-bottom: 1px solid var(--site-border);
-    transition: color 0.15s ease, padding-left 0.15s ease;
-  }
-
-  .nav-menu-link:last-child {
-    border-bottom: none;
-  }
-
-  .nav-menu-link:hover,
-  .nav-menu-link.is-active {
-    color: var(--site-accent);
-  }
-
-  .nav-menu-link:hover {
-    padding-left: 0.35rem;
-  }
-
   @media (max-width: 520px) {
     .nav-inner {
       padding: 1rem var(--section-pad-x);
@@ -229,23 +68,11 @@ const pathname = Astro.url.pathname;
       width: 22px;
       height: 22px;
     }
-
-    .nav-menu-btn {
-      width: 2.5rem;
-      height: 2.5rem;
-    }
   }
 
   @media (max-width: 360px) {
     .nav-logo {
       font-size: 0.95rem;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .nav-menu-icon span,
-    .nav-menu-link {
-      transition: none;
     }
   }
 </style>
