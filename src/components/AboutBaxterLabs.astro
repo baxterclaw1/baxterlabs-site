@@ -164,7 +164,7 @@ const { startOpen = false } = Astro.props;
     margin: 0;
     padding: 0.95rem 1.35rem 1.05rem 1.5rem;
     border: 1px solid color-mix(in srgb, var(--site-accent) 42%, var(--site-border));
-    border-radius: 0;
+    border-radius: 0.7rem;
     background: color-mix(in srgb, var(--site-accent) 8%, transparent);
     color: var(--site-text);
     cursor: pointer;
@@ -206,9 +206,7 @@ const { startOpen = false } = Astro.props;
     width: 2.25rem;
     height: 2.25rem;
     flex-shrink: 0;
-    border: 1px solid color-mix(in srgb, var(--site-accent) 55%, var(--site-border));
-    color: var(--site-accent);
-    transition: border-color 0.2s ease, transform 0.35s ease, background 0.2s ease;
+    border-radius: 0.45rem;
   }
 
   .about-toggle-icon::before {
