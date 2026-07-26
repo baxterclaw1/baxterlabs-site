@@ -62,10 +62,10 @@
 
   .timeline {
     position: relative;
-    max-width: 62rem;
+    max-width: 78rem;
     margin: 0 auto;
     display: flex;
-    gap: 0;
+    gap: 1.5rem;
     padding: 0 0 1.5rem;
   }
 
@@ -74,14 +74,14 @@
     /* Run from center of step 1 to center of step 4 so both ends meet the dots */
     left: 12.5%;
     right: 12.5%;
-    top: 1.5rem;
+    top: 2rem;
     height: 1px;
     background: var(--site-border);
   }
 
   .timeline-step {
     position: relative;
-    padding-top: 3.15rem;
+    padding-top: 4.35rem;
     flex: 1;
     min-width: 0;
     text-align: center;
@@ -92,13 +92,13 @@
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 3rem;
-    height: 3rem;
+    width: 4rem;
+    height: 4rem;
     border-radius: 50%;
     border: 1.5px solid var(--site-accent);
     background: var(--site-bg);
     color: var(--site-accent);
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: 600;
     display: flex;
     align-items: center;
@@ -107,19 +107,19 @@
   }
 
   .timeline-title {
-    font-size: clamp(1.2rem, 2vw, 1.45rem);
+    font-size: clamp(1.45rem, 2.4vw, 1.75rem);
     font-weight: 600;
     letter-spacing: -0.01em;
     color: var(--site-text);
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.7rem;
   }
 
   .timeline-desc {
-    font-size: clamp(0.92rem, 1.25vw, 1.02rem);
+    font-size: clamp(1.05rem, 1.5vw, 1.2rem);
     line-height: 1.6;
     color: var(--site-text-dim);
-    padding: 0 0.5rem;
-    max-width: 16.25rem;
+    padding: 0 0.75rem;
+    max-width: 20rem;
     margin: 0 auto;
   }
 
