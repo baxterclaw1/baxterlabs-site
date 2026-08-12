@@ -17,7 +17,7 @@
 - [x] Sections: Hero → What we build → What to expect → Contact → About BaxterLabs → Footer
 - [x] What we build: **Option D** — 8 items, no cards/flows, centered two-column list
 - [x] Nav: logo mark + wordmark left only (no hamburger / section menu)
-- [x] Logo: **stencil BL monogram** as the B — cream mark (`bl-stencil-cream-thick.png`) at `1em`; “axter” + coral “Labs” (slightly lowered toward the B foot); coral underline under the full lockup (monogram + axter + Labs).
+- [x] Logo: **stencil BL monogram** as the B — coral L + cream bowls (`bl-stencil-lcoral-bcream-thick.png`) at `1em`; “axter” + coral “Labs” (slightly lowered toward the B foot); coral underline under the full lockup (monogram + axter + Labs).
 - [x] Logo personification: stacked-bars “eyes” mascot retained in ThenItRuns / samples only — not the nav mark
 - [x] Corners: hard (no radius) on form inputs; primary CTA soft radius (option O)
 - [x] Primary CTA style: soft corners + arrow + warm coral glow (hero); contact Submit uses green variant of same shape
@@ -33,6 +33,7 @@
 - [x] Audience: SMB owners who can afford custom work; mostly non-technical
 - [x] Hero style: **typography-led** (C-warm) · coral mesh · staggered headline · no side panel · **centered text column**
 - [x] Hero headline: **Your business evolves. / Your tools should too.**
+- [x] Hero sub: **Custom operations & automation for SMBs. Connect tools, streamline tasks, consolidate scattered work into one system.**
 - [ ] Proof content: placeholder prompt in `SystemsProof.astro` — ask a different AI for 3-4 real production system names and descriptions, then fill cards
 - [x] Meta title: BaxterLabs — Custom AI & Automation
 - [x] Link preview (`og:image` / Twitter card): branded BaxterLabs card at `/og.png` — not founder portraits; scrapers no longer fall back to About photos

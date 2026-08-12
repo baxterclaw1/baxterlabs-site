@@ -32,9 +32,9 @@
 ## Hero
 
 - **Badge**: Now accepting new projects `# DRAFT`
-- **Headline**: We build AI systems that run your business while you sleep `# DRAFT`
-- **Subhead**: BaxterLabs designs and deploys custom AI agents, automation workflows, and intelligent infrastructure — tailored to your operations, not off-the-shelf templates. `# DRAFT`
-- **CTA primary**: Build your first agent `# DRAFT`
+- **Headline**: Your business evolves. / Your tools should too.
+- **Subhead**: Custom operations & automation for SMBs. Connect tools, streamline tasks, consolidate scattered work into one system.
+- **CTA primary**: Partner with us `#contact`
 - **CTA secondary**: See What We Build `# DRAFT`
 
 ## Capabilities
