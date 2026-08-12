@@ -32,7 +32,7 @@
 - [x] Voice: direct, no-nonsense, professional, not salesy
 - [x] Audience: SMB owners who can afford custom work; mostly non-technical
 - [x] Hero style: **typography-led** (C-warm) · coral mesh · staggered headline · no side panel · **centered text column**
-- [x] Hero headline: **Business is always evolving. / Your tools should too.** (was “Business evolves.”)
+- [x] Hero headline: **Your business evolves. / Your tools should too.**
 - [ ] Proof content: placeholder prompt in `SystemsProof.astro` — ask a different AI for 3-4 real production system names and descriptions, then fill cards
 - [x] Meta title: BaxterLabs — Custom AI & Automation
 - [x] Link preview (`og:image` / Twitter card): branded BaxterLabs card at `/og.png` — not founder portraits; scrapers no longer fall back to About photos
