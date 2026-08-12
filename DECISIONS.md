@@ -20,7 +20,7 @@
 - [x] Logo: **stencil BL monogram** as the B — coral L + cream bowls (`bl-stencil-lcoral-bcream-thick.png`) at `1em`; “axter” + coral “Labs” (slightly lowered toward the B foot); coral underline under the full lockup (monogram + axter + Labs).
 - [x] Logo personification: stacked-bars “eyes” mascot retained in ThenItRuns / samples only — not the nav mark
 - [x] Corners: hard (no radius) on form inputs; primary CTA soft radius (option O)
-- [x] Primary CTA style: soft corners + arrow + warm coral glow (hero); contact Submit uses green variant of same shape
+- [x] Primary CTA style: soft corners + arrow + warm coral glow (hero); contact Submit uses the same coral style
 - [x] Content width: **90rem** · side pad **2rem** (between original 72 and stretched 112)
 - [x] Demo walkthrough: **removed from homepage** (legacy demo code retained in repo)
 - [x] CTAs: **one Build your first agent** below hero subtitle → `#contact`
@@ -44,7 +44,7 @@
 - [x] Vercel auto-deploys from `main` branch to baxterlabs.io
 - [ ] Production DNS: do not touch baxterlabs.io until staging approved
 - [x] Primary CTA URL: hero "Build your first agent" scrolls to `#contact` form (no Calendly yet)
-- [x] Contact inbox: baxterlabs.io@gmail.com (FormSubmit)
+- [x] Contact inbox: info@baxterlabs.io (FormSubmit)
 
 ## Archive
 
