@@ -44,7 +44,7 @@
 - [x] Vercel auto-deploys from `main` branch to baxterlabs.io
 - [ ] Production DNS: do not touch baxterlabs.io until staging approved
 - [x] Primary CTA URL: hero "Build your first agent" scrolls to `#contact` form (no Calendly yet)
-- [x] Contact inbox: info@baxterlabs.io (FormSubmit)
+- [x] Contact inbox: info@baxterlabs.io via **Web3Forms** (access key in `SiteCta.astro`)
 
 ## Archive
 

@@ -1,5 +1,6 @@
 ---
 const contactEmail = 'info@baxterlabs.io';
+const web3formsKey = '19226292-dfb7-44ad-9fc7-10471a99d8df';
 ---
 
 <section class="site-cta" id="contact" aria-labelledby="cta-heading">
@@ -14,7 +15,7 @@ const contactEmail = 'info@baxterlabs.io';
     </div>
 
     <form class="site-contact" id="contact-form" novalidate>
-      <input type="text" name="_gotcha" class="site-contact-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      <input type="checkbox" name="botcheck" class="site-contact-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
       <div class="site-contact-row">
         <label class="site-contact-field">
@@ -50,7 +51,7 @@ const contactEmail = 'info@baxterlabs.io';
   </div>
 </section>
 
-<script define:vars={{ contactEmail }}>
+<script define:vars={{ contactEmail, web3formsKey }}>
   const form = document.getElementById('contact-form');
   const submitBtn = document.getElementById('contact-submit');
   const statusEl = document.getElementById('contact-status');
@@ -59,8 +60,8 @@ const contactEmail = 'info@baxterlabs.io';
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
 
-      const honeypot = form.querySelector('[name="_gotcha"]');
-      if (honeypot instanceof HTMLInputElement && honeypot.value) return;
+      const honeypot = form.querySelector('[name="botcheck"]');
+      if (honeypot instanceof HTMLInputElement && honeypot.checked) return;
 
       if (!form.checkValidity()) {
         form.reportValidity();
@@ -68,21 +69,22 @@ const contactEmail = 'info@baxterlabs.io';
       }
 
       const data = new FormData(form);
-      data.append('_subject', 'BaxterLabs site inquiry');
-      data.append('_template', 'table');
+      data.append('access_key', web3formsKey);
+      data.append('subject', 'BaxterLabs site inquiry');
+      data.append('from_name', 'BaxterLabs website');
 
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending…';
       statusEl.hidden = true;
 
       try {
-        const res = await fetch(`https://formsubmit.co/ajax/${contactEmail}`, {
+        const res = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
-          headers: { Accept: 'application/json' },
           body: data,
         });
+        const json = await res.json().catch(() => ({}));
 
-        if (!res.ok) throw new Error('Request failed');
+        if (!res.ok || json.success === false) throw new Error('Request failed');
 
         form.reset();
         statusEl.hidden = false;
