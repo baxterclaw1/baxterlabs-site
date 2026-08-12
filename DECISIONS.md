@@ -17,8 +17,8 @@
 - [x] Sections: Hero → What we build → What to expect → Contact → About BaxterLabs → Footer
 - [x] What we build: **Option D** — 8 items, no cards/flows, centered two-column list
 - [x] Nav: logo mark + wordmark left only (no hamburger / section menu)
-- [x] Logo: **stacked bars** — shorter width, taller height, hard corners; SVG in `LogoMark.astro`
-- [x] Logo personification: **square dot eyes** on the top bar (matches little-agent mascot); not a separate mascot mark yet
+- [x] Logo: **stencil BL monogram** as the B — cream mark (`bl-stencil-cream-thick.png`) at `1em`; “axter” + coral “Labs” (slightly lowered toward the B foot); coral underline under the full lockup (monogram + axter + Labs).
+- [x] Logo personification: stacked-bars “eyes” mascot retained in ThenItRuns / samples only — not the nav mark
 - [x] Corners: hard (no radius) on form inputs; primary CTA soft radius (option O)
 - [x] Primary CTA style: soft corners + arrow + warm coral glow (hero); contact Submit uses green variant of same shape
 - [x] Content width: **90rem** · side pad **2rem** (between original 72 and stretched 112)

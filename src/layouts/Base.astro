@@ -4,10 +4,14 @@ interface Props {
   description?: string;
 }
 
+const siteUrl = 'https://www.baxterlabs.io';
 const {
   title = 'BaxterLabs - Custom AI & Automation',
   description = 'BaxterLabs designs, builds, and runs custom automation and AI systems for small business operations. Your tools connected, your repetitive work handled.',
 } = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
+const ogImage = `${siteUrl}/og.png`;
 ---
 
 <!doctype html>
@@ -18,6 +22,25 @@ const {
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0a0b0d" />
     <title>{title}</title>
+    <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BaxterLabs" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="BaxterLabs — Custom AI & Automation" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content="BaxterLabs — Custom AI & Automation" />
+
     <link
       rel="preload"
       href="/fonts/plus-jakarta-sans-latin.woff2"

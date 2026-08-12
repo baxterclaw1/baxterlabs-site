@@ -1,10 +1,16 @@
 ---
-
+const markSrc = `/logos/bl-stencil-cream-thick.png?v=8`;
 ---
 
 <header class="nav">
   <div class="nav-inner">
-    <a class="nav-logo" href="/">BaxterLabs</a>
+    <a class="nav-logo" href="/" aria-label="BaxterLabs home">
+      <img class="nav-mark" src={markSrc} alt="" width="40" height="44" />
+      <span class="nav-type">
+        <span class="nav-axter">axter</span>
+        <span class="nav-labs">Labs</span>
+      </span>
+    </a>
   </div>
 </header>
 
@@ -21,7 +27,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    padding: 1.25rem var(--section-pad-x);
+    padding: 1.2rem var(--section-pad-x);
     max-width: var(--content-width);
     width: 100%;
     margin: 0 auto;
@@ -29,16 +35,45 @@
   }
 
   .nav-logo {
-    display: inline-block;
+    --logo-size: 1.55rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.05em;
     min-width: 0;
-    font-size: 1.5rem;
+    font-size: var(--logo-size);
     font-weight: 600;
-    letter-spacing: -0.02em;
     text-decoration: none;
     color: var(--site-text);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    line-height: 1;
+    border-bottom: 2px solid var(--site-accent);
+    padding-bottom: 0.14rem;
+  }
+
+  /* Match winner: B reads as the capital — taller than lowercase axter */
+  .nav-mark {
+    height: 1em;
+    width: auto;
+    display: block;
+    flex-shrink: 0;
+  }
+
+  .nav-type {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.12em;
+    /* Only change vs winner: slight drop toward the B foot */
+    transform: translateY(0.08em);
+  }
+
+  .nav-axter {
+    letter-spacing: -0.035em;
+  }
+
+  .nav-labs {
+    font-size: 0.5em;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--site-accent);
   }
 
   @media (max-width: 520px) {
@@ -47,13 +82,13 @@
     }
 
     .nav-logo {
-      font-size: 1.05rem;
+      --logo-size: 1.2rem;
     }
   }
 
   @media (max-width: 360px) {
     .nav-logo {
-      font-size: 0.95rem;
+      --logo-size: 1.08rem;
     }
   }
 </style>
