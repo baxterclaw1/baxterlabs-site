@@ -9,15 +9,16 @@
 
 ## Nav
 
-- Logo mark + wordmark only (links home). No hamburger / section menu.
+- Sticky. Logo lockup (home). Jump links: What to expect · How you run · About. CTA: Partner with us `#contact`.
+- Mobile: logo + Partner with us only.
 
 ## About BaxterLabs
 
-- **Title**: About BaxterLabs (expandable control; bordered + chevron so it reads as clickable; collapsed on homepage)
-- **Sub** (coral): Meet the founders
+- **Title**: About BaxterLabs (always visible section; not a dropdown)
+- **Sub**: Meet the founders
 - **Costa** / **Mike** bios
-- **Sub** (coral): Our approach
-- Deep link: `/#about` opens the panel · `/founders` starts open
+- **Sub**: Our approach
+- Deep link: `/#about` scrolls to the section · `/founders` is the same content
 
 ## Meet founders
 
@@ -89,9 +90,12 @@
 
 - **Title**: Ready to see what's possible?
 - **Body**: Book a 30-minute consultation. We'll discuss your biggest bottlenecks and explore if automation is right for you.
-- **Button**: Submit (green)
-- **Hero CTA**: Build your first agent (scrolls to `#contact`)
+- **Button**: Submit
+- **Hero CTA**: Partner with us (scrolls to `#contact`)
 - **Form field**: What's going on (about your business, the tools you use, questions, or a job description you'd like automated)
+- **Form success (confirmation sent)**: Got it. We received your note and sent a confirmation to {email}.
+- **Form success (lead only)**: Got it. We'll get back to you soon.
+- **Visitor email subject**: We got your note — BaxterLabs
 
 ## Footer
 

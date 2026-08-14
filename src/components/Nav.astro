@@ -11,6 +11,14 @@ const markSrc = `/logos/bl-stencil-lcoral-bcream-thick.png?v=3`;
         <span class="nav-labs">Labs</span>
       </span>
     </a>
+
+    <nav class="nav-links" aria-label="Page">
+      <a href="/#what-to-expect" data-scroll-to="what-to-expect">What to expect</a>
+      <a href="/#built-for-how-you-run" data-scroll-to="built-for-how-you-run">How you run</a>
+      <a href="/#about" data-scroll-to="about">About</a>
+    </nav>
+
+    <a class="btn nav-cta" href="/#contact" data-scroll-to="contact">Partner with us</a>
   </div>
 </header>
 
@@ -18,20 +26,23 @@ const markSrc = `/logos/bl-stencil-lcoral-bcream-thick.png?v=3`;
   .nav {
     width: 100%;
     background: var(--site-bg);
-    position: relative;
-    z-index: 40;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--site-border);
   }
 
   .nav-inner {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     align-items: center;
-    justify-content: space-between;
     gap: 1rem;
-    padding: 1.2rem var(--section-pad-x);
+    padding: 0.85rem var(--section-pad-x);
     max-width: var(--content-width);
     width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
+    min-height: var(--nav-height);
   }
 
   .nav-logo {
@@ -40,6 +51,7 @@ const markSrc = `/logos/bl-stencil-lcoral-bcream-thick.png?v=3`;
     align-items: center;
     gap: 0.05em;
     min-width: 0;
+    justify-self: start;
     font-size: var(--logo-size);
     font-weight: 600;
     text-decoration: none;
@@ -49,7 +61,6 @@ const markSrc = `/logos/bl-stencil-lcoral-bcream-thick.png?v=3`;
     padding-bottom: 0.14rem;
   }
 
-  /* Match winner: B reads as the capital — taller than lowercase axter */
   .nav-mark {
     height: 1em;
     width: auto;
@@ -61,7 +72,6 @@ const markSrc = `/logos/bl-stencil-lcoral-bcream-thick.png?v=3`;
     display: inline-flex;
     align-items: baseline;
     gap: 0.12em;
-    /* Only change vs winner: slight drop toward the B foot */
     transform: translateY(0.08em);
   }
 
@@ -76,19 +86,73 @@ const markSrc = `/logos/bl-stencil-lcoral-bcream-thick.png?v=3`;
     color: var(--site-accent);
   }
 
+  .nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.75rem;
+    justify-self: center;
+  }
+
+  .nav-links a {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--site-text-dim);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.15s ease;
+  }
+
+  .nav-links a:hover,
+  .nav-links a:focus-visible {
+    color: var(--site-text);
+  }
+
+  .nav-cta {
+    justify-self: end;
+    font-size: 0.8125rem;
+    padding: 0.55rem 1rem 0.55rem 1.15rem;
+    box-shadow: 0 8px 20px rgba(224, 122, 95, 0.22);
+  }
+
+  .nav-cta::after {
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 800px) {
+    .nav-inner {
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
+
+    .nav-links {
+      display: none;
+    }
+  }
+
   @media (max-width: 520px) {
     .nav-inner {
-      padding: 1rem var(--section-pad-x);
+      padding: 0.7rem var(--section-pad-x);
     }
 
     .nav-logo {
       --logo-size: 1.55rem;
+    }
+
+    .nav-cta {
+      font-size: 0.75rem;
+      padding: 0.45rem 0.85rem 0.45rem 1rem;
     }
   }
 
   @media (max-width: 360px) {
     .nav-logo {
       --logo-size: 1.35rem;
+    }
+
+    .nav-cta {
+      font-size: 0.7rem;
+      padding: 0.4rem 0.7rem 0.4rem 0.85rem;
     }
   }
 </style>

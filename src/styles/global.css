@@ -28,6 +28,7 @@
   --content-width: 90rem;
   --section-pad-x: 2rem;
   --section-pad-y: 3rem;
+  --nav-height: 4.25rem;
 }
 
 *,
@@ -42,6 +43,7 @@ html {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-height) + 0.5rem);
   overflow-x: clip;
   max-width: 100%;
 }

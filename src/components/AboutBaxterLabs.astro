@@ -1,144 +1,74 @@
----
-interface Props {
-  /** Open on load (e.g. dedicated /founders page). Homepage stays collapsed. */
-  startOpen?: boolean;
-}
-
-const { startOpen = false } = Astro.props;
----
-
-<section
-  id="about"
-  data-about
-  data-start-open={startOpen ? 'true' : 'false'}
-  class:list={['about', { 'is-open': startOpen }]}
->
+<section id="about" class="about">
   <div class="about-inner">
-    <button
-      class="about-toggle"
-      type="button"
-      aria-expanded={startOpen ? 'true' : 'false'}
-      aria-controls="about-panel"
-      data-about-toggle
-    >
-      <span class="about-toggle-label">About BaxterLabs</span>
-      <span class="about-toggle-icon" aria-hidden="true"></span>
-    </button>
+    <div class="site-section-head">
+      <h2 class="site-section-title">About BaxterLabs</h2>
+    </div>
 
-    <div
-      class="about-panel"
-      id="about-panel"
-      data-about-panel
-      aria-hidden={startOpen ? 'false' : 'true'}
-      inert={!startOpen ? true : undefined}
-    >
-      <div class="about-panel-inner">
-        <div class="about-card">
-          <h3 class="about-section-title" id="meet-the-founders">Meet the founders</h3>
+    <div class="about-card">
+      <h3 class="about-section-title" id="meet-the-founders">Meet the founders</h3>
 
-          <div class="about-founders">
-            <article class="about-founder">
-              <div class="about-portrait">
-                <img
-                  src="/images/costa.jpg"
-                  alt="Pencil sketch portrait of Costa"
-                  width="1024"
-                  height="686"
-                  loading="lazy"
-                />
-              </div>
-              <h3 class="about-name">Costa</h3>
-              <p class="about-role">Co-founder</p>
-              <p class="about-bio">
-                Costa has a master's in organic chemistry and spent years in industrial research and engineering.
-                He brings process design and systems thinking from that work: how operations actually move, where they fail, and what has to stay dependable.
-              </p>
-              <a class="about-contact" href="mailto:costa@baxterlabs.io">costa@baxterlabs.io</a>
-            </article>
-
-            <article class="about-founder">
-              <div class="about-portrait">
-                <img
-                  src="/images/mike.jpg"
-                  alt="Pencil sketch portrait of Mike"
-                  width="1024"
-                  height="686"
-                  loading="lazy"
-                />
-              </div>
-              <h3 class="about-name">Mike</h3>
-              <p class="about-role">Co-founder</p>
-              <p class="about-bio">
-                Mike spent nearly twenty years as a general manager running operations end to end.
-                He contributes logistics and a ground-level understanding of how businesses operate, including years of managing and delegating the manual work that slows teams down.
-              </p>
-              <a class="about-contact" href="mailto:mike@baxterlabs.io">mike@baxterlabs.io</a>
-            </article>
+      <div class="about-founders">
+        <article class="about-founder">
+          <div class="about-portrait">
+            <img
+              src="/images/costa.jpg"
+              alt="Pencil sketch portrait of Costa"
+              width="1024"
+              height="686"
+              loading="lazy"
+            />
           </div>
+          <h3 class="about-name">Costa</h3>
+          <p class="about-role">Co-founder</p>
+          <p class="about-bio">
+            Costa has a master's in organic chemistry and spent years in industrial research and engineering.
+            He brings process design and systems thinking from that work: how operations actually move, where they fail, and what has to stay dependable.
+          </p>
+          <a class="about-contact" href="mailto:costa@baxterlabs.io">costa@baxterlabs.io</a>
+        </article>
 
-          <h3 class="about-section-title about-section-title--spaced" id="approach">Our approach</h3>
-          <div class="about-approach">
-            <p>
-              We start with the smallest dependable version that works.
-              Simple, fast, private, and polished. Complexity gets added only when it
-              has earned its place through real value, not because it was possible.
-            </p>
-            <p>
-              Research comes before generation. Ideas become structured, testable systems
-              with clear planning and patterns you can maintain. Automation should stay
-              understandable, not a black box.
-            </p>
-            <p>
-              We teach before we automate. Users stay informed, decisions stay in human
-              hands, and every interaction should make sense: what it does, why it matters,
-              and what happens next. Technology can speed things up and keep records clean
-              without hiding responsibility or judgment.
-            </p>
+        <article class="about-founder">
+          <div class="about-portrait">
+            <img
+              src="/images/mike.jpg"
+              alt="Pencil sketch portrait of Mike"
+              width="1024"
+              height="686"
+              loading="lazy"
+            />
           </div>
-        </div>
+          <h3 class="about-name">Mike</h3>
+          <p class="about-role">Co-founder</p>
+          <p class="about-bio">
+            Mike spent nearly twenty years as a general manager running operations end to end.
+            He contributes logistics and a ground-level understanding of how businesses operate, including years of managing and delegating the manual work that slows teams down.
+          </p>
+          <a class="about-contact" href="mailto:mike@baxterlabs.io">mike@baxterlabs.io</a>
+        </article>
+      </div>
+
+      <h3 class="about-section-title about-section-title--spaced" id="approach">Our approach</h3>
+      <div class="about-approach">
+        <p>
+          We start with the smallest dependable version that works.
+          Simple, fast, private, and polished. Complexity gets added only when it
+          has earned its place through real value, not because it was possible.
+        </p>
+        <p>
+          Research comes before generation. Ideas become structured, testable systems
+          with clear planning and patterns you can maintain. Automation should stay
+          understandable, not a black box.
+        </p>
+        <p>
+          We teach before we automate. Users stay informed, decisions stay in human
+          hands, and every interaction should make sense: what it does, why it matters,
+          and what happens next. Technology can speed things up and keep records clean
+          without hiding responsibility or judgment.
+        </p>
       </div>
     </div>
   </div>
 </section>
-
-<script>
-  const root = document.querySelector('[data-about]');
-  const toggle = document.querySelector('[data-about-toggle]');
-  const panel = document.querySelector('[data-about-panel]');
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (
-    root instanceof HTMLElement &&
-    toggle instanceof HTMLButtonElement &&
-    panel instanceof HTMLElement
-  ) {
-    const setOpen = (open, { scroll } = { scroll: false }) => {
-      toggle.setAttribute('aria-expanded', String(open));
-      root.classList.toggle('is-open', open);
-      panel.setAttribute('aria-hidden', String(!open));
-      if (open) panel.removeAttribute('inert');
-      else panel.setAttribute('inert', '');
-      if (open && scroll) {
-        root.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
-      }
-    };
-
-    toggle.addEventListener('click', () => {
-      const open = toggle.getAttribute('aria-expanded') !== 'true';
-      setOpen(open);
-    });
-
-    const hashTargets = new Set(['#about', '#meet-the-founders', '#approach', '#ethos']);
-    const openFromHash = () => {
-      if (hashTargets.has(window.location.hash)) setOpen(true, { scroll: true });
-    };
-
-    openFromHash();
-    window.addEventListener('hashchange', openFromHash);
-
-    if (root.dataset.startOpen === 'true') setOpen(true);
-  }
-</script>
 
 <style>
   .about {
@@ -149,130 +79,6 @@ const { startOpen = false } = Astro.props;
     max-width: var(--content-width);
     width: 100%;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .about-toggle {
-    appearance: none;
-    -webkit-appearance: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    margin: 0;
-    padding: 0.95rem 1.35rem 1.05rem 1.5rem;
-    border: 1px solid color-mix(in srgb, var(--site-accent) 42%, var(--site-border));
-    border-radius: 0.7rem;
-    background: color-mix(in srgb, var(--site-accent) 8%, transparent);
-    color: var(--site-text);
-    cursor: pointer;
-    font-family: inherit;
-    box-shadow: none;
-    transition:
-      color 0.2s ease,
-      border-color 0.2s ease,
-      background 0.2s ease;
-  }
-
-  .about-toggle:hover,
-  .about-toggle:focus-visible {
-    color: var(--site-text);
-    border-color: var(--site-accent);
-    background: color-mix(in srgb, var(--site-accent) 14%, transparent);
-  }
-
-  .about-toggle:focus-visible {
-    outline: 2px solid var(--site-accent);
-    outline-offset: 3px;
-  }
-
-  .about.is-open .about-toggle {
-    border-color: var(--site-accent);
-    background: color-mix(in srgb, var(--site-accent) 12%, transparent);
-  }
-
-  .about-toggle-label {
-    font-size: clamp(1.55rem, 4vw, 2.35rem);
-    font-weight: 600;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-  }
-
-  .about-toggle-icon {
-    display: grid;
-    place-items: center;
-    width: 2.25rem;
-    height: 2.25rem;
-    flex-shrink: 0;
-    border-radius: 0.45rem;
-  }
-
-  .about-toggle-icon::before {
-    content: '';
-    display: block;
-    width: 0.55rem;
-    height: 0.55rem;
-    margin-top: -0.15rem;
-    border-right: 2px solid currentColor;
-    border-bottom: 2px solid currentColor;
-    transform: rotate(45deg);
-    transition: transform 0.35s ease, margin-top 0.35s ease;
-  }
-
-  .about-toggle:hover .about-toggle-icon,
-  .about.is-open .about-toggle-icon {
-    border-color: var(--site-accent);
-    background: color-mix(in srgb, var(--site-accent) 16%, transparent);
-  }
-
-  .about.is-open .about-toggle-icon::before {
-    margin-top: 0.2rem;
-    transform: rotate(225deg);
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .about:not(.is-open) .about-toggle-icon {
-      animation: about-chevron-nudge 1.8s ease-in-out infinite;
-    }
-  }
-
-  @keyframes about-chevron-nudge {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(0.2rem);
-    }
-  }
-
-  .about-panel {
-    width: 100%;
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .about.is-open .about-panel {
-    grid-template-rows: 1fr;
-  }
-
-  .about-panel-inner {
-    overflow: hidden;
-    min-height: 0;
-    opacity: 0;
-    transform: translateY(-0.75rem);
-    transition:
-      opacity 0.4s ease 0.05s,
-      transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .about.is-open .about-panel-inner {
-    opacity: 1;
-    transform: translateY(0);
-    padding-top: 1.5rem;
   }
 
   .about-card {
@@ -353,26 +159,6 @@ const { startOpen = false } = Astro.props;
     pointer-events: none;
   }
 
-  .about-portrait--placeholder {
-    display: grid;
-    place-items: center;
-    background: linear-gradient(180deg, #16181f 0%, #101116 100%);
-    border: 1px solid var(--site-border);
-  }
-
-  .about-portrait--placeholder::after {
-    display: none;
-  }
-
-  .about-initial {
-    font-size: clamp(2.25rem, 6vw, 3rem);
-    font-weight: 600;
-    letter-spacing: -0.04em;
-    color: color-mix(in srgb, var(--site-text-dim) 55%, transparent);
-    line-height: 1;
-    user-select: none;
-  }
-
   .about-name {
     margin: 0;
     font-size: 1.125rem;
@@ -434,16 +220,6 @@ const { startOpen = false } = Astro.props;
 
     .about-portrait {
       max-width: 10rem;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .about-toggle,
-    .about-toggle-icon,
-    .about-panel,
-    .about-panel-inner {
-      transition: none;
-      animation: none;
     }
   }
 </style>

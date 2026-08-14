@@ -56,6 +56,19 @@ const web3formsKey = '2dc63a98-1878-4b54-96f7-38297382172e';
   const submitBtn = document.getElementById('contact-submit');
   const statusEl = document.getElementById('contact-status');
 
+  async function submitWeb3Forms(formEl) {
+    const data = new FormData(formEl);
+    data.append('access_key', web3formsKey);
+    data.append('subject', 'BaxterLabs site inquiry');
+    data.append('from_name', 'BaxterLabs website');
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: data,
+    });
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok || json.success === false) throw new Error('Request failed');
+  }
+
   if (form && submitBtn && statusEl) {
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
@@ -68,28 +81,44 @@ const web3formsKey = '2dc63a98-1878-4b54-96f7-38297382172e';
         return;
       }
 
-      const data = new FormData(form);
-      data.append('access_key', web3formsKey);
-      data.append('subject', 'BaxterLabs site inquiry');
-      data.append('from_name', 'BaxterLabs website');
+      const fields = new FormData(form);
+      const visitorEmail = String(fields.get('email') || '').trim();
 
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending…';
       statusEl.hidden = true;
 
       try {
-        const res = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          body: data,
-        });
-        const json = await res.json().catch(() => ({}));
+        let confirmationSent = false;
+        const payload = {
+          name: String(fields.get('name') || '').trim(),
+          email: visitorEmail,
+          business: String(fields.get('business') || '').trim(),
+          message: String(fields.get('message') || '').trim(),
+          botcheck: honeypot instanceof HTMLInputElement ? honeypot.checked : false,
+        };
 
-        if (!res.ok || json.success === false) throw new Error('Request failed');
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        const type = res.headers.get('content-type') || '';
+        if (res.status === 404 || !type.includes('application/json')) {
+          await submitWeb3Forms(form);
+        } else {
+          const json = await res.json().catch(() => ({}));
+          if (!res.ok || json.ok !== true) throw new Error('Request failed');
+          confirmationSent = Boolean(json.confirmationSent);
+        }
 
         form.reset();
         statusEl.hidden = false;
         statusEl.dataset.state = 'ok';
-        statusEl.textContent = "Got it. We'll get back to you soon.";
+        statusEl.textContent = confirmationSent
+          ? `Got it. We received your note and sent a confirmation to ${visitorEmail}.`
+          : "Got it. We'll get back to you soon.";
       } catch {
         statusEl.hidden = false;
         statusEl.dataset.state = 'err';
@@ -107,7 +136,7 @@ const web3formsKey = '2dc63a98-1878-4b54-96f7-38297382172e';
     width: 100%;
     max-width: none;
     margin: 0;
-    padding: var(--section-pad-y) var(--section-pad-x);
+    padding: 0 var(--section-pad-x) var(--section-pad-y);
     background: linear-gradient(
       180deg,
       rgba(224, 122, 95, 0) 0%,
@@ -239,6 +268,8 @@ const web3formsKey = '2dc63a98-1878-4b54-96f7-38297382172e';
   .site-contact-status {
     font-size: 0.875rem;
     color: var(--site-text-dim);
+    max-width: 28rem;
+    text-wrap: pretty;
   }
 
   .site-contact-status[data-state='ok'] {
