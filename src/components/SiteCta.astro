@@ -3,10 +3,11 @@ const contactEmail = 'info@baxterlabs.io';
 const web3formsKey = '2dc63a98-1878-4b54-96f7-38297382172e';
 ---
 
-<section class="site-cta" id="contact" aria-labelledby="cta-heading">
+<section class="site-cta" aria-labelledby="cta-heading">
   <div class="site-cta-panel">
     <slot />
     <hr class="cta-box-sep" />
+    <div class="site-contact-block" id="contact">
     <div class="site-section-head">
       <h2 id="cta-heading" class="site-section-title">Ready to see what's possible?</h2>
       <p class="site-section-subtitle">
@@ -48,6 +49,7 @@ const web3formsKey = '2dc63a98-1878-4b54-96f7-38297382172e';
         <p class="site-contact-status" id="contact-status" role="status" aria-live="polite" hidden></p>
       </div>
     </form>
+    </div>
   </div>
 </section>
 
@@ -109,20 +111,23 @@ const web3formsKey = '2dc63a98-1878-4b54-96f7-38297382172e';
           await submitWeb3Forms(form);
         } else {
           const json = await res.json().catch(() => ({}));
-          if (!res.ok || json.ok !== true) throw new Error('Request failed');
-          confirmationSent = Boolean(json.confirmationSent);
+          if (json.ok === true) {
+            confirmationSent = Boolean(json.confirmationSent);
+          } else {
+            await submitWeb3Forms(form);
+          }
         }
 
         form.reset();
         statusEl.hidden = false;
         statusEl.dataset.state = 'ok';
         statusEl.textContent = confirmationSent
-          ? `Got it. We received your note and sent a confirmation to ${visitorEmail}.`
-          : "Got it. We'll get back to you soon.";
+          ? `Thanks for reaching out. We'll get back to you asap. We sent a confirmation to ${visitorEmail}.`
+          : "Thanks for reaching out. We'll get back to you asap.";
       } catch {
         statusEl.hidden = false;
         statusEl.dataset.state = 'err';
-        statusEl.textContent = `Something went wrong. Email us at ${contactEmail}.`;
+        statusEl.textContent = `Couldn't send that. Email us at ${contactEmail}.`;
       } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Submit';
@@ -146,6 +151,15 @@ const web3formsKey = '2dc63a98-1878-4b54-96f7-38297382172e';
       var(--site-bg) 100%
     );
     position: relative;
+  }
+
+  .site-contact-block {
+    scroll-margin-top: calc(var(--nav-height) + 0.75rem);
+  }
+
+  .site-cta-panel :global(.about) {
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .site-cta-panel {

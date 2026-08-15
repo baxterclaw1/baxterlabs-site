@@ -18,11 +18,43 @@ function trimField(value, max) {
 }
 
 function parseBody(req) {
-  if (req.body && typeof req.body === 'object') return req.body;
+  if (req.body && typeof req.body === 'object' && !Buffer.isBuffer(req.body)) {
+    return req.body;
+  }
   if (typeof req.body === 'string' && req.body.length) {
     return JSON.parse(req.body);
   }
   return {};
+}
+
+async function sendResend({ to, replyTo, subject, text, html }) {
+  const key = process.env.RESEND_API_KEY;
+  if (!key) return false;
+
+  const payload = {
+    from: CONTACT_FROM,
+    to: Array.isArray(to) ? to : [to],
+    subject,
+    text,
+    html,
+  };
+  if (replyTo) payload.reply_to = replyTo;
+
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${key}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!res.ok) {
+    const detail = await res.text().catch(() => '');
+    console.error('Resend failed', res.status, detail.slice(0, 400));
+    return false;
+  }
+  return true;
 }
 
 async function sendLeadToWeb3Forms({ name, email, business, message }) {
@@ -41,16 +73,16 @@ async function sendLeadToWeb3Forms({ name, email, business, message }) {
     body: form.toString(),
   });
   const json = await res.json().catch(() => ({}));
-  if (!res.ok || json.success === false) {
-    throw new Error('web3forms');
-  }
+  return res.ok && json.success !== false;
 }
 
 function confirmationText(name, email) {
   return [
     `Hi ${name},`,
     '',
-    `We received your note and we'll get back to you. This confirmation went to ${email}.`,
+    `Thanks for reaching out. We'll get back to you asap.`,
+    '',
+    `This confirmation went to ${email}.`,
     '',
     "If that wasn't you, ignore this.",
     '',
@@ -62,40 +94,37 @@ function confirmationText(name, email) {
 
 function confirmationHtml(name, email) {
   return `<p>Hi ${escapeHtml(name)},</p>
-<p>We received your note and we'll get back to you. This confirmation went to <strong>${escapeHtml(email)}</strong>.</p>
+<p>Thanks for reaching out. We'll get back to you asap.</p>
+<p>This confirmation went to <strong>${escapeHtml(email)}</strong>.</p>
 <p>If that wasn't you, ignore this.</p>
 <p>Costa &amp; Mike<br>BaxterLabs<br>${escapeHtml(CONTACT_TO)}</p>`;
 }
 
-async function sendConfirmation(name, email) {
-  const key = process.env.RESEND_API_KEY;
-  if (!key) return false;
+function leadText({ name, email, business, message }) {
+  const lines = [
+    'New site inquiry',
+    '',
+    `Name: ${name}`,
+    `Email: ${email}`,
+  ];
+  if (business) lines.push(`Business: ${business}`);
+  lines.push('', message);
+  return lines.join('\n');
+}
 
-  const res = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${key}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      from: CONTACT_FROM,
-      to: [email],
-      reply_to: CONTACT_TO,
-      subject: 'We got your note — BaxterLabs',
-      text: confirmationText(name, email),
-      html: confirmationHtml(name, email),
-    }),
-  });
-
-  if (!res.ok) {
-    const detail = await res.text().catch(() => '');
-    console.error('Resend confirmation failed', res.status, detail.slice(0, 300));
-    return false;
-  }
-  return true;
+function leadHtml({ name, email, business, message }) {
+  const biz = business
+    ? `<p><strong>Business:</strong> ${escapeHtml(business)}</p>`
+    : '';
+  return `<p><strong>Name:</strong> ${escapeHtml(name)}<br>
+<strong>Email:</strong> ${escapeHtml(email)}</p>
+${biz}
+<p>${escapeHtml(message).replace(/\n/g, '<br>')}</p>`;
 }
 
 export default async function handler(req, res) {
+  res.setHeader('Content-Type', 'application/json');
+
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return res.status(405).json({ ok: false });
@@ -121,12 +150,28 @@ export default async function handler(req, res) {
     return res.status(400).json({ ok: false });
   }
 
-  try {
-    await sendLeadToWeb3Forms({ name, email, business, message });
-  } catch {
+  const fields = { name, email, business, message };
+
+  const leadViaResend = await sendResend({
+    to: CONTACT_TO,
+    replyTo: email,
+    subject: `Site inquiry from ${name}`,
+    text: leadText(fields),
+    html: leadHtml(fields),
+  });
+
+  const leadOk = leadViaResend || (await sendLeadToWeb3Forms(fields));
+  if (!leadOk) {
     return res.status(502).json({ ok: false });
   }
 
-  const confirmationSent = await sendConfirmation(name, email);
+  const confirmationSent = await sendResend({
+    to: email,
+    replyTo: CONTACT_TO,
+    subject: 'We got your note — BaxterLabs',
+    text: confirmationText(name, email),
+    html: confirmationHtml(name, email),
+  });
+
   return res.status(200).json({ ok: true, confirmationSent });
 }

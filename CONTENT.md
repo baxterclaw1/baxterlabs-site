@@ -9,7 +9,7 @@
 
 ## Nav
 
-- Sticky. Logo lockup (home). Jump links: What to expect · How you run · About. CTA: Partner with us `#contact`.
+- Sticky. Logo lockup (home). Jump links: How we work · What we build · About. CTA: Partner with us `#contact`.
 - Mobile: logo + Partner with us only.
 
 ## About BaxterLabs
@@ -93,8 +93,9 @@
 - **Button**: Submit
 - **Hero CTA**: Partner with us (scrolls to `#contact`)
 - **Form field**: What's going on (about your business, the tools you use, questions, or a job description you'd like automated)
-- **Form success (confirmation sent)**: Got it. We received your note and sent a confirmation to {email}.
-- **Form success (lead only)**: Got it. We'll get back to you soon.
+- **Form success (confirmation sent)**: Thanks for reaching out. We'll get back to you asap. We sent a confirmation to {email}.
+- **Form success (lead only)**: Thanks for reaching out. We'll get back to you asap.
+- **Form error**: Couldn't send that. Email us at info@baxterlabs.io.
 - **Visitor email subject**: We got your note — BaxterLabs
 
 ## Footer
