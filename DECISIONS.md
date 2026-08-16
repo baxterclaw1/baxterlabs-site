@@ -37,6 +37,7 @@
 - [x] Nav: Who we help / The work / Case study / FAQ; CTA "Schedule an assessment" (mobile: "Schedule"); logo to `/`
 - [x] Form: existing `/api/contact` with hidden `source=lawyer`; no Calendly
 - [x] Footer: "Property tax appeal firms" → `/lawyer` (homepage unchanged otherwise)
+- [x] CRM: generic. Do not name Smokeball or any other practice-management product. Firms keep whatever they already use.
 - [x] Homepage layout and copy: unchanged
 
 ## Copy
