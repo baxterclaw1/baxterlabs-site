@@ -180,7 +180,6 @@ Niche landing for Illinois property tax appeal firms that file in Cook County. O
 - PIN-validated intake with duplicate flags
 - A three-document retainer packet, e-sign, then split and filed back into the matter
 - **Close**: We are not going to invent a percentage of hours saved. What we can say: the clerical path from new client to signed, filed packet no longer depends on one person remembering every step.
-- **CTA**: Schedule a workflow assessment
 
 ### FAQ
 

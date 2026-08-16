@@ -38,6 +38,7 @@
 - [x] Form: existing `/api/contact` with hidden `source=lawyer`; no Calendly
 - [x] Footer: "Property tax appeal firms" → `/lawyer` (homepage unchanged otherwise)
 - [x] CRM: generic. Do not name Smokeball or any other practice-management product. Firms keep whatever they already use.
+- [x] Case study: copy then centered dashboard image. No extra assessment button in that section (sticky nav CTA is enough).
 - [x] Homepage layout and copy: unchanged
 
 ## Copy
@@ -55,7 +56,10 @@
 ## Deploy
 
 - [x] Staging URL: TBD after Vercel connect
-- [x] Vercel auto-deploys from `main` branch to baxterlabs.io
+- [x] Production GitHub: `baxterclaw1/baxterlabs-site`, branch `main`. Vercel team `baxterlabsio-3655` auto-deploys that branch to baxterlabs.io
+- [x] Push production as **baxterclaw1** from this Mac (keychain GitHub token). Do not use `gh` as `baxterlabshermes` and do not open a PR from the hermes fork. Fork PRs get "Authorization required to deploy" and never hit the custom domain
+- [x] Costa Vercel (`baxterlabs-io.vercel.app`, team `costa-baxter-labs`) is a different project. It does not own baxterlabs.io. Do not `vercel --prod` there expecting the real domain to update
+- [x] If Vercel still says Authorization required: empty commit on `origin/main` as baxterclaw1 and push. That is a normal production deploy, not a fork job
 - [ ] Production DNS: do not touch baxterlabs.io until staging approved
 - [x] Primary CTA URL: hero and nav "Partner with us" scroll to `#contact` form (no Calendly yet)
 - [x] Contact inbox: info@baxterlabs.io. `/api/contact` sends the lead and visitor confirmation via **Resend** (`RESEND_API_KEY` on Vercel). Web3Forms is a fallback if Resend cannot deliver the lead.
