@@ -1,0 +1,139 @@
+---
+const facts = [
+  'Weekly ingest of Cook County property records so PINs, addresses, classifications, assessments, and sales don\'t get retyped',
+  'Smokeball contact and matter sync, with signed files written back to the matter',
+  'Township appeal-window tracking so a file only moves when that township is actually open',
+  'PIN-validated intake with duplicate flags',
+  'A three-document retainer packet, e-sign, then split and filed back into the matter',
+];
+---
+
+<section class="study" id="case-study">
+  <div class="study-inner">
+    <div class="site-section-head" data-reveal>
+      <h2 class="site-section-title">A Cook County appeal practice, after the spreadsheet years</h2>
+    </div>
+
+    <div class="study-layout">
+      <div class="study-copy" data-reveal>
+        <p class="study-lead">
+          A property tax appeal firm in Cook County had outgrown Smokeball plus
+          spreadsheets plus inbox. Volume was fine. The glue work wasn't.
+        </p>
+        <ul>
+          {facts.map((fact) => (
+            <li>{fact}</li>
+          ))}
+        </ul>
+        <p class="study-close">
+          We are not going to invent a percentage of hours saved. What we can say:
+          the clerical path from new client to signed, filed packet no longer
+          depends on one person remembering every step.
+        </p>
+        <a class="btn study-cta" href="#contact" data-scroll-to="contact">Schedule a workflow assessment</a>
+      </div>
+      <div class="study-media" data-reveal>
+        <img
+          src="/images/dashboard.png?v=1"
+          width="800"
+          height="500"
+          loading="lazy"
+          decoding="async"
+          alt=""
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .study {
+    padding: var(--section-pad-y) var(--section-pad-x);
+  }
+
+  .study-inner {
+    max-width: var(--content-width);
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .study-layout {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .study-lead {
+    font-size: clamp(1.15rem, 1.7vw, 1.3rem);
+    line-height: 1.55;
+    margin-bottom: 1.5rem;
+    text-wrap: pretty;
+  }
+
+  .study-copy ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .study-copy li {
+    position: relative;
+    padding-left: 1.15rem;
+    font-size: 1.02rem;
+    line-height: 1.55;
+    color: var(--site-text-dim);
+  }
+
+  .study-copy li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 0.45rem;
+    height: 0.45rem;
+    background: var(--site-accent);
+  }
+
+  .study-close {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--site-text);
+    margin-bottom: 1.75rem;
+    text-wrap: pretty;
+  }
+
+  .study-cta {
+    font-size: 0.9375rem;
+    padding: 0.75rem 1.25rem 0.75rem 1.45rem;
+  }
+
+  .study-media {
+    line-height: 0;
+    border: 1px solid var(--site-border);
+    overflow: hidden;
+  }
+
+  .study-media img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    object-position: top left;
+    filter: brightness(0.88) contrast(1.05) saturate(0.7);
+  }
+
+  @media (max-width: 800px) {
+    .study-layout {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+
+    .study-media {
+      order: -1;
+    }
+  }
+</style>

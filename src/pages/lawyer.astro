@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import LawyerHero from '../components/lawyer/LawyerHero.astro';
+import LawyerWho from '../components/lawyer/LawyerWho.astro';
+import LawyerProblems from '../components/lawyer/LawyerProblems.astro';
+import LawyerSolution from '../components/lawyer/LawyerSolution.astro';
+import LawyerDifference from '../components/lawyer/LawyerDifference.astro';
+import LawyerCaseStudy from '../components/lawyer/LawyerCaseStudy.astro';
+import LawyerFaq from '../components/lawyer/LawyerFaq.astro';
+import SiteCta from '../components/SiteCta.astro';
+import Footer from '../components/Footer.astro';
+
+const lawyerLinks = [
+  { href: '#who', label: 'Who we help' },
+  { href: '#work', label: 'The work' },
+  { href: '#case-study', label: 'Case study' },
+  { href: '#faq', label: 'FAQ' },
+];
+---
+
+<Base
+  title="Cook County appeal workflow for property tax firms | BaxterLabs"
+  description="We build and run the intake-to-signature workflow for Illinois property tax appeal firms that file in Cook County. Smokeball stays. Staff stop retyping."
+>
+  <Nav
+    links={lawyerLinks}
+    ctaLabel="Schedule an assessment"
+    ctaShort="Schedule"
+    ctaHref="#contact"
+  />
+  <LawyerHero />
+  <LawyerWho />
+  <LawyerProblems />
+  <LawyerSolution />
+  <LawyerDifference />
+  <LawyerCaseStudy />
+  <LawyerFaq />
+  <SiteCta
+    hideSlot
+    source="lawyer"
+    heading="Schedule a workflow assessment"
+    subtitle="Thirty minutes on your Cook County appeal operation. You leave knowing what is worth automating, and what isn't."
+    businessLabel="Firm"
+    businessPlaceholder="Firm name"
+    messageLabel="What's going on"
+    messagePlaceholder="How many townships you file, whether you're on Smokeball, and where packets stall."
+    buttonLabel="Request an assessment"
+    successLead="Thanks. We'll reply to set a time."
+    successConfirm="Thanks. We'll reply to set a time. We sent a confirmation to {email}."
+  />
+  <Footer />
+</Base>

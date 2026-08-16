@@ -1,0 +1,128 @@
+---
+const items = [
+  {
+    q: 'Do we have to leave Smokeball?',
+    a: 'No. Smokeball stays the matter system. We connect to it.',
+  },
+  {
+    q: 'Does this replace attorneys or staff?',
+    a: 'It takes the retyping, packet assembly, and signature chasing. Legal judgment stays with the firm. Most shops put the time back into files that actually need a lawyer.',
+  },
+  {
+    q: 'Will it file appeals or decide cases on its own?',
+    a: 'No. It prepares and tracks the clerical path. Filing decisions and legal strategy stay with you.',
+  },
+  {
+    q: 'What is a workflow assessment?',
+    a: "Thirty minutes on how intake, packets, signatures, and matters work in your shop today. If it's a fit, you get a written scope. If it isn't, we say so.",
+  },
+  {
+    q: 'What does it cost?',
+    a: 'Depends on what we connect and what you already have. After the assessment you get a fixed quote and a timeline. No open-ended retainer as a surprise.',
+  },
+  {
+    q: 'Who sees our client data?',
+    a: 'We build around your systems. You approve what goes live. Nothing ships to production on a guess.',
+  },
+  {
+    q: 'We file outside Cook County too. Can you help?',
+    a: "This page is Cook County first, because that's the workflow we already run. Other Illinois counties are possible after. Don't expect us to pretend DuPage is the same as Cook.",
+  },
+];
+---
+
+<section class="answers" id="faq" aria-labelledby="answers-heading">
+  <h2 id="answers-heading" data-reveal>Straight answers</h2>
+
+  <div class="answers-list" data-reveal style="--reveal-delay: 0.08s">
+    {
+      items.map((item) => (
+        <details class="answers-item">
+          <summary>
+            <span>{item.q}</span>
+            <span class="answers-marker" aria-hidden="true">+</span>
+          </summary>
+          <p>{item.a}</p>
+        </details>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .answers {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: calc(var(--section-pad-y) * 1.4) var(--section-pad-x);
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 2rem 4rem;
+    align-items: start;
+  }
+
+  .answers h2 {
+    font-size: clamp(1.9rem, 3.6vw, 2.6rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+  }
+
+  .answers-item {
+    border-top: 1px solid var(--site-border);
+  }
+
+  .answers-item:last-child {
+    border-bottom: 1px solid var(--site-border);
+  }
+
+  .answers-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.15rem 0;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .answers-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .answers-marker {
+    color: var(--site-accent);
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+
+  .answers-item[open] .answers-marker {
+    transform: rotate(45deg);
+  }
+
+  .answers-item p {
+    padding: 0 0 1.25rem;
+    max-width: 38rem;
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--site-text-dim);
+  }
+
+  @media (max-width: 820px) {
+    .answers {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .answers-marker {
+      transition: none;
+    }
+  }
+</style>

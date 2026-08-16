@@ -1,0 +1,201 @@
+---
+const points = [
+  'This workflow is already running for a Cook County practice. You are not buying a slide deck.',
+  'Cook County specific: townships, assessor data, the actual authorization forms.',
+  "We don't replace Smokeball.",
+  'Attorneys still decide. We take the retyping, merging, chasing, and filing.',
+  'We stay on after it ships.',
+];
+
+const steps = [
+  {
+    n: '1',
+    title: 'Assess',
+    desc: 'We walk your current intake, packet, signature, and matter flow. About 30 minutes.',
+  },
+  {
+    n: '2',
+    title: 'Propose',
+    desc: 'Written scope, price, and timeline. What we connect to, what stays human.',
+  },
+  {
+    n: '3',
+    title: 'Build',
+    desc: 'Weekly check-ins. You see it working on your real matters before we call it done.',
+  },
+  {
+    n: '4',
+    title: 'Run',
+    desc: 'We monitor it, fix what breaks, and change it when the season changes.',
+  },
+];
+---
+
+<section class="diff" id="different">
+  <div class="diff-inner">
+    <div class="site-section-head">
+      <h2 class="site-section-title">Why firms use us for this</h2>
+    </div>
+
+    <ul class="diff-points" data-reveal>
+      {points.map((point) => (
+        <li>{point}</li>
+      ))}
+    </ul>
+
+    <h3 class="diff-sub">What happens next</h3>
+    <div class="timeline" data-reveal>
+      <div class="timeline-track" aria-hidden="true"></div>
+      {steps.map((step) => (
+        <div class="timeline-step">
+          <div class="timeline-dot" aria-hidden="true">{step.n}</div>
+          <h4 class="timeline-title">{step.title}</h4>
+          <p class="timeline-desc">{step.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .diff {
+    padding: var(--section-pad-y) var(--section-pad-x);
+  }
+
+  .diff-inner {
+    max-width: var(--content-width);
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .diff-points {
+    list-style: none;
+    max-width: 44rem;
+    margin: 0 auto 3.5rem;
+  }
+
+  .diff-points li {
+    padding: 0.85rem 0 0.85rem 1.15rem;
+    border-left: 2px solid var(--site-accent);
+    margin-bottom: 0.7rem;
+    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+    line-height: 1.55;
+    color: var(--site-text);
+  }
+
+  .diff-sub {
+    text-align: center;
+    font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 2.5rem;
+  }
+
+  .timeline {
+    position: relative;
+    max-width: 90rem;
+    margin: 0 auto;
+    display: flex;
+    gap: 2rem;
+    padding: 0 0 1.5rem;
+  }
+
+  .timeline-track {
+    position: absolute;
+    left: 12.5%;
+    right: 12.5%;
+    top: 2.75rem;
+    height: 1px;
+    background: var(--site-border);
+  }
+
+  .timeline-step {
+    position: relative;
+    padding-top: 5.75rem;
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5.5rem;
+    height: 5.5rem;
+    border-radius: 50%;
+    border: 1.5px solid var(--site-accent);
+    background: var(--site-bg);
+    color: var(--site-accent);
+    font-size: 2rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+
+  .timeline-title {
+    font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--site-text);
+    margin-bottom: 0.75rem;
+  }
+
+  .timeline-desc {
+    font-size: clamp(1rem, 1.4vw, 1.15rem);
+    line-height: 1.6;
+    color: var(--site-text-dim);
+    padding: 0 0.75rem;
+    max-width: 24rem;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 640px) {
+    .timeline {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .timeline-track {
+      left: 1rem;
+      right: auto;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      height: auto;
+    }
+
+    .timeline-step {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0 1.25rem;
+      padding: 0 0 2.5rem;
+      text-align: left;
+    }
+
+    .timeline-step:last-child {
+      padding-bottom: 0;
+    }
+
+    .timeline-dot {
+      position: static;
+      transform: none;
+      grid-column: 1;
+      width: 3.5rem;
+      height: 3.5rem;
+      font-size: 1.35rem;
+    }
+
+    .timeline-title,
+    .timeline-desc {
+      grid-column: 2;
+    }
+
+    .timeline-desc {
+      padding: 0;
+    }
+  }
+</style>

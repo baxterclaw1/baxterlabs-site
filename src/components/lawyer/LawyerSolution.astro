@@ -1,0 +1,161 @@
+---
+const rows = [
+  {
+    title: 'County data, already in the file',
+    body: 'Weekly Cook County assessor records: PIN, address, class, assessment, sales. Township windows tracked so a file is not treated as ready when that township has not opened. Operators stop retyping property info into a case file.',
+    img: '/images/n8n-workflow.png?v=1',
+    imgClass: 'is-dim',
+    flip: false,
+  },
+  {
+    title: 'Packets and signatures without the inbox chase',
+    body: 'Retainer, CCBOR authorization, and CCAO authorization generated from live data and sent for e-sign. On signature, the packet is split and filed back to the matter. Fee changes do not mean starting the forms over by hand.',
+    img: '/images/doc-processing.png?v=4',
+    imgClass: 'is-soft',
+    flip: true,
+  },
+  {
+    title: 'Smokeball stays the matter system',
+    body: 'Contacts and matters sync in. Signed documents and status write back. Intake is PIN and fee, checked against county data, with duplicates flagged. Twenty CRM fields become two inputs, plus a hold lane when something looks off.',
+    img: '/images/crm-preview.png?v=2',
+    imgClass: '',
+    flip: false,
+  },
+];
+---
+
+<section class="solution" id="work">
+  <div class="solution-inner">
+    <div class="site-section-head" data-reveal>
+      <h2 class="site-section-title">What we put in place</h2>
+      <p class="site-section-subtitle">
+        The same kind of system we already run for a Cook County appeal practice.
+        Built around your matters, not a generic product checklist.
+      </p>
+    </div>
+
+    <div class="solution-stagger">
+      {rows.map((row) => (
+        <div class="solution-row">
+          {row.flip ? (
+            <>
+              <div class="solution-copy">
+                <h3 class="solution-title">{row.title}</h3>
+                <p class="solution-desc">{row.body}</p>
+              </div>
+              <div class="solution-media">
+                <img class={row.imgClass} src={row.img} width="800" height="500" loading="lazy" decoding="async" alt="" />
+              </div>
+            </>
+          ) : (
+            <>
+              <div class="solution-media">
+                <img class={row.imgClass} src={row.img} width="800" height="500" loading="lazy" decoding="async" alt="" />
+              </div>
+              <div class="solution-copy">
+                <h3 class="solution-title">{row.title}</h3>
+                <p class="solution-desc">{row.body}</p>
+              </div>
+            </>
+          )}
+        </div>
+      ))}
+    </div>
+
+    <p class="solution-note" data-reveal>
+      Messy files go to a needs-review lane. Nothing ships just because the batch ran.
+    </p>
+  </div>
+</section>
+
+<style>
+  .solution {
+    padding: var(--section-pad-y) var(--section-pad-x);
+  }
+
+  .solution-inner {
+    max-width: var(--content-width);
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .solution-stagger {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .solution-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  .solution-media {
+    line-height: 0;
+    border: 1px solid var(--site-border);
+    overflow: hidden;
+  }
+
+  .solution-media img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/10;
+    object-fit: cover;
+    filter: brightness(0.92) contrast(1.05) saturate(0.75);
+  }
+
+  .solution-media img.is-dim {
+    filter: brightness(0.65) contrast(1.05) saturate(0.4);
+  }
+
+  .solution-media img.is-soft {
+    filter: brightness(0.8) contrast(1.05) saturate(0.65);
+  }
+
+  .solution-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .solution-title {
+    font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--site-accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .solution-desc {
+    font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+    line-height: 1.7;
+    color: var(--site-text-dim);
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 28rem;
+  }
+
+  .solution-note {
+    max-width: 36rem;
+    margin: 2.5rem auto 0;
+    text-align: center;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--site-text-dim);
+  }
+
+  @media (max-width: 640px) {
+    .solution-row {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .solution-media {
+      order: -1;
+    }
+  }
+</style>

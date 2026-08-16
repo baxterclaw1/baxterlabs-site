@@ -102,3 +102,106 @@
 
 - © 2026 BaxterLabs. All rights reserved. `# DRAFT`
 - Links: Twitter, Discord, Contact `# DRAFT`
+- Extra link: Property tax appeal firms → `/lawyer`
+
+## Lawyer page (`/lawyer`)
+
+Niche landing for Illinois property tax appeal firms that file in Cook County. One outcome: more appeals processed, fewer packet/data errors, less staff time on clerical work. One action: schedule a workflow assessment. Never name the client. Public copy says "a Cook County property tax appeal firm."
+
+### Meta
+
+- **Title**: Cook County appeal workflow for property tax firms | BaxterLabs
+- **Description**: We build and run the intake-to-signature workflow for Illinois property tax appeal firms that file in Cook County. Smokeball stays. Staff stop retyping.
+
+### Nav
+
+- Jump links: Who we help · The work · Case study · FAQ
+- CTA: Schedule an assessment `#contact`
+- Mobile CTA short: Schedule
+- Logo still goes to `/`
+
+### Hero
+
+- **Headline**: More Cook County appeals. / Less clerical grind.
+- **Subhead**: We build and run the intake-to-signature workflow for Illinois property tax appeal firms that file in Cook County. County data, Smokeball, retainer packets, and e-sign, connected so your staff isn't copying the same PIN into four places.
+- **CTA primary**: Schedule a workflow assessment `#contact`
+- **CTA secondary**: See the work `#case-study`
+
+### Who we help
+
+- **Title**: Who this is for
+- **Body**: Illinois property tax appeal firms that file in Cook County. Usually Smokeball shops where season volume has outgrown retyping, spreadsheets, and chasing signatures in email.
+- **Not for**: If you do general litigation, or you want a tool so property owners can appeal on their own, this page isn't for you.
+
+### Problems
+
+- **Title**: Where the season stalls
+- Someone is retyping PINs, addresses, and assessments from county records into the matter.
+- Township windows live in a spreadsheet that is already a week behind.
+- Retainer, CCBOR, and CCAO packets get assembled by hand, then rebuilt when the fee changes.
+- E-sign status lives in someone's inbox. Nobody else can see who still hasn't signed.
+- Duplicates, wrong fees, and missing authorizations show up after the packet already went out.
+- Attorneys get pulled into clerical fire drills right when the window is open.
+
+### Solution
+
+- **Title**: What we put in place
+- **Subtitle**: The same kind of system we already run for a Cook County appeal practice. Built around your matters, not a generic product checklist.
+- **County data**: Weekly Cook County assessor records (PIN, address, class, assessment, sales). Operators stop retyping property info into a case file.
+- **Smokeball**: Contacts and matters sync in. Signed documents and status write back. The CRM is still where the file lives.
+- **Intake**: PIN and fee, checked against county data, with duplicates flagged. Twenty CRM fields become two inputs, plus a hold lane when something looks off.
+- **Packets**: Retainer, CCBOR authorization, and CCAO authorization generated from live data, sent for e-sign, then split and filed back to the matter. (Section title: Packets and signatures without the inbox chase)
+- **Township windows**: Properties don't get treated as ready because someone forgot the township hadn't opened yet.
+- **Exceptions**: Needs-review and hold lanes for messy files. Nothing ships just because the batch ran.
+
+### Why we're different
+
+- **Title**: Why firms use us for this
+- This workflow is already running for a Cook County practice. You are not buying a slide deck.
+- Cook County specific: townships, assessor data, the actual authorization forms.
+- We don't replace Smokeball.
+- Attorneys still decide. We take the retyping, merging, chasing, and filing.
+- We stay on after it ships.
+
+### What happens next
+
+1. **Assess** - We walk your current intake, packet, signature, and matter flow. About 30 minutes.
+2. **Propose** - Written scope, price, and timeline. What we connect to, what stays human.
+3. **Build** - Weekly check-ins. You see it working on your real matters before we call it done.
+4. **Run** - We monitor it, fix what breaks, and change it when the season changes.
+
+### Case study
+
+- **Title**: A Cook County appeal practice, after the spreadsheet years
+- **Lead**: A property tax appeal firm in Cook County had outgrown Smokeball plus spreadsheets plus inbox. Volume was fine. The glue work wasn't.
+- Weekly ingest of Cook County property records so PINs, addresses, classifications, assessments, and sales don't get retyped
+- Smokeball contact and matter sync, with signed files written back to the matter
+- Township appeal-window tracking so a file only moves when that township is actually open
+- PIN-validated intake with duplicate flags
+- A three-document retainer packet, e-sign, then split and filed back into the matter
+- **Close**: We are not going to invent a percentage of hours saved. What we can say: the clerical path from new client to signed, filed packet no longer depends on one person remembering every step.
+- **CTA**: Schedule a workflow assessment
+
+### FAQ
+
+- **Title**: Straight answers
+- Do we have to leave Smokeball? No. Smokeball stays the matter system. We connect to it.
+- Does this replace attorneys or staff? It takes the retyping, packet assembly, and signature chasing. Legal judgment stays with the firm. Most shops put the time back into files that actually need a lawyer.
+- Will it file appeals or decide cases on its own? No. It prepares and tracks the clerical path. Filing decisions and legal strategy stay with you.
+- What is a workflow assessment? Thirty minutes on how intake, packets, signatures, and matters work in your shop today. If it's a fit, you get a written scope. If it isn't, we say so.
+- What does it cost? Depends on what we connect and what you already have. After the assessment you get a fixed quote and a timeline. No open-ended retainer as a surprise.
+- Who sees our client data? We build around your systems. You approve what goes live. Nothing ships to production on a guess.
+- We file outside Cook County too. Can you help? This page is Cook County first, because that's the workflow we already run. Other Illinois counties are possible after. Don't expect us to pretend DuPage is the same as Cook.
+
+### Assessment form
+
+- **Title**: Schedule a workflow assessment
+- **Body**: Thirty minutes on your Cook County appeal operation. You leave knowing what is worth automating, and what isn't.
+- **Firm label**: Firm (optional)
+- **Firm placeholder**: Firm name
+- **Message label**: What's going on
+- **Message placeholder**: How many townships you file, whether you're on Smokeball, and where packets stall.
+- **Button**: Request an assessment
+- **Hidden source**: lawyer
+- **Success (confirmation sent)**: Thanks. We'll reply to set a time. We sent a confirmation to {email}.
+- **Success (lead only)**: Thanks. We'll reply to set a time.

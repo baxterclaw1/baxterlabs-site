@@ -27,6 +27,18 @@
 - [x] Hero height: ~80dvh so ~20vh of the coral panel (How we work) peeks below the fold at any zoom; first heading in the panel is not scroll-revealed
 - [x] About BaxterLabs: always-visible section before the contact form (not a dropdown); Meet the founders + Our approach; `/#about` scrolls to the section; `/founders` is the same content on its own page
 
+## Lawyer page (`/lawyer`)
+
+- [x] Route: `/lawyer` (Astro page `src/pages/lawyer.astro`)
+- [x] Positioning: Cook County / Illinois property tax appeal firms only. Not an AI agency page. One outcome: more appeals, fewer clerical errors, less staff time. One CTA: schedule a workflow assessment.
+- [x] Client naming: anonymous ("a Cook County property tax appeal firm"). Never LJS on the page.
+- [x] Visual: same dark BaxterLabs system (tokens, stencil lockup, Plus Jakarta Sans). Calmer than homepage; no agent illustration.
+- [x] Sections: Hero → Who this is for → Where the season stalls → What we put in place → Why firms use us → Case study → FAQ → Assessment form
+- [x] Nav: Who we help / The work / Case study / FAQ; CTA "Schedule an assessment" (mobile: "Schedule"); logo to `/`
+- [x] Form: existing `/api/contact` with hidden `source=lawyer`; no Calendly
+- [x] Footer: "Property tax appeal firms" → `/lawyer` (homepage unchanged otherwise)
+- [x] Homepage layout and copy: unchanged
+
 ## Copy
 
 - [x] Positioning: boutique expert shop; father-son not on homepage

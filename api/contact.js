@@ -57,15 +57,16 @@ async function sendResend({ to, replyTo, subject, text, html }) {
   return true;
 }
 
-async function sendLeadToWeb3Forms({ name, email, business, message }) {
+async function sendLeadToWeb3Forms({ name, email, business, message, source }) {
   const form = new URLSearchParams();
   form.set('access_key', WEB3FORMS_KEY);
-  form.set('subject', 'BaxterLabs site inquiry');
+  form.set('subject', source === 'lawyer' ? 'BaxterLabs /lawyer inquiry' : 'BaxterLabs site inquiry');
   form.set('from_name', 'BaxterLabs website');
   form.set('name', name);
   form.set('email', email);
   form.set('message', message);
   if (business) form.set('business', business);
+  if (source) form.set('source', source);
 
   const res = await fetch('https://api.web3forms.com/submit', {
     method: 'POST',
@@ -100,25 +101,29 @@ function confirmationHtml(name, email) {
 <p>Costa &amp; Mike<br>BaxterLabs<br>${escapeHtml(CONTACT_TO)}</p>`;
 }
 
-function leadText({ name, email, business, message }) {
+function leadText({ name, email, business, message, source }) {
   const lines = [
-    'New site inquiry',
+    source === 'lawyer' ? 'New /lawyer inquiry' : 'New site inquiry',
     '',
     `Name: ${name}`,
     `Email: ${email}`,
   ];
   if (business) lines.push(`Business: ${business}`);
+  if (source) lines.push(`Source: ${source}`);
   lines.push('', message);
   return lines.join('\n');
 }
 
-function leadHtml({ name, email, business, message }) {
+function leadHtml({ name, email, business, message, source }) {
   const biz = business
     ? `<p><strong>Business:</strong> ${escapeHtml(business)}</p>`
     : '';
+  const src = source
+    ? `<p><strong>Source:</strong> ${escapeHtml(source)}</p>`
+    : '';
   return `<p><strong>Name:</strong> ${escapeHtml(name)}<br>
 <strong>Email:</strong> ${escapeHtml(email)}</p>
-${biz}
+${biz}${src}
 <p>${escapeHtml(message).replace(/\n/g, '<br>')}</p>`;
 }
 
@@ -145,17 +150,19 @@ export default async function handler(req, res) {
   const email = trimField(body.email, 320);
   const business = trimField(body.business, 200);
   const message = trimField(body.message, 8000);
+  const sourceRaw = trimField(body.source, 40).toLowerCase();
+  const source = sourceRaw === 'lawyer' ? 'lawyer' : '';
 
   if (!name || !message || !EMAIL_RE.test(email)) {
     return res.status(400).json({ ok: false });
   }
 
-  const fields = { name, email, business, message };
+  const fields = { name, email, business, message, source };
 
   const leadViaResend = await sendResend({
     to: CONTACT_TO,
     replyTo: email,
-    subject: `Site inquiry from ${name}`,
+    subject: source === 'lawyer' ? `Lawyer page inquiry from ${name}` : `Site inquiry from ${name}`,
     text: leadText(fields),
     html: leadHtml(fields),
   });

@@ -1,8 +1,38 @@
 ---
+interface NavLink {
+  href: string;
+  label: string;
+}
+
+interface Props {
+  links?: NavLink[];
+  ctaLabel?: string;
+  ctaShort?: string;
+  ctaHref?: string;
+}
+
 const markSrc = `/logos/bl-stencil-lcoral-bcream-thick.png?v=3`;
+
+const {
+  links = [
+    { href: '/#how-we-work', label: 'How we work' },
+    { href: '/#what-we-build', label: 'What we build' },
+    { href: '/#about', label: 'About' },
+  ],
+  ctaLabel = 'Partner with us',
+  ctaShort,
+  ctaHref = '/#contact',
+} = Astro.props;
+
+function scrollId(href: string) {
+  const hash = href.split('#')[1];
+  return hash || undefined;
+}
+
+const ctaScroll = scrollId(ctaHref);
 ---
 
-<header class="nav">
+<header class:list={['nav', links.length > 3 && 'nav--busy']}>
   <div class="nav-inner">
     <a class="nav-logo" href="/" aria-label="BaxterLabs home">
       <img class="nav-mark" src={markSrc} alt="" width="40" height="44" />
@@ -13,12 +43,21 @@ const markSrc = `/logos/bl-stencil-lcoral-bcream-thick.png?v=3`;
     </a>
 
     <nav class="nav-links" aria-label="Page">
-      <a href="/#how-we-work" data-scroll-to="how-we-work">How we work</a>
-      <a href="/#what-we-build" data-scroll-to="what-we-build">What we build</a>
-      <a href="/#about" data-scroll-to="about">About</a>
+      {links.map((link) => (
+        <a href={link.href} data-scroll-to={scrollId(link.href)}>{link.label}</a>
+      ))}
     </nav>
 
-    <a class="btn nav-cta" href="/#contact" data-scroll-to="contact">Partner with us</a>
+    <a class="btn nav-cta" href={ctaHref} data-scroll-to={ctaScroll}>
+      {ctaShort ? (
+        <>
+          <span class="nav-cta-full">{ctaLabel}</span>
+          <span class="nav-cta-short">{ctaShort}</span>
+        </>
+      ) : (
+        ctaLabel
+      )}
+    </a>
   </div>
 </header>
 
@@ -120,12 +159,26 @@ const markSrc = `/logos/bl-stencil-lcoral-bcream-thick.png?v=3`;
     font-size: 0.9rem;
   }
 
+  .nav-cta-short {
+    display: none;
+  }
+
   @media (max-width: 800px) {
     .nav-inner {
       grid-template-columns: minmax(0, 1fr) auto;
     }
 
     .nav-links {
+      display: none;
+    }
+  }
+
+  @media (max-width: 960px) {
+    .nav--busy .nav-inner {
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
+
+    .nav--busy .nav-links {
       display: none;
     }
   }
@@ -142,6 +195,14 @@ const markSrc = `/logos/bl-stencil-lcoral-bcream-thick.png?v=3`;
     .nav-cta {
       font-size: 0.75rem;
       padding: 0.45rem 0.85rem 0.45rem 1rem;
+    }
+
+    .nav-cta-full {
+      display: none;
+    }
+
+    .nav-cta-short {
+      display: inline;
     }
   }
 

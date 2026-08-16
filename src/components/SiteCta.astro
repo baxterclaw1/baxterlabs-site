@@ -1,22 +1,53 @@
 ---
+interface Props {
+  heading?: string;
+  subtitle?: string;
+  businessLabel?: string;
+  businessPlaceholder?: string;
+  messageLabel?: string;
+  messagePlaceholder?: string;
+  buttonLabel?: string;
+  source?: string;
+  hideSlot?: boolean;
+  successLead?: string;
+  successConfirm?: string;
+}
+
 const contactEmail = 'info@baxterlabs.io';
 const web3formsKey = '2dc63a98-1878-4b54-96f7-38297382172e';
+
+const {
+  heading = "Ready to see what's possible?",
+  subtitle = "Book a 30-minute consultation. We'll discuss your biggest bottlenecks and explore if automation is right for you.",
+  businessLabel = 'Business',
+  businessPlaceholder = 'Company name',
+  messageLabel = "What's going on",
+  messagePlaceholder = "About your business, the tools you use, questions, or a job description you'd like automated.",
+  buttonLabel = 'Submit',
+  source = '',
+  hideSlot = false,
+  successLead = "Thanks for reaching out. We'll get back to you asap.",
+  successConfirm = "Thanks for reaching out. We'll get back to you asap. We sent a confirmation to {email}.",
+} = Astro.props;
 ---
 
 <section class="site-cta" aria-labelledby="cta-heading">
   <div class="site-cta-panel">
-    <slot />
-    <hr class="cta-box-sep" />
+    {!hideSlot && (
+      <>
+        <slot />
+        <hr class="cta-box-sep" />
+      </>
+    )}
     <div class="site-contact-block" id="contact">
     <div class="site-section-head">
-      <h2 id="cta-heading" class="site-section-title">Ready to see what's possible?</h2>
-      <p class="site-section-subtitle">
-        Book a 30-minute consultation. We'll discuss your biggest bottlenecks and explore if automation is right for you.
-      </p>
+      <h2 id="cta-heading" class="site-section-title">{heading}</h2>
+      <p class="site-section-subtitle">{subtitle}</p>
     </div>
 
     <form class="site-contact" id="contact-form" novalidate>
       <input type="checkbox" name="botcheck" class="site-contact-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      {source && <input type="hidden" name="source" value={source} />}
 
       <div class="site-contact-row">
         <label class="site-contact-field">
@@ -30,22 +61,22 @@ const web3formsKey = '2dc63a98-1878-4b54-96f7-38297382172e';
       </div>
 
       <label class="site-contact-field">
-        <span>Business <em>(optional)</em></span>
-        <input type="text" name="business" autocomplete="organization" placeholder="Company name" />
+        <span>{businessLabel} <em>(optional)</em></span>
+        <input type="text" name="business" autocomplete="organization" placeholder={businessPlaceholder} />
       </label>
 
       <label class="site-contact-field">
-        <span>What's going on</span>
+        <span>{messageLabel}</span>
         <textarea
           name="message"
           required
           rows="5"
-          placeholder="About your business, the tools you use, questions, or a job description you'd like automated."
+          placeholder={messagePlaceholder}
         ></textarea>
       </label>
 
       <div class="site-contact-footer">
-        <button class="btn" type="submit" id="contact-submit">Submit</button>
+        <button class="btn" type="submit" id="contact-submit">{buttonLabel}</button>
         <p class="site-contact-status" id="contact-status" role="status" aria-live="polite" hidden></p>
       </div>
     </form>
@@ -53,15 +84,16 @@ const web3formsKey = '2dc63a98-1878-4b54-96f7-38297382172e';
   </div>
 </section>
 
-<script define:vars={{ contactEmail, web3formsKey }}>
+<script define:vars={{ contactEmail, web3formsKey, buttonLabel, successLead, successConfirm }}>
   const form = document.getElementById('contact-form');
   const submitBtn = document.getElementById('contact-submit');
   const statusEl = document.getElementById('contact-status');
 
   async function submitWeb3Forms(formEl) {
     const data = new FormData(formEl);
+    const src = String(data.get('source') || '').trim();
     data.append('access_key', web3formsKey);
-    data.append('subject', 'BaxterLabs site inquiry');
+    data.append('subject', src === 'lawyer' ? 'BaxterLabs /lawyer inquiry' : 'BaxterLabs site inquiry');
     data.append('from_name', 'BaxterLabs website');
     const res = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
@@ -97,6 +129,7 @@ const web3formsKey = '2dc63a98-1878-4b54-96f7-38297382172e';
           email: visitorEmail,
           business: String(fields.get('business') || '').trim(),
           message: String(fields.get('message') || '').trim(),
+          source: String(fields.get('source') || '').trim(),
           botcheck: honeypot instanceof HTMLInputElement ? honeypot.checked : false,
         };
 
@@ -122,15 +155,15 @@ const web3formsKey = '2dc63a98-1878-4b54-96f7-38297382172e';
         statusEl.hidden = false;
         statusEl.dataset.state = 'ok';
         statusEl.textContent = confirmationSent
-          ? `Thanks for reaching out. We'll get back to you asap. We sent a confirmation to ${visitorEmail}.`
-          : "Thanks for reaching out. We'll get back to you asap.";
+          ? successConfirm.replace('{email}', visitorEmail)
+          : successLead;
       } catch {
         statusEl.hidden = false;
         statusEl.dataset.state = 'err';
         statusEl.textContent = `Couldn't send that. Email us at ${contactEmail}.`;
       } finally {
         submitBtn.disabled = false;
-        submitBtn.textContent = 'Submit';
+        submitBtn.textContent = buttonLabel;
       }
     });
   }
