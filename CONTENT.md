@@ -131,7 +131,6 @@ Niche landing for Illinois property tax appeal firms that file in Cook County. O
 
 - **Title**: Who this is for
 - **Body**: Illinois property tax appeal firms that file in Cook County. Usually shops where season volume has outgrown retyping, spreadsheets, and chasing signatures in email.
-- **Not for**: If you do general litigation, or you want a tool so property owners can appeal on their own, this page isn't for you.
 
 ### Problems
 
