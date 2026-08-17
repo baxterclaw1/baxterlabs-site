@@ -9,14 +9,14 @@ const rows = [
   },
   {
     title: 'Packets and signatures without the inbox chase',
-    body: 'Retainer, CCBOR authorization, and CCAO authorization generated from live data and sent for e-sign. On signature, the packet is split and filed back to the matter. Fee changes do not mean starting the forms over by hand.',
+    body: 'CCBOR and CCAO authorizations, plus other requested docs such as a retainer, generated from live data and sent for e-sign. On signature, the packet is split and saved back to the client file. Fee changes do not mean starting the forms over by hand.',
     img: '/images/doc-processing.png?v=4',
     imgClass: 'is-soft',
     flip: true,
   },
   {
-    title: 'Your CRM stays the matter system',
-    body: 'Contacts and matters sync in. Signed documents and status write back. Intake is PIN and fee, checked against county data, with duplicates flagged. Twenty CRM fields become two inputs, plus a hold lane when something looks off.',
+    title: 'Your CRM stays where the files live',
+    body: 'Contacts and files sync in. Signed documents and status write back. Intake is PIN and fee, checked against county data, with duplicates flagged. Twenty CRM fields become two inputs, plus a hold lane when something looks off.',
     img: '/images/crm-preview.png?v=2',
     imgClass: '',
     flip: false,
@@ -30,7 +30,8 @@ const rows = [
       <h2 class="site-section-title">What we put in place</h2>
       <p class="site-section-subtitle">
         The same kind of system we already run for a Cook County appeal practice.
-        Built around your matters, not a generic product checklist.
+        Built to integrate with your existing process, not a generic product
+        checklist.
       </p>
     </div>
 
@@ -61,10 +62,6 @@ const rows = [
         </div>
       ))}
     </div>
-
-    <p class="solution-note" data-reveal>
-      Messy files go to a needs-review lane. Nothing ships just because the batch ran.
-    </p>
   </div>
 </section>
 
@@ -137,15 +134,6 @@ const rows = [
     margin-left: auto;
     margin-right: auto;
     max-width: 28rem;
-  }
-
-  .solution-note {
-    max-width: 36rem;
-    margin: 2.5rem auto 0;
-    text-align: center;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: var(--site-text-dim);
   }
 
   @media (max-width: 640px) {

@@ -135,7 +135,7 @@ Niche landing for Illinois property tax appeal firms that file in Cook County. O
 ### Problems
 
 - **Title**: Where the season stalls
-- Someone is retyping PINs, addresses, and assessments from county records into the matter.
+- Someone is retyping PINs, addresses, and assessments from county records into the case file.
 - Township windows live in a spreadsheet that is already a week behind.
 - Retainer, CCBOR, and CCAO packets get assembled by hand, then rebuilt when the fee changes.
 - E-sign status lives in someone's inbox. Nobody else can see who still hasn't signed.
@@ -145,13 +145,12 @@ Niche landing for Illinois property tax appeal firms that file in Cook County. O
 ### Solution
 
 - **Title**: What we put in place
-- **Subtitle**: The same kind of system we already run for a Cook County appeal practice. Built around your matters, not a generic product checklist.
+- **Subtitle**: The same kind of system we already run for a Cook County appeal practice. Built to integrate with your existing process, not a generic product checklist.
 - **County data**: Weekly Cook County assessor records (PIN, address, class, assessment, sales). Operators stop retyping property info into a case file.
-- **CRM**: Contacts and matters sync in. Signed documents and status write back. The CRM they already use is still where the file lives.
+- **CRM**: Contacts and files sync in. Signed documents and status write back. The CRM they already use is still where the file lives. (Section title: Your CRM stays where the files live)
 - **Intake**: PIN and fee, checked against county data, with duplicates flagged. Twenty CRM fields become two inputs, plus a hold lane when something looks off.
-- **Packets**: Retainer, CCBOR authorization, and CCAO authorization generated from live data, sent for e-sign, then split and filed back to the matter. (Section title: Packets and signatures without the inbox chase)
+- **Packets**: CCBOR and CCAO authorizations, plus other requested docs such as a retainer, generated from live data, sent for e-sign, then split and saved back to the client file. (Section title: Packets and signatures without the inbox chase)
 - **Township windows**: Properties don't get treated as ready because someone forgot the township hadn't opened yet.
-- **Exceptions**: Needs-review and hold lanes for messy files. Nothing ships just because the batch ran.
 
 ### Why we're different
 
@@ -164,9 +163,9 @@ Niche landing for Illinois property tax appeal firms that file in Cook County. O
 
 ### What happens next
 
-1. **Assess** - We walk your current intake, packet, signature, and matter flow. About 30 minutes.
+1. **Assess** - We walk your current intake, packet, signature, and file flow. About 30 minutes.
 2. **Propose** - Written scope, price, and timeline. What we connect to, what stays human.
-3. **Build** - Weekly check-ins. You see it working on your real matters before we call it done.
+3. **Build** - Weekly check-ins. You see it working on your real files before we call it done.
 4. **Run** - We monitor it, fix what breaks, and change it when the season changes.
 
 ### Case study
@@ -174,19 +173,19 @@ Niche landing for Illinois property tax appeal firms that file in Cook County. O
 - **Title**: A Cook County appeal practice, after the spreadsheet years
 - **Lead**: A property tax appeal firm in Cook County had outgrown their CRM plus spreadsheets plus inbox. Volume was fine. The glue work wasn't.
 - Weekly ingest of Cook County property records so PINs, addresses, classifications, assessments, and sales don't get retyped
-- Contact and matter sync with the CRM they already used, with signed files written back to the matter
+- Contact and file sync with the CRM they already used, with signed documents written back to each file
 - Township appeal-window tracking so a file only moves when that township is actually open
 - PIN-validated intake with duplicate flags
-- A three-document retainer packet, e-sign, then split and filed back into the matter
+- A three-document retainer packet, e-sign, then split and saved back into the client file
 - **Close**: We are not going to invent a percentage of hours saved. What we can say: the clerical path from new client to signed, filed packet no longer depends on one person remembering every step.
 
 ### FAQ
 
 - **Title**: Straight answers
-- Do we have to switch CRMs? No. We connect to whatever you already use. The matter still lives in your system.
+- Do we have to switch CRMs? No. We connect to whatever you already use. The file still lives in your CRM.
 - Does this replace attorneys or staff? It takes the retyping, packet assembly, and signature chasing. Legal judgment stays with the firm. Most shops put the time back into files that actually need a lawyer.
 - Will it file appeals or decide cases on its own? No. It prepares and tracks the clerical path. Filing decisions and legal strategy stay with you.
-- What is a workflow assessment? Thirty minutes on how intake, packets, signatures, and matters work in your shop today. If it's a fit, you get a written scope. If it isn't, we say so.
+- What is a workflow assessment? Thirty minutes on how intake, packets, signatures, and files work in your shop today. If it's a fit, you get a written scope. If it isn't, we say so.
 - What does it cost? Depends on what we connect and what you already have. After the assessment you get a fixed quote and a timeline. No open-ended retainer as a surprise.
 - Who sees our client data? We build around your systems. You approve what goes live. Nothing ships to production on a guess.
 - We file outside Cook County too. Can you help? This page is Cook County first, because that's the workflow we already run. Other Illinois counties are possible after. Don't expect us to pretend DuPage is the same as Cook.
@@ -198,7 +197,7 @@ Niche landing for Illinois property tax appeal firms that file in Cook County. O
 - **Firm label**: Firm (optional)
 - **Firm placeholder**: Firm name
 - **Message label**: What's going on
-- **Message placeholder**: How many townships you file, what you use for matters, and where packets stall.
+- **Message placeholder**: How many townships you file, what CRM you use, and where packets stall.
 - **Button**: Request an assessment
 - **Hidden source**: lawyer
 - **Success (confirmation sent)**: Thanks. We'll reply to set a time. We sent a confirmation to {email}.
